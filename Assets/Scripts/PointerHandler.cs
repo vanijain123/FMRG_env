@@ -24,12 +24,17 @@ public class PointerHandler : MonoBehaviour
 
     // private SteamVR_Fade fade;
     private GameObject projectionPlane;
+    private GameObject projectedComponents;
+    private bool clicked;
+    private GameObject clickedGameObject;
 
     private void Awake()
     {
         laserPointer.PointerIn += PointerInside;
         laserPointer.PointerOut += PointerOutside;
         laserPointer.PointerClick += PointerClick;
+
+        clicked = false;
     }
 
     private void PointerClick(object sender, PointerEventArgs e)
@@ -38,17 +43,34 @@ public class PointerHandler : MonoBehaviour
         if (e.target.tag == "redPlaneButton")
         {
             Debug.Log("Red button clicked");
-            StartCoroutine(ButtonPressed(a, redLocation));
+            ButtonPressed(a);
+            clicked = true;
+            clickedGameObject = e.target.gameObject;
+            ProjectOnPlane(e.target.gameObject);
         }
         else if (e.target.tag == "yellowPlaneButton")
         {
             Debug.Log("Yellow Button Clicked");
-            StartCoroutine(ButtonPressed(a, yellowLocation));
+            ButtonPressed(a);
+            clicked = true;
+            clickedGameObject = e.target.gameObject;
+            ProjectOnPlane(e.target.gameObject);
         }
         else if (e.target.tag == "greenPlaneButton")
         {
             Debug.Log("Green Button Clicked");
-            StartCoroutine(ButtonPressed(a, greenLocation));
+            ButtonPressed(a);
+            clicked = true;
+            clickedGameObject = e.target.gameObject;
+            ProjectOnPlane(e.target.gameObject);
+        }
+        else if (e.target.name == "CloseMenuButton_Button")
+        {
+            HideProjectedComponents();
+        }
+        else if (e.target.name == "TeleportButton_Button")
+        {
+            ChangePosition();
         }
     }
 
@@ -58,7 +80,7 @@ public class PointerHandler : MonoBehaviour
         if (c.tag == "redPlaneButton")
         {
             Debug.Log("Red button touched");
-            ChangePosition(redLocation);
+            ChangePosition();
         }
     }
 
@@ -67,17 +89,27 @@ public class PointerHandler : MonoBehaviour
         if (e.target.tag == "redPlaneButton")
         {
             Debug.Log("Red button entered");
-            ProjectOnPlane(e.target.gameObject);
+            if (clicked == false)
+            {
+                ProjectOnPlane(e.target.gameObject);
+            }
+           
         }
         else if (e.target.tag == "yellowPlaneButton")
         {
             Debug.Log("Yellow Button entered");
-            ProjectOnPlane(e.target.gameObject);
+            if (clicked == false)
+            {
+                ProjectOnPlane(e.target.gameObject);
+            }
         }
         else if (e.target.tag == "greenPlaneButton")
         {
             Debug.Log("Green Button entered");
-            ProjectOnPlane(e.target.gameObject);
+            if (clicked == false)
+            {
+                ProjectOnPlane(e.target.gameObject);
+            }
         }
     }
 
@@ -86,41 +118,88 @@ public class PointerHandler : MonoBehaviour
         if (e.target.tag == "redPlaneButton")
         {
             Debug.Log("Red button exited");
-            projectionPlane.SetActive(false);
-            lr.enabled = false;
+            if (clicked == false)
+            {
+                HideProjectedComponents();
+            }
         }
         else if (e.target.tag == "yellowPlaneButton")
         {
             Debug.Log("Yellow Button exited");
-            projectionPlane.SetActive(false);
+            if (clicked == false)
+            {
+                HideProjectedComponents();
+            }
         }
         else if (e.target.tag == "greenPlaneButton")
         {
             Debug.Log("Green Button exited");
-            projectionPlane.SetActive(false);
+            if (clicked == false)
+            {
+                HideProjectedComponents();
+            }
         }
+        
     }
 
-    private void ChangePosition(Transform pos)
+    private void ChangePosition()
     {
-        transform.position = pos.position;
+        Vector3 dest = new Vector3(0,0,0);
+        if (clickedGameObject.tag == "redPlaneButton")
+        {
+            dest = redLocation.position;
+        }
+        else if (clickedGameObject.tag == "yellowPlaneButton")
+        {
+            dest = yellowLocation.position;
+        }
+        else if (clickedGameObject.tag == "greenPlaneButton")
+        {
+            dest = greenLocation.position;
+        }
+        transform.position = dest;
         ft.FadeMethod();
+        HideProjectedComponents();
     }
 
-    IEnumerator ButtonPressed(Animator a, Transform pos)
+    private void ButtonPressed(Animator a)
     {
         a.SetTrigger("ButtonPressed");
-        yield return new WaitForSeconds(0.8f);
-        ChangePosition(pos);
+        // yield return new WaitForSeconds(0.8f);
+        //ChangePosition(pos);
     }
 
     private void ProjectOnPlane(GameObject button)
     {
         // Get projection plane gameobject from the button pressed
-        projectionPlane = button.transform.parent.GetChild(3).gameObject;
-        Debug.Log(projectionPlane.name);
-        projectionPlane.SetActive(true);
+        Transform t = button.transform.parent.transform;
+        foreach(Transform tr in t)
+        {
+            if (tr.name == "ProjectedComponents")
+            {
+                projectedComponents = tr.gameObject;
+            }
+        }
+        projectedComponents.SetActive(true);
+        
 
+        foreach (Transform tr in projectedComponents.transform)
+        {
+
+            if (tr.tag == "projectionPlane")
+            {
+                projectionPlane = tr.gameObject;
+            }
+
+            if (clicked == true)
+            {
+                if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
+                {
+                    tr.gameObject.SetActive(true);
+                }
+            }
+        }
+        
         // Change material of projection plane
         Debug.Log("Inside ProjectOnPlane");;
 
@@ -145,5 +224,22 @@ public class PointerHandler : MonoBehaviour
         lr.endWidth = 0.005f;
         Vector3 dest = new Vector3(button.transform.position.x + 1, button.transform.position.y + 0.4f, button.transform.position.z);
         lr.SetPosition(1, dest);
+    }
+
+    private void HideProjectedComponents()
+    {
+        if (clicked == true)
+        {
+            foreach (Transform tr in projectedComponents.transform)
+            {
+                if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
+                {
+                    tr.gameObject.SetActive(false);
+                }
+            }
+        }
+        projectedComponents.SetActive(false);
+        lr.enabled = false;
+        clicked = false;
     }
 }
