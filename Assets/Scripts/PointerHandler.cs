@@ -22,11 +22,20 @@ public class PointerHandler : MonoBehaviour
     public Transform yellowLocation;
     public Transform greenLocation;
 
+    public GameObject redPlane;
+    public GameObject yellowPlane;
+    public GameObject greenPlane;
+
+    private List<GameObject> replicas = new List<GameObject>();
+
     // private SteamVR_Fade fade;
     private GameObject projectionPlane;
     private GameObject projectedComponents;
     private bool clicked;
     private GameObject clickedGameObject;
+
+    public Animator pp;
+    public Animator ip;
 
     private void Awake()
     {
@@ -40,28 +49,31 @@ public class PointerHandler : MonoBehaviour
     private void PointerClick(object sender, PointerEventArgs e)
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
-        if (e.target.tag == "redPlaneButton")
+        if (e.target.tag == "redPlaneButton" && clicked == false)
         {
             Debug.Log("Red button clicked");
             ButtonPressed(a);
             clicked = true;
             clickedGameObject = e.target.gameObject;
+            DestroyReplicas();
             ProjectOnPlane(e.target.gameObject);
         }
-        else if (e.target.tag == "yellowPlaneButton")
+        else if (e.target.tag == "yellowPlaneButton" && clicked == false)
         {
             Debug.Log("Yellow Button Clicked");
             ButtonPressed(a);
             clicked = true;
             clickedGameObject = e.target.gameObject;
+            DestroyReplicas();
             ProjectOnPlane(e.target.gameObject);
         }
-        else if (e.target.tag == "greenPlaneButton")
+        else if (e.target.tag == "greenPlaneButton" && clicked == false)
         {
             Debug.Log("Green Button Clicked");
             ButtonPressed(a);
             clicked = true;
             clickedGameObject = e.target.gameObject;
+            DestroyReplicas();
             ProjectOnPlane(e.target.gameObject);
         }
         else if (e.target.name == "CloseMenuButton_Button")
@@ -72,6 +84,15 @@ public class PointerHandler : MonoBehaviour
         {
             ChangePosition();
         }
+        else if(e.target.name == "ProjectionPlane" || e.target.name == "InformationProjectionPlane")
+        {
+            FlipPlanes(e.target.gameObject);
+        }
+        //else if (e.target.name == "InformationProjectionPlane")
+        //{
+        //    pp.SetTrigger("FlipBackPlane");
+        //    ip.SetTrigger("FlipBackPlane");
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -186,7 +207,12 @@ public class PointerHandler : MonoBehaviour
         foreach (Transform tr in projectedComponents.transform)
         {
 
-            if (tr.tag == "projectionPlane")
+            //if (tr.tag == "projectionPlane")
+            //{
+            //    projectionPlane = tr.gameObject;
+            //}
+
+            if (tr.name == "ProjectionPlane")
             {
                 projectionPlane = tr.gameObject;
             }
@@ -197,11 +223,21 @@ public class PointerHandler : MonoBehaviour
                 {
                     tr.gameObject.SetActive(true);
                 }
+                
             }
         }
+
+        //if (clicked == true)
+        //{
+            CreateMiniWorld(projectionPlane, button);
+        //}
         
+
         // Change material of projection plane
-        Debug.Log("Inside ProjectOnPlane");;
+        Debug.Log("Inside ProjectOnPlane");
+
+        // Animator pp = projectionPlane.GetComponent<Animator>();
+        // pp.enabled = true;
 
         if (button.tag == "redPlaneButton")
         {
@@ -228,6 +264,7 @@ public class PointerHandler : MonoBehaviour
 
     private void HideProjectedComponents()
     {
+
         if (clicked == true)
         {
             foreach (Transform tr in projectedComponents.transform)
@@ -238,8 +275,107 @@ public class PointerHandler : MonoBehaviour
                 }
             }
         }
+
+        // Destroy gameobjects and empty replicas collection
+        DestroyReplicas();
+
         projectedComponents.SetActive(false);
         lr.enabled = false;
         clicked = false;
+    }
+
+    private void DestroyReplicas()
+    {
+        List<GameObject> temp = new List<GameObject>(replicas);
+        int count = 0;
+        foreach (GameObject x in temp)
+        {
+            Debug.Log(replicas[count]);
+            Destroy(replicas[count]);
+            replicas.Remove(replicas[count]);
+        }
+    }
+
+    private void FlipPlanes(GameObject a)
+    {
+        //GameObject x, y;
+
+        //Transform parent = a.transform.parent.transform;
+        
+        //foreach (Transform tr in parent)
+        //{
+        //    if (tr.name == "ProjectionPlane")
+        //    {
+        //        x = tr.gameObject;
+        //        pp = x.GetComponent<Animator>();
+        //    }
+        //    if (tr.name == "InformationProjectionPlane")
+        //    {
+        //        y = tr.gameObject;
+        //        ip = y.GetComponent<Animator>();
+        //    }
+        //}
+        
+
+        //if (a.name == "ProjectionPlane")
+        //{
+        //    pp.SetTrigger("FlipPlane");
+        //    ip.SetTrigger("FlipPlane");
+        //}
+        //else
+        //{
+        //    pp.SetTrigger("FlipPlaneBack");
+        //    ip.SetTrigger("FlipPlaneBack");
+        //}
+    }
+
+    private void CreateMiniWorld(GameObject surface, GameObject button)
+    {
+        
+        Vector3 scale = new Vector3 (1,1,1);
+        Vector3 newLocalScale = new Vector3(0.1f, 0.1f, 0.1f);
+
+        GameObject replicatePlane = surface;
+
+        if (button.tag == "redPlaneButton")
+        {
+            replicatePlane = redPlane;
+        }
+        else if (button.tag == "greenPlaneButton")
+        {
+            replicatePlane = greenPlane;
+        }
+        else if (button.tag == "yellowPlaneButton")
+        {
+            replicatePlane = yellowPlane;
+        }
+
+        //GameObject[] replicas;
+
+        foreach (Transform tr in replicatePlane.transform)
+        {
+            if (tr.tag == "replicable")
+            {
+                //replicas.Add(Instantiate(tr.gameObject, surface.transform, true) as GameObject);
+                //replicas.Add(Instantiate(tr.gameObject) as GameObject);
+                replicas.Add(Instantiate(tr.gameObject, surface.transform) as GameObject);
+
+                // scale = tr.localScale;
+            }
+        }
+        
+        foreach (GameObject x in replicas)
+        {
+            //x.transform.SetParent(surface.transform, true);
+            //    //x.transform.localScale = x.transform.localScale / surface.transform.localScale;
+            //x.transform.localPosition = surface.transform.position;
+
+            x.transform.SetParent(null);
+            x.transform.localScale = scale;
+            //x.transform.localScale = scale;
+
+            x.transform.SetParent(surface.transform);
+            x.transform.localScale = newLocalScale;
+        }
     }
 }

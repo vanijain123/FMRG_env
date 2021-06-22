@@ -8,6 +8,7 @@ TagManager:
   - greenPlaneButton
   - yellowPlaneButton
   - projectionPlane
+  - replicable
   layers:
   - Default
   - TransparentFX
