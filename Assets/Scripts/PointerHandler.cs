@@ -375,7 +375,8 @@ public class PointerHandler : MonoBehaviour
             //x.transform.localScale = scale;
 
             x.transform.SetParent(surface.transform);
-            x.transform.localScale = newLocalScale;
+            x.transform.localScale /= 10;
+            //x.transform.localScale = newLocalScale;
         }
     }
 }
