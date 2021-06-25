@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Valve.VR;
 using Valve.VR.Extras;
+using Valve.VR.InteractionSystem;
 
 public class PointerHandler : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PointerHandler : MonoBehaviour
     public GameObject redPlane;
     public GameObject yellowPlane;
     public GameObject greenPlane;
+
+    public Transform attachmentPoint;
 
     private List<GameObject> replicas = new List<GameObject>();
 
@@ -95,14 +98,30 @@ public class PointerHandler : MonoBehaviour
         //}
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    // temp
+    //}
+
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    // temp
+    //}
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    GameObject c = collision.gameObject;
+    //    Debug.Log("OnTriggerStay");
+    //    if (c.layer.ToString() == "Grabbable")
+    //    {
+    //        Debug.Log("Entered " + c.name);
+    //        Grab(c);
+    //    }
+    //}
+
+    private void Grab(GameObject g)
     {
-        GameObject c = collision.gameObject;
-        if (c.tag == "redPlaneButton")
-        {
-            Debug.Log("Red button touched");
-            ChangePosition();
-        }
+        g.transform.position = attachmentPoint.position;
     }
 
     private void PointerInside(object sender, PointerEventArgs e)
@@ -255,6 +274,7 @@ public class PointerHandler : MonoBehaviour
 
         // Draw line from button to preview
         lr.enabled = true;
+        Vector3 start_pos = new Vector3(button.transform.position.x, button.transform.position.y + 5, button.transform.position.z);
         lr.SetPosition(0, button.transform.position);
         lr.startWidth = 0.005f;
         lr.endWidth = 0.005f;
@@ -377,6 +397,11 @@ public class PointerHandler : MonoBehaviour
             x.transform.SetParent(surface.transform);
             x.transform.localScale /= 10;
             //x.transform.localScale = newLocalScale;
+            x.layer = 8;
+
+            x.AddComponent<Interactable>();
+            x.AddComponent<InteractableHoverEvents>();
+            x.AddComponent<SimpleAttach>();
         }
     }
 }
