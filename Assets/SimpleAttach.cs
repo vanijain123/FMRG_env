@@ -7,6 +7,10 @@ using Valve.VR.InteractionSystem;
 public class SimpleAttach : MonoBehaviour
 {
     private Interactable interactable;
+    //private Transform parent;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    private Vector3 startScale;
 
     private void Start()
     {
@@ -30,6 +34,10 @@ public class SimpleAttach : MonoBehaviour
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
+            startPosition = gameObject.transform.position;
+            startRotation = gameObject.transform.rotation;
+            startScale = gameObject.transform.localScale;
+
             hand.AttachObject(gameObject, grabType);
             hand.HoverLock(interactable);
             hand.HideGrabHint();
@@ -38,6 +46,10 @@ public class SimpleAttach : MonoBehaviour
         {
             hand.DetachObject(gameObject);
             hand.HoverUnlock(interactable);
+
+            gameObject.transform.localScale = startScale;
+            gameObject.transform.position = startPosition;
+            gameObject.transform.rotation = startRotation;
         }
     }
 }
