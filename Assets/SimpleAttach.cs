@@ -19,12 +19,12 @@ public class SimpleAttach : MonoBehaviour
 
     private void OnHandHoverBegin(Hand hand)
     {
-        hand.ShowGrabHint();
+        //hand.ShowGrabHint();
     }
 
     private void OnHandHoverEnd(Hand hand)
     {
-        hand.HideGrabHint();
+        //hand.HideGrabHint();
     }
 
     private void HandHoverUpdate(Hand hand)
@@ -40,7 +40,7 @@ public class SimpleAttach : MonoBehaviour
 
             hand.AttachObject(gameObject, grabType);
             hand.HoverLock(interactable);
-            hand.HideGrabHint();
+            //hand.HideGrabHint();
         }
         else if (isGrabEnding)
         {

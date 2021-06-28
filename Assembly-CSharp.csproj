@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AttachedPlane.cs" />
     <Compile Include="Assets\Scripts\FadeTest.cs" />
     <Compile Include="Assets\Scripts\GrabbingController.cs" />
     <Compile Include="Assets\Scripts\MenuSelection.cs" />
@@ -615,8 +616,17 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.OpenVR.Editor">
       <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.XR.OpenVR.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Oculus">
       <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.XR.Oculus.dll</HintPath>
@@ -651,6 +661,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -659,18 +672,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder">
-      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Editor">
-      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>C:/Users/vani_/Documents/GitHub/FMRG_env/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

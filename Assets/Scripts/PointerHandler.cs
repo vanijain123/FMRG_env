@@ -27,7 +27,12 @@ public class PointerHandler : MonoBehaviour
     public GameObject yellowPlane;
     public GameObject greenPlane;
 
+    public GameObject currentPlane;
+    public GameObject nextPlane;
+
     public Transform attachmentPoint;
+
+    public GameObject VRCamera;
 
     private List<GameObject> replicas = new List<GameObject>();
 
@@ -46,78 +51,41 @@ public class PointerHandler : MonoBehaviour
         laserPointer.PointerOut += PointerOutside;
         laserPointer.PointerClick += PointerClick;
 
+        currentPlane = greenPlane;
+
         clicked = false;
     }
 
     private void PointerClick(object sender, PointerEventArgs e)
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
-        if (e.target.tag == "redPlaneButton" && clicked == false)
+
+        if (e.target.tag == "planeButton" && clicked == false)
         {
-            Debug.Log("Red button clicked");
+            nextPlane = e.target.GetComponent<AttachedPlane>().plane;
+            Debug.Log(currentPlane.name + " clicked");
+
             ButtonPressed(a);
             clicked = true;
             clickedGameObject = e.target.gameObject;
             DestroyReplicas();
             ProjectOnPlane(e.target.gameObject);
         }
-        else if (e.target.tag == "yellowPlaneButton" && clicked == false)
-        {
-            Debug.Log("Yellow Button Clicked");
-            ButtonPressed(a);
-            clicked = true;
-            clickedGameObject = e.target.gameObject;
-            DestroyReplicas();
-            ProjectOnPlane(e.target.gameObject);
-        }
-        else if (e.target.tag == "greenPlaneButton" && clicked == false)
-        {
-            Debug.Log("Green Button Clicked");
-            ButtonPressed(a);
-            clicked = true;
-            clickedGameObject = e.target.gameObject;
-            DestroyReplicas();
-            ProjectOnPlane(e.target.gameObject);
-        }
+
         else if (e.target.name == "CloseMenuButton_Button")
         {
             HideProjectedComponents();
         }
         else if (e.target.name == "TeleportButton_Button")
         {
+            //currentPlane.SetActive(false);
             ChangePosition();
         }
         else if(e.target.name == "ProjectionPlane" || e.target.name == "InformationProjectionPlane")
         {
             FlipPlanes(e.target.gameObject);
         }
-        //else if (e.target.name == "InformationProjectionPlane")
-        //{
-        //    pp.SetTrigger("FlipBackPlane");
-        //    ip.SetTrigger("FlipBackPlane");
-        //}
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    // temp
-    //}
-
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    // temp
-    //}
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    GameObject c = collision.gameObject;
-    //    Debug.Log("OnTriggerStay");
-    //    if (c.layer.ToString() == "Grabbable")
-    //    {
-    //        Debug.Log("Entered " + c.name);
-    //        Grab(c);
-    //    }
-    //}
 
     private void Grab(GameObject g)
     {
@@ -126,26 +94,10 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerInside(object sender, PointerEventArgs e)
     {
-        if (e.target.tag == "redPlaneButton")
+
+        if (e.target.tag == "planeButton")
         {
-            Debug.Log("Red button entered");
-            if (clicked == false)
-            {
-                ProjectOnPlane(e.target.gameObject);
-            }
-           
-        }
-        else if (e.target.tag == "yellowPlaneButton")
-        {
-            Debug.Log("Yellow Button entered");
-            if (clicked == false)
-            {
-                ProjectOnPlane(e.target.gameObject);
-            }
-        }
-        else if (e.target.tag == "greenPlaneButton")
-        {
-            Debug.Log("Green Button entered");
+            Debug.Log(nextPlane + " button entered");
             if (clicked == false)
             {
                 ProjectOnPlane(e.target.gameObject);
@@ -155,58 +107,56 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerOutside(object sender, PointerEventArgs e)
     {
-        if (e.target.tag == "redPlaneButton")
+
+        if (e.target.tag == "planeButton")
         {
-            Debug.Log("Red button exited");
+            Debug.Log(nextPlane + " button exited");
             if (clicked == false)
             {
                 HideProjectedComponents();
             }
         }
-        else if (e.target.tag == "yellowPlaneButton")
-        {
-            Debug.Log("Yellow Button exited");
-            if (clicked == false)
-            {
-                HideProjectedComponents();
-            }
-        }
-        else if (e.target.tag == "greenPlaneButton")
-        {
-            Debug.Log("Green Button exited");
-            if (clicked == false)
-            {
-                HideProjectedComponents();
-            }
-        }
-        
+
     }
 
     private void ChangePosition()
     {
         Vector3 dest = new Vector3(0,0,0);
-        if (clickedGameObject.tag == "redPlaneButton")
-        {
-            dest = redLocation.position;
-        }
-        else if (clickedGameObject.tag == "yellowPlaneButton")
-        {
-            dest = yellowLocation.position;
-        }
-        else if (clickedGameObject.tag == "greenPlaneButton")
-        {
-            dest = greenLocation.position;
-        }
-        transform.position = dest;
+
+        Debug.Log("Before teleport: Current plane - " + currentPlane + " Next plane - " + nextPlane);
+
+        //currentPlane.SetActive(false);
+
+        //nextPlane.SetActive(true);
+        transform.position = nextPlane.transform.position;
+        //currentPlane = nextPlane;
+
+        //currentPlane.layer = 9;
+        //SetLayerRecursively(currentPlane, 9);
+
+        //nextPlane.layer = 0;
+        //SetLayerRecursively(nextPlane, 0);
+
+        currentPlane = nextPlane.gameObject;
+
+        Debug.Log("After teleport: Current plane - " + currentPlane + " Next plane - " + nextPlane);
+
         ft.FadeMethod();
         HideProjectedComponents();
+    }
+
+    private void SetLayerRecursively(GameObject g, int layer)
+    {
+        g.layer = layer;
+        foreach (Transform child in g.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
     }
 
     private void ButtonPressed(Animator a)
     {
         a.SetTrigger("ButtonPressed");
-        // yield return new WaitForSeconds(0.8f);
-        //ChangePosition(pos);
     }
 
     private void ProjectOnPlane(GameObject button)
@@ -225,12 +175,7 @@ public class PointerHandler : MonoBehaviour
 
         foreach (Transform tr in projectedComponents.transform)
         {
-
-            //if (tr.tag == "projectionPlane")
-            //{
-            //    projectionPlane = tr.gameObject;
-            //}
-
+            
             if (tr.name == "ProjectionPlane")
             {
                 projectionPlane = tr.gameObject;
@@ -258,18 +203,9 @@ public class PointerHandler : MonoBehaviour
         // Animator pp = projectionPlane.GetComponent<Animator>();
         // pp.enabled = true;
 
-        if (button.tag == "redPlaneButton")
-        {
-            projectionPlane.GetComponent<MeshRenderer>().material = redRenderTexture;
-        }
-        else if (button.tag == "greenPlaneButton")
-        {
-            projectionPlane.GetComponent<MeshRenderer>().material = greenRenderTexture;
-        }
-        else if (button.tag == "yellowPlaneButton")
-        {
-            projectionPlane.GetComponent<MeshRenderer>().material = yellowRenderTexture;
-        }
+        Material projectionTexture = button.GetComponent<AttachedPlane>().projectionTexture;
+        projectionPlane.GetComponent<MeshRenderer>().material = projectionTexture ;
+        
         Debug.Log(projectionPlane.GetComponent<MeshRenderer>().materials[0]);
 
         // Draw line from button to preview
@@ -355,48 +291,24 @@ public class PointerHandler : MonoBehaviour
         Vector3 scale = new Vector3 (1,1,1);
         Vector3 newLocalScale = new Vector3(0.1f, 0.1f, 0.1f);
 
-        GameObject replicatePlane = surface;
-
-        if (button.tag == "redPlaneButton")
-        {
-            replicatePlane = redPlane;
-        }
-        else if (button.tag == "greenPlaneButton")
-        {
-            replicatePlane = greenPlane;
-        }
-        else if (button.tag == "yellowPlaneButton")
-        {
-            replicatePlane = yellowPlane;
-        }
-
-        //GameObject[] replicas;
+        GameObject replicatePlane = button.GetComponent<AttachedPlane>().plane;
 
         foreach (Transform tr in replicatePlane.transform)
         {
             if (tr.tag == "replicable")
             {
-                //replicas.Add(Instantiate(tr.gameObject, surface.transform, true) as GameObject);
-                //replicas.Add(Instantiate(tr.gameObject) as GameObject);
                 replicas.Add(Instantiate(tr.gameObject, surface.transform) as GameObject);
-
-                // scale = tr.localScale;
             }
         }
         
         foreach (GameObject x in replicas)
         {
-            //x.transform.SetParent(surface.transform, true);
-            //    //x.transform.localScale = x.transform.localScale / surface.transform.localScale;
-            //x.transform.localPosition = surface.transform.position;
-
+            Debug.Log(x.name);
             x.transform.SetParent(null);
             x.transform.localScale = scale;
-            //x.transform.localScale = scale;
 
             x.transform.SetParent(surface.transform);
             x.transform.localScale /= 10;
-            //x.transform.localScale = newLocalScale;
             x.layer = 8;
 
             x.AddComponent<Interactable>();

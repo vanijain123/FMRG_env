@@ -9,6 +9,7 @@ TagManager:
   - yellowPlaneButton
   - projectionPlane
   - replicable
+  - planeButton
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - 
   - Grabbable
-  - 
+  - HiddenPlane
   - 
   - 
   - 
