@@ -60,31 +60,46 @@ public class PointerHandler : MonoBehaviour
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
 
-        if (e.target.tag == "planeButton" && clicked == false)
+        //if (e.target.tag == "planeButton" && clicked == false)
+        if (e.target.tag == "planeButton")
         {
             nextPlane = e.target.GetComponent<AttachedPlane>().plane;
             Debug.Log(currentPlane.name + " clicked");
 
             ButtonPressed(a);
-            clicked = true;
+            //clicked = true;
             clickedGameObject = e.target.gameObject;
             DestroyReplicas();
             ProjectOnPlane(e.target.gameObject);
         }
 
-        else if (e.target.name == "CloseMenuButton_Button")
-        {
-            HideProjectedComponents();
-        }
-        else if (e.target.name == "TeleportButton_Button")
+        //else if (e.target.name == "CloseMenuButton_Button")
+        //{
+        //    HideProjectedComponents();
+        //}
+        if (e.target.name == "TeleportButton_Button")
         {
             //currentPlane.SetActive(false);
             ChangePosition();
         }
-        else if(e.target.name == "ProjectionPlane" || e.target.name == "InformationProjectionPlane")
+        else if (e.target.name == "DuplicatetButton_Button")
         {
-            FlipPlanes(e.target.gameObject);
+            //currentPlane.SetActive(false);
+            Debug.Log("Duplicate button clicked" + e.target.name);
+            DuplicateMenu(e.target.transform.parent.transform.parent.transform.parent.gameObject);
         }
+        //else if(e.target.name == "ProjectionPlane" || e.target.name == "InformationProjectionPlane")
+        //{
+        //    FlipPlanes(e.target.gameObject);
+        //}
+    }
+
+    private void DuplicateMenu(GameObject menu)
+    {
+        Debug.Log("Inside Duplicate Menu");
+        Quaternion q = menu.transform.rotation;
+        Vector3 pos = new Vector3(menu.transform.position.x - 0.8f, menu.transform.position.y, menu.transform.position.z);
+        Instantiate(menu, pos, q, menu.transform.parent.transform);
     }
 
     private void Grab(GameObject g)
@@ -97,11 +112,13 @@ public class PointerHandler : MonoBehaviour
 
         if (e.target.tag == "planeButton")
         {
+
             Debug.Log(nextPlane + " button entered");
-            if (clicked == false)
-            {
-                ProjectOnPlane(e.target.gameObject);
-            }
+            //HideProjectedComponents();
+            ////if (clicked == false)
+            ////{
+            //    ProjectOnPlane(e.target.gameObject);
+            ////}
         }
     }
 
@@ -111,10 +128,10 @@ public class PointerHandler : MonoBehaviour
         if (e.target.tag == "planeButton")
         {
             Debug.Log(nextPlane + " button exited");
-            if (clicked == false)
-            {
-                HideProjectedComponents();
-            }
+            //if (clicked == false)
+            //{
+            //    HideProjectedComponents();
+            //}
         }
 
     }
@@ -162,7 +179,7 @@ public class PointerHandler : MonoBehaviour
     private void ProjectOnPlane(GameObject button)
     {
         // Get projection plane gameobject from the button pressed
-        Transform t = button.transform.parent.transform;
+        Transform t = button.transform.parent.transform.parent.transform;
         foreach(Transform tr in t)
         {
             if (tr.name == "ProjectedComponents")
@@ -181,14 +198,14 @@ public class PointerHandler : MonoBehaviour
                 projectionPlane = tr.gameObject;
             }
 
-            if (clicked == true)
-            {
-                if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
-                {
-                    tr.gameObject.SetActive(true);
-                }
+            //if (clicked == true)
+            //{
+            //    if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
+            //    {
+            //        tr.gameObject.SetActive(true);
+            //    }
                 
-            }
+            //}
         }
 
         //if (clicked == true)
@@ -221,21 +238,25 @@ public class PointerHandler : MonoBehaviour
     private void HideProjectedComponents()
     {
 
-        if (clicked == true)
-        {
-            foreach (Transform tr in projectedComponents.transform)
-            {
-                if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
-                {
-                    tr.gameObject.SetActive(false);
-                }
-            }
-        }
+        //if (clicked == true)
+        //{
+        //    foreach (Transform tr in projectedComponents.transform)
+        //    {
+        //        if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
+        //        {
+        //            tr.gameObject.SetActive(false);
+        //        }
+        //    }
+        //}
 
         // Destroy gameobjects and empty replicas collection
-        DestroyReplicas();
+        if (replicas.Count != 0)
+        {
+            DestroyReplicas();
+        }
+        
 
-        projectedComponents.SetActive(false);
+        //projectedComponents.SetActive(false);
         lr.enabled = false;
         clicked = false;
     }
@@ -304,11 +325,12 @@ public class PointerHandler : MonoBehaviour
         foreach (GameObject x in replicas)
         {
             Debug.Log(x.name);
-            x.transform.SetParent(null);
-            x.transform.localScale = scale;
+            //x.transform.SetParent(null);
+            //x.transform.localScale = scale;
 
             x.transform.SetParent(surface.transform);
-            x.transform.localScale /= 10;
+            //x.transform.localScale /= 10;
+            //x.transform.localPosition /= 10;
             x.layer = 8;
 
             x.AddComponent<Interactable>();

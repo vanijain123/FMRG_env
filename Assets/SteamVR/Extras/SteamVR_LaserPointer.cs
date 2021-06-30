@@ -103,6 +103,14 @@ namespace Valve.VR.Extras
             RaycastHit hit;
             bool bHit = Physics.Raycast(raycast, out hit);
 
+
+            // Changes made by Vani to avoid certain objects 
+            //if (hit.transform.gameObject.layer == 10)
+            //{
+            //    bHit = false;
+            //}
+            // End of changes made by Vani
+
             if (previousContact && previousContact != hit.transform)
             {
                 PointerEventArgs args = new PointerEventArgs();
