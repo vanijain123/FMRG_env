@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.newproject_steamvr_2019.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\vani_\\Documents\\Unity\\NewProject_SteamVR_2019\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\vani_\\Documents\\GitHub\\FMRG_env\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "NewProject_SteamVR_2019 [Testing]"

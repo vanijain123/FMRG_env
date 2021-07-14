@@ -6,4 +6,5 @@ public class AttachedPlane : MonoBehaviour
 {
     public GameObject plane;
     public Material projectionTexture;
+    public GameObject teleportPlane;
 }

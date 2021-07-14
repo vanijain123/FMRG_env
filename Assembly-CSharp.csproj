@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\AttachedPlane.cs" />
     <Compile Include="Assets\Scripts\FadeTest.cs" />
     <Compile Include="Assets\Scripts\GrabbingController.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MenuSelection.cs" />
     <Compile Include="Assets\Scripts\PointerHandler.cs" />
     <Compile Include="Assets\Scripts\Teleporter.cs" />

@@ -188,7 +188,7 @@ namespace Valve.VR.InteractionSystem
 
 			CheckForSpawnPoint();
 
-			Invoke( "ShowTeleportHint", 5.0f );
+			//Invoke( "ShowTeleportHint", 5.0f );
 		}
 
 
@@ -822,7 +822,7 @@ namespace Valve.VR.InteractionSystem
 					teleportingToMarker = pointedAtTeleportMarker;
 					InitiateTeleportFade();
 
-					CancelTeleportHint();
+					//CancelTeleportHint();
 				}
 			}
 		}
@@ -898,8 +898,12 @@ namespace Valve.VR.InteractionSystem
 
                 if (player.leftHand.currentAttachedObjectInfo.HasValue)
                     player.leftHand.ResetAttachedTransform(player.leftHand.currentAttachedObjectInfo.Value);
-                if (player.rightHand.currentAttachedObjectInfo.HasValue)
-                    player.rightHand.ResetAttachedTransform(player.rightHand.currentAttachedObjectInfo.Value);
+                // changes made by Vani
+
+                //if (player.rightHand.currentAttachedObjectInfo.HasValue)
+                //    player.rightHand.ResetAttachedTransform(player.rightHand.currentAttachedObjectInfo.Value);
+
+                // end of changes made by Vani
             }
 			else
 			{
@@ -963,14 +967,19 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( hintCoroutine != null )
             {
-                ControllerButtonHints.HideTextHint(player.leftHand, teleportAction);
-                ControllerButtonHints.HideTextHint(player.rightHand, teleportAction);
+
+                // changes made by Vani
+
+                //ControllerButtonHints.HideTextHint(player.leftHand, teleportAction);
+                //ControllerButtonHints.HideTextHint(player.rightHand, teleportAction);
+
+                // end of changes made by Vani
 
 				StopCoroutine( hintCoroutine );
 				hintCoroutine = null;
 			}
 
-			CancelInvoke( "ShowTeleportHint" );
+			//CancelInvoke( "ShowTeleportHint" );
 		}
 
 
