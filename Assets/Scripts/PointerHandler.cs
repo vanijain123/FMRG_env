@@ -56,6 +56,8 @@ public class PointerHandler : MonoBehaviour
     public Animator pp;
     public Animator ip;
 
+    private Vector3 pos;
+    private float dis;
 
     private GameObject selectedMenu;
 
@@ -65,9 +67,12 @@ public class PointerHandler : MonoBehaviour
         laserPointer.PointerOut += PointerOutside;
         laserPointer.PointerClick += PointerClick;
 
+        pos = new Vector3(0, 0, 0);
+
         currentPlane = greenPlane;
 
         clicked = false;
+        dis = 0f;
 
         menuHeld = false;
     }
@@ -79,15 +84,35 @@ public class PointerHandler : MonoBehaviour
             Vector3 pointerPos = laserPointer.transform.position;
 
             Vector3 ax = SteamVR_Actions.default_MoveMenu[hand.handType].axis / 100;
-            
+
+            //float dis = Vector3.Distance(selectedMenu.transform.position, rightHand.transform.position);
+            //Vector3 pos = new Vector3(0,0,0);
+
+            ////Moving the menu around using joytstick
+            //if (SteamVR_Actions.default_GrabGrip[hand.handType].state)
+            //{
+
+            //    selectedMenu.transform.position += new Vector3(0, ax.y, 0);
+            //}
+            //else if (ax.x != 0 || ax.y != 0)
+            //{
+            //    selectedMenu.transform.position += new Vector3(ax.x, 0, ax.y);
+            //}
+
+            //Moving menu around using grab
+            if (!SteamVR_Actions.default_GrabGrip[hand.handType].state)
+            {
+                //pos = selectedMenu.transform.position;
+                dis = Vector3.Distance(selectedMenu.transform.position, laserPointer.transform.position);
+                //pos = new Vector3(dis, 0, dis);
+                //pos = rightHand.transform.position;
+            }
             if (SteamVR_Actions.default_GrabGrip[hand.handType].state)
             {
-
-                selectedMenu.transform.position += new Vector3(0, ax.y, 0);
-            }
-            else if (ax.x != 0 || ax.y != 0)
-            {
-                selectedMenu.transform.position += new Vector3(ax.x, 0, ax.y);
+                //Debug.Log("Distance " + dis);
+                //dis = Vector3.Distance(pos, rightHand.transform.position);
+                //Vector3 now = new Vector3(dis, 0, dis);
+                selectedMenu.transform.position = rightHand.transform.position + new Vector3(0, 0, dis);
             }
         }
     }
@@ -96,13 +121,23 @@ public class PointerHandler : MonoBehaviour
     {
 
         Animator a = e.target.gameObject.GetComponent<Animator>();
+        
 
         if (e.target.name == "MovementPlatform" && !menuHeld)
         {
             menuHeld = true;
             selectedMenu = e.target.transform.parent.gameObject;
+            //pos = selectedMenu.transform.position;
             e.target.transform.parent.transform.Find("MenuHighlight").gameObject.SetActive(true);
-
+            //while (menuHeld)
+            //{
+            //    int count = 0;
+            //    if (SteamVR_Actions.default_GrabPinch[hand.handType].state && count<11)
+            //    {
+            //        count++;
+            //        menuHeld = false;
+            //    }
+            //}
         }
         else if (e.target.name == "MovementPlatform" && menuHeld)
         {
@@ -195,13 +230,6 @@ public class PointerHandler : MonoBehaviour
         if (e.target.name == "MovementPlatform")
         {
             Debug.Log("Inside Movement Platform");
-            //Debug.Log(SteamVR_Actions.menuManipulation_GrabMenu[hand.handType].state);
-            //menuHeld = SteamVR_Actions.menuManipulation_GrabMenu[hand.handType].state;
-            //if (SteamVR_Actions.menuManipulation_GrabMenu[hand.handType].state)
-            //{
-            //    GrabMenu();
-            //}
-                //Debug.Log(SteamVR_Input.GetStateDown("GrabPinch", rightController));
         }
     }
 
@@ -246,14 +274,6 @@ public class PointerHandler : MonoBehaviour
 
         transform.position = teleport_button.GetComponent<AttachedPlane>().plane.transform.position;
 
-        //currentPlane = nextPlane;
-
-        //currentPlane.layer = 9;
-        //SetLayerRecursively(currentPlane, 9);
-
-        //nextPlane.layer = 0;
-        //SetLayerRecursively(nextPlane, 0);
-
         currentPlane = nextPlane;
 
         Debug.Log("After teleport: Current plane - " + currentPlane + " Next plane - " + nextPlane);
@@ -297,15 +317,6 @@ public class PointerHandler : MonoBehaviour
             {
                 projectionPlane = tr.gameObject;
             }
-
-            //if (clicked == true)
-            //{
-            //    if (tr.name == "TeleportButton" || tr.name == "CloseMenuButton")
-            //    {
-            //        tr.gameObject.SetActive(true);
-            //    }
-                
-            //}
         }
 
         //if (clicked == true)
@@ -324,15 +335,7 @@ public class PointerHandler : MonoBehaviour
         projectionPlane.GetComponent<MeshRenderer>().material = projectionTexture ;
         
         Debug.Log(projectionPlane.GetComponent<MeshRenderer>().materials[0]);
-
-        // Draw line from button to preview
-        //lr.enabled = true;
-        //Vector3 start_pos = new Vector3(button.transform.position.x, button.transform.position.y + 5, button.transform.position.z);
-        //lr.SetPosition(0, button.transform.position);
-        //lr.startWidth = 0.005f;
-        //lr.endWidth = 0.005f;
-        //Vector3 dest = new Vector3(button.transform.position.x + 1, button.transform.position.y + 0.4f, button.transform.position.z);
-        //lr.SetPosition(1, dest);
+        
     }
 
     private void HideProjectedComponents()
@@ -372,39 +375,7 @@ public class PointerHandler : MonoBehaviour
             replicas.Remove(replicas[count]);
         }
     }
-
-    private void FlipPlanes(GameObject a)
-    {
-        //GameObject x, y;
-
-        //Transform parent = a.transform.parent.transform;
-        
-        //foreach (Transform tr in parent)
-        //{
-        //    if (tr.name == "ProjectionPlane")
-        //    {
-        //        x = tr.gameObject;
-        //        pp = x.GetComponent<Animator>();
-        //    }
-        //    if (tr.name == "InformationProjectionPlane")
-        //    {
-        //        y = tr.gameObject;
-        //        ip = y.GetComponent<Animator>();
-        //    }
-        //}
-        
-
-        //if (a.name == "ProjectionPlane")
-        //{
-        //    pp.SetTrigger("FlipPlane");
-        //    ip.SetTrigger("FlipPlane");
-        //}
-        //else
-        //{
-        //    pp.SetTrigger("FlipPlaneBack");
-        //    ip.SetTrigger("FlipPlaneBack");
-        //}
-    }
+    
 
     private void CreateMiniWorld(GameObject surface, GameObject button)
     {
