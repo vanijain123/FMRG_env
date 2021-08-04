@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7958407630074218293}
   - component: {fileID: 7958407630074218292}
   m_Layer: 0
-  m_Name: Timestamp1
+  m_Name: Timestamp
   m_TagString: timestamp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7958407630074218290}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.977, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.06666665, y: 4, z: 2.9162474}
   m_Children: []
   m_Father: {fileID: 0}

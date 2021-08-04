@@ -5,6 +5,7 @@ using UnityEngine;
 public class SiteManager : MonoBehaviour
 {
     public GameObject taskGroup;
+    public GameObject ts;
 
     private List<GameObject> tasks = new List<GameObject>();
     private GameObject projectionComponents;
@@ -47,6 +48,22 @@ public class SiteManager : MonoBehaviour
             GameObject t = Instantiate(taskGroup, parent);
             t.transform.Find("Task").GetComponent<MeshRenderer>().material = task.GetComponent<MeshRenderer>().material;
             t.transform.localPosition = new Vector3(x, y, z);
+
+            int steps = task.GetComponent<Task>().steps;
+
+            GameObject timestampParent = t.transform.Find("Timeline").Find("Cylinder").Find("Timestamps").gameObject;
+            //Debug.Log(timestampParent.GetComponent<MeshRenderer>().bounds);
+
+            float a = 0, b = 1.0f, c = 0;
+
+            for (int i=0; i<steps; i++)
+            {
+                GameObject temp = Instantiate(ts, timestampParent.transform);
+                temp.transform.localPosition = new Vector3(a, b, c);
+                b -= 0.3f;
+            }
+
+
             y -= 0.1f;
             z -= 0.1f;
         }
