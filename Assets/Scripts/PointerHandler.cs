@@ -124,6 +124,11 @@ public class PointerHandler : MonoBehaviour
 
         Animator a = e.target.gameObject.GetComponent<Animator>();
 
+        if(e.target.tag == "site")
+        {
+            e.target.GetComponent<SiteManager>().SelectSite();
+        }
+
         if (e.target.tag == "timestamp")
         {
             TimestampClicked(e.target.gameObject);

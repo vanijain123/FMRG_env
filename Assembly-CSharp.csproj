@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AllSitesManager.cs" />
     <Compile Include="Assets\Scripts\AttachedPlane.cs" />
     <Compile Include="Assets\Scripts\FadeTest.cs" />
     <Compile Include="Assets\Scripts\GetPlanes.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\PlaneInfo.cs" />
     <Compile Include="Assets\Scripts\PointerHandler.cs" />
     <Compile Include="Assets\Scripts\ProjectionPlane.cs" />
+    <Compile Include="Assets\Scripts\SiteManager.cs" />
     <Compile Include="Assets\Scripts\Task.cs" />
     <Compile Include="Assets\Scripts\TaskProjectionPlane.cs" />
     <Compile Include="Assets\Scripts\TeleportButton.cs" />

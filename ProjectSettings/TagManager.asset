@@ -15,6 +15,7 @@ TagManager:
   - yellowPlane
   - timestamp
   - task
+  - site
   layers:
   - Default
   - TransparentFX
