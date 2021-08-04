@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 3930227000059665758}
   m_Layer: 0
   m_Name: YellowPlane 1
-  m_TagString: Untagged
+  m_TagString: yellowPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,8 +625,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 1251070697181490473, guid: f272cffd8f48d7049bdd42698c2cd319, type: 3}
-  projectionTexture: {fileID: 2100000, guid: 67cbc878e05810f408e89fedbb7a274f, type: 2}
-  teleportPlane: {fileID: 0}
+  projectionPlane: {fileID: 0}
+  teleportButton: {fileID: 0}
 --- !u!1 &3930227000279333153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 0}
-  projectionTexture: {fileID: 2100000, guid: ade4a936cfc389a4aae0516ca3bac219, type: 2}
-  teleportPlane: {fileID: 0}
+  projectionPlane: {fileID: 0}
+  teleportButton: {fileID: 0}
 --- !u!1 &3930227000893127704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,8 +2249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 1749106656989617359, guid: 6184740494a5622438113ced249f2540, type: 3}
-  projectionTexture: {fileID: 2100000, guid: 3b6e54b0a0dc35f40a4a102e69c634c5, type: 2}
-  teleportPlane: {fileID: 0}
+  projectionPlane: {fileID: 0}
+  teleportButton: {fileID: 0}
 --- !u!1 &3930227001416710041
 GameObject:
   m_ObjectHideFlags: 0

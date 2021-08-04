@@ -5,6 +5,20 @@ using UnityEngine;
 public class AttachedPlane : MonoBehaviour
 {
     public GameObject plane;
-    public Material projectionTexture;
-    public GameObject teleportPlane;
+    public GameObject projectionPlane;
+    public GameObject teleportButton;
+
+    private Material projectionTexture;
+    //public GameObject teleportPlane;
+
+    //private List<GameObject> replicas = new List<GameObject>();
+
+    private void Start()
+    {
+        Debug.Log(plane.GetComponent<MeshRenderer>().sharedMaterial);
+        this.GetComponent<MeshRenderer>().sharedMaterial = plane.GetComponent<MeshRenderer>().sharedMaterial;
+        //teleportButton.GetComponent<TeleportButton>().currentPlane = plane;
+        
+    }
+
 }

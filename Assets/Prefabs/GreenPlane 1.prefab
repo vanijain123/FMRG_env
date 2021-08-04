@@ -324,11 +324,11 @@ GameObject:
   - component: {fileID: 2464631627063230767}
   m_Layer: 0
   m_Name: GreenPlane 1
-  m_TagString: Untagged
+  m_TagString: greenPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2464631627063230770
 Transform:
   m_ObjectHideFlags: 0
@@ -854,6 +854,11 @@ PrefabInstance:
     - target: {fileID: 879417439635459984, guid: 8edac0a10be8fa04c8536517125a8a47,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 879417439635459984, guid: 8edac0a10be8fa04c8536517125a8a47,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 879417439635459988, guid: 8edac0a10be8fa04c8536517125a8a47,

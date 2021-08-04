@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4346074702590862941}
   m_Layer: 0
   m_Name: RedPlane 1
-  m_TagString: Untagged
+  m_TagString: redPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
