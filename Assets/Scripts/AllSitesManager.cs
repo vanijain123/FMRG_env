@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AllSitesManager : MonoBehaviour
 {
+    public GameObject siteMenuParent;
+
     private GameObject activeSite;
 
     // Start is called before the first frame update
@@ -11,6 +13,7 @@ public class AllSitesManager : MonoBehaviour
     {
         activeSite = transform.GetChild(0).GetChild(0).gameObject;
         activeSite.GetComponent<SiteManager>().SelectSite();
+        //siteMenuParent.SetActive(false);
     }
 
     public void UpdateActiveSite(GameObject newSite)

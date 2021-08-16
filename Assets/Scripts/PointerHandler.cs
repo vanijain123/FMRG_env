@@ -126,12 +126,18 @@ public class PointerHandler : MonoBehaviour
 
         if(e.target.tag == "site")
         {
+
             e.target.GetComponent<SiteManager>().SelectSite();
         }
 
         if (e.target.tag == "timestamp")
         {
             TimestampClicked(e.target.gameObject);
+        }
+
+        if (e.target.tag == "siteTask")
+        {
+            e.target.transform.parent.transform.parent.GetChild(0).GetComponent<SiteManager>().SelectSite(e.target.GetSiblingIndex());
         }
 
         if (e.target.tag == "task")

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\PointerHandler.cs" />
     <Compile Include="Assets\Scripts\ProjectionPlane.cs" />
     <Compile Include="Assets\Scripts\SiteManager.cs" />
+    <Compile Include="Assets\Scripts\SiteTimeline.cs" />
     <Compile Include="Assets\Scripts\Task.cs" />
     <Compile Include="Assets\Scripts\TaskProjectionPlane.cs" />
     <Compile Include="Assets\Scripts\TeleportButton.cs" />

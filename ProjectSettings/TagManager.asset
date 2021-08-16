@@ -16,6 +16,7 @@ TagManager:
   - timestamp
   - task
   - site
+  - siteTask
   layers:
   - Default
   - TransparentFX

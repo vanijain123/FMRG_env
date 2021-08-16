@@ -22,4 +22,10 @@ public class TaskProjectionPlane : MonoBehaviour
         currentTask.transform.Find("SelectedTaskHighlight").GetComponent<MeshRenderer>().enabled = true;
         this.GetComponent<MeshRenderer>().material = currentTask.GetComponent<MeshRenderer>().material;
     }
+
+    public void FindTask(int index)
+    {
+        GameObject task = transform.parent.Find("Tasks").GetChild(index).gameObject;
+        SetTask(task);
+    }
 }
