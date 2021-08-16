@@ -4201,6 +4201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666bcfa3890f741458d00cfd8a585211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gos:
+  - {fileID: 6161981629380055183, guid: d9cef5e4c4eee674282768866611a11f, type: 3}
+  - {fileID: 6139343620927817291, guid: 5bc2fbc008c9abb4b97040bedef68204, type: 3}
+  - {fileID: 3143449380702624792, guid: 255633e6c5682994083b2381cbc1ce22, type: 3}
 --- !u!64 &1040176305
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6124,6 +6128,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timeline
       objectReference: {fileID: 0}
+    - target: {fileID: 4736256372794380639, guid: e82ec11236cde8847b588be235483f39,
+        type: 3}
+      propertyPath: gos.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4736256372794380639, guid: e82ec11236cde8847b588be235483f39,
+        type: 3}
+      propertyPath: gos.Array.data[0]
+      value: 
+      objectReference: {fileID: 6139343620927817291, guid: 5bc2fbc008c9abb4b97040bedef68204,
+        type: 3}
+    - target: {fileID: 4736256372794380639, guid: e82ec11236cde8847b588be235483f39,
+        type: 3}
+      propertyPath: gos.Array.data[1]
+      value: 
+      objectReference: {fileID: 6161981629380055183, guid: d9cef5e4c4eee674282768866611a11f,
+        type: 3}
+    - target: {fileID: 4736256372794380639, guid: e82ec11236cde8847b588be235483f39,
+        type: 3}
+      propertyPath: gos.Array.data[2]
+      value: 
+      objectReference: {fileID: 3143449380702624792, guid: 255633e6c5682994083b2381cbc1ce22,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e82ec11236cde8847b588be235483f39, type: 3}
 --- !u!4 &1431489026 stripped
@@ -9450,7 +9477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2051757123
 Transform:
   m_ObjectHideFlags: 0

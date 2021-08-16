@@ -46,6 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   white: {fileID: 2100000, guid: f81d43b139f26d2478480922ae13d378, type: 2}
   green: {fileID: 2100000, guid: 67cbc878e05810f408e89fedbb7a274f, type: 2}
+  go: {fileID: 0}
+  gos:
+  - {fileID: 6161981629380055183, guid: d9cef5e4c4eee674282768866611a11f, type: 3}
+  - {fileID: 6139343620927817291, guid: 5bc2fbc008c9abb4b97040bedef68204, type: 3}
+  - {fileID: 3143449380702624792, guid: 255633e6c5682994083b2381cbc1ce22, type: 3}
 --- !u!1 &1315282937277146769
 GameObject:
   m_ObjectHideFlags: 0

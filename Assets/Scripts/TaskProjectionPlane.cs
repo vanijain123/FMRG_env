@@ -6,6 +6,8 @@ public class TaskProjectionPlane : MonoBehaviour
 {
     private GameObject currentTask;
 
+    public List<GameObject> gos = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {

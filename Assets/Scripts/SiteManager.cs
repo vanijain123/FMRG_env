@@ -69,8 +69,7 @@ public class SiteManager : MonoBehaviour
                 temp.transform.localPosition = new Vector3(a, b, c);
                 b -= 0.3f;
             }
-
-
+            
             y -= 0.1f;
             z -= 0.1f;
         }
