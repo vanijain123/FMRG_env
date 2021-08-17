@@ -66,6 +66,8 @@ public class PointerHandler : MonoBehaviour
 
     private GameObject activeTimestamp;
 
+    
+
     private void Awake()
     {
         laserPointer.PointerIn += PointerInside;
@@ -82,9 +84,9 @@ public class PointerHandler : MonoBehaviour
         menuHeld = false;
 
         FindAllPlanes();
-
-        
     }
+
+
 
     private void FindAllPlanes()
     {
@@ -137,6 +139,10 @@ public class PointerHandler : MonoBehaviour
 
         if (e.target.tag == "siteTask")
         {
+            if (e.target.transform.childCount > 1)
+            {   
+                Destroy(e.target.transform.GetChild(1).gameObject);
+            }
             e.target.transform.parent.transform.parent.GetChild(0).GetComponent<SiteManager>().SelectSite(e.target.GetSiblingIndex());
         }
 

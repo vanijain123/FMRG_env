@@ -4734,6 +4734,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   siteMenuParent: {fileID: 0}
+  helpNeededHighlight: {fileID: 6644828839099897157, guid: f1273717e70434042915acccdb318fd6,
+    type: 3}
 --- !u!1 &1231532663
 GameObject:
   m_ObjectHideFlags: 0

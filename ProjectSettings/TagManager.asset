@@ -17,6 +17,7 @@ TagManager:
   - task
   - site
   - siteTask
+  - helpNeeded
   layers:
   - Default
   - TransparentFX
