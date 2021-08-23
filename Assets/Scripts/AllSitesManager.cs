@@ -6,6 +6,7 @@ public class AllSitesManager : MonoBehaviour
 {
     public GameObject siteMenuParent;
     public GameObject helpNeededHighlight;
+    public GameObject mainPlane;
 
     private GameObject activeSite;
 

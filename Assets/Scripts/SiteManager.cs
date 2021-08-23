@@ -10,6 +10,7 @@ public class SiteManager : MonoBehaviour
     private List<GameObject> tasks = new List<GameObject>();
     private GameObject projectionComponents;
     private GameObject firstTask;
+    private GameObject mainPlane;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +27,8 @@ public class SiteManager : MonoBehaviour
 
         projectionComponents = transform.parent.transform.parent.transform.parent.Find("ProjectionComponents").gameObject;
         //SelectSite();
+
+        mainPlane = transform.parent.transform.parent.GetComponent<AllSitesManager>().mainPlane;
     }
 
     public void SelectSite(int index = 0)

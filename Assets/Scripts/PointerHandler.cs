@@ -151,6 +151,11 @@ public class PointerHandler : MonoBehaviour
             e.target.transform.parent.transform.parent.transform.parent.Find("TaskProjectionPlane").GetComponent<TaskProjectionPlane>().SetTask(e.target.gameObject);
         }
 
+        if (e.target.name == "teleportToTask")
+        {
+            e.target.transform.parent.Find("TaskProjectionPlane").GetComponent<TaskProjectionPlane>().TeleportToTask();
+        }
+
         if (e.target.name == "MovementPlatform" && !menuHeld)
         {
             menuHeld = true;
