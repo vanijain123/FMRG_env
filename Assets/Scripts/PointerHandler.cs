@@ -66,6 +66,8 @@ public class PointerHandler : MonoBehaviour
 
     private GameObject activeTimestamp;
 
+    private int insideMenuGrab;
+    private Transform grabbingObject;
     
 
     private void Awake()
@@ -83,53 +85,63 @@ public class PointerHandler : MonoBehaviour
 
         menuHeld = false;
 
-        FindAllPlanes();
+        //FindAllPlanes();
+
+        insideMenuGrab = 0;
     }
 
 
 
-    private void FindAllPlanes()
-    {
-        redPlane = GameObject.Find("RedPlane");
-        greenPlane = GameObject.Find("GreenPlane");
-        yellowPlane = GameObject.Find("YellowPlane");
+    //private void FindAllPlanes()
+    //{
+    //    redPlane = GameObject.Find("RedPlane");
+    //    greenPlane = GameObject.Find("GreenPlane");
+    //    yellowPlane = GameObject.Find("YellowPlane");
 
-        redPlane.SetActive(false);
-        yellowPlane.SetActive(false);
-    }
+    //    redPlane.SetActive(false);
+    //    yellowPlane.SetActive(false);
+    //}
 
     private void Update()
     {
-        if (menuHeld)
+        //if (menuHeld)
+        //{
+        //    Vector3 pointerPos = laserPointer.transform.position;
+
+        //    Vector3 ax = SteamVR_Actions.default_MoveMenu[hand.handType].axis / 100;
+
+        //    if (ax.x != 0 || ax.y != 0)
+        //    {
+        //        selectedMenu.transform.position += new Vector3(ax.x + Mathf.Pow(ax.x, 2), 0, ax.y + Mathf.Pow(ax.y, 2));
+        //    }
+        //    else if (SteamVR_Actions.default_GrabGrip[hand.handType].state)
+        //    {
+        //        selectedMenu.transform.position = attachmentPoint.transform.position;
+        //    }
+        //    else if (SteamVR_Actions.default_GrabPinch[hand.handType].state)
+        //    {
+        //        selectedMenu.transform.position = ogPos.position;
+        //    }
+        //}
+        if (insideMenuGrab > 0)
         {
-            Vector3 pointerPos = laserPointer.transform.position;
-
-            Vector3 ax = SteamVR_Actions.default_MoveMenu[hand.handType].axis / 100;
-
-            if (ax.x != 0 || ax.y != 0)
+            if (SteamVR_Actions.default_GrabGrip[hand.handType].state)
             {
-                selectedMenu.transform.position += new Vector3(ax.x + Mathf.Pow(ax.x, 2), 0, ax.y + Mathf.Pow(ax.y, 2));
-            }
-            else if (SteamVR_Actions.default_GrabGrip[hand.handType].state)
-            {
-                selectedMenu.transform.position = attachmentPoint.transform.position;
-            }
-            else if (SteamVR_Actions.default_GrabPinch[hand.handType].state)
-            {
-                selectedMenu.transform.position = ogPos.position;
+                grabbingObject.transform.position = attachmentPoint.position;
+                grabbingObject.transform.rotation = attachmentPoint.rotation;
             }
         }
     }
 
     private void PointerClick(object sender, PointerEventArgs e)
     {
-
         Animator a = e.target.gameObject.GetComponent<Animator>();
 
         if(e.target.tag == "site")
         {
 
-            e.target.GetComponent<SiteManager>().SelectSite();
+            //e.target.GetComponent<SiteManager>().SelectSite();
+            e.target.GetComponent<SiteManager>().ProjectSelectedSite();
         }
 
         if (e.target.tag == "timestamp")
@@ -237,25 +249,21 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerInside(object sender, PointerEventArgs e)
     {
-        /*Pointer Inside not being used
-        if (e.target.tag == "planeButton")
+        if (e.target.name == "MenuBackPlane")
         {
-            Debug.Log(nextPlane + " button entered");
+            insideMenuGrab += 1;
+            Debug.Log("InsideMenuGrab: " + insideMenuGrab);
+            grabbingObject = e.target.transform.parent;
         }
-
-        if (e.target.name == "MovementPlatform")
-        {
-            Debug.Log("Inside Movement Platform");
-        }*/
     }
 
     private void PointerOutside(object sender, PointerEventArgs e)
     {
-        /* Pointer outside not being used
-        if (e.target.tag == "planeButton")
+        if (e.target.name == "MenuBackPlane")
         {
-            Debug.Log(nextPlane + " button exited");
-        }*/
+            insideMenuGrab -= 1;
+            Debug.Log("InsideMenuGrab: " + insideMenuGrab);
+        }
     }
 
     private void ChangePosition(GameObject teleport_button)

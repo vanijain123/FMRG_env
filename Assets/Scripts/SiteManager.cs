@@ -7,6 +7,9 @@ public class SiteManager : MonoBehaviour
     public GameObject taskGroup;
     public GameObject ts;
 
+    public int siteNumber;
+    public GameObject projectionSite;
+
     private List<GameObject> tasks = new List<GameObject>();
     private GameObject projectionComponents;
     private GameObject firstTask;
@@ -76,5 +79,10 @@ public class SiteManager : MonoBehaviour
             y -= 0.1f;
             z -= 0.1f;
         }
+    }
+
+    public void ProjectSelectedSite()
+    {
+        Instantiate(projectionSite, this.transform.parent.parent.parent.parent.Find("ProjectionGameObject"));
     }
 }
