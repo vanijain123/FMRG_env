@@ -50,9 +50,19 @@ public class PointerHandler : MonoBehaviour
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
 
-        if(e.target.tag == "site")
+        if (e.target.tag == "site")
         {
             e.target.GetComponent<SiteManager>().ProjectSelectedSite();
+        }
+
+        else if (e.target.name == "AddButton")
+        {
+            e.target.GetComponent<AddingWorld>().AddWorld();
+        }
+
+        else if (e.target.name == "DeleteButton")
+        {
+            e.target.GetComponent<DeletingWorld>().DeleteWorld();
         }
 
         //if (e.target.tag == "siteTask")

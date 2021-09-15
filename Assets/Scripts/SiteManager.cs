@@ -11,9 +11,18 @@ public class SiteManager : MonoBehaviour
     public GameObject projectionSite;
 
     private List<GameObject> tasks = new List<GameObject>();
-    private GameObject projectionComponents;
+    
     private GameObject firstTask;
     private GameObject mainPlane;
+
+
+    private Transform projectionComponents;
+    private GameObject projectedComponents;
+
+    private void Start()
+    {
+        projectionComponents = this.transform.parent.parent.parent.parent.Find("ProjectionGameObject");
+    }
 
     // Start is called before the first frame update
     //void Awake()
@@ -75,7 +84,7 @@ public class SiteManager : MonoBehaviour
     //            temp.transform.localPosition = new Vector3(a, b, c);
     //            b -= 0.3f;
     //        }
-            
+
     //        y -= 0.1f;
     //        z -= 0.1f;
     //    }
@@ -83,6 +92,11 @@ public class SiteManager : MonoBehaviour
 
     public void ProjectSelectedSite()
     {
-        Instantiate(projectionSite, this.transform.parent.parent.parent.parent.Find("ProjectionGameObject"));
+        projectedComponents = Instantiate(projectionSite, projectionComponents);
+    }
+
+    public void DeleteProjectedSite()
+    {
+        Destroy(projectedComponents);
     }
 }

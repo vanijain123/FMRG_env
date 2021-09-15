@@ -62,25 +62,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AllSitesManager.cs" />
-    <Compile Include="Assets\Scripts\AttachedPlane.cs" />
-    <Compile Include="Assets\Scripts\FadeTest.cs" />
-    <Compile Include="Assets\Scripts\GetPlanes.cs" />
-    <Compile Include="Assets\Scripts\GrabbingController.cs" />
-    <Compile Include="Assets\Scripts\Menu.cs" />
-    <Compile Include="Assets\Scripts\MenuSelection.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scripts\PlaneInfo.cs" />
+    <Compile Include="Assets\Scripts\AddingWorld.cs" />
+    <Compile Include="Assets\Scripts\DeletingWorld.cs" />
     <Compile Include="Assets\Scripts\PointerHandler.cs" />
-    <Compile Include="Assets\Scripts\ProjectionPlane.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\AllSitesManager.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\AttachedPlane.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\FadeTest.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\GetPlanes.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\GrabbingController.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\Menu.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\MenuSelection.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\PlaneInfo.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\ProjectionPlane.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\SiteTimeline.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\Task.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\TaskProjectionPlane.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\TeleportButton.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\Teleporter.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\Timestamps.cs" />
+    <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\VRUIInput.cs" />
     <Compile Include="Assets\Scripts\SiteManager.cs" />
-    <Compile Include="Assets\Scripts\SiteTimeline.cs" />
-    <Compile Include="Assets\Scripts\Task.cs" />
-    <Compile Include="Assets\Scripts\TaskProjectionPlane.cs" />
-    <Compile Include="Assets\Scripts\TeleportButton.cs" />
-    <Compile Include="Assets\Scripts\Teleporter.cs" />
-    <Compile Include="Assets\Scripts\Timestamps.cs" />
-    <Compile Include="Assets\Scripts\VRUIInput.cs" />
     <Compile Include="Assets\SimpleAttach.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
