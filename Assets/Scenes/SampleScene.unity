@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 78045427}
   - component: {fileID: 78045426}
   m_Layer: 0
-  m_Name: S1_Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3606,7 +3606,7 @@ GameObject:
   - component: {fileID: 515822318}
   - component: {fileID: 515822317}
   m_Layer: 0
-  m_Name: S1_Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3876,11 +3876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 0
   projectionSite: {fileID: 0}
+  siteName: 
 --- !u!1 &605773874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3989,11 +3986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 0
   projectionSite: {fileID: 0}
+  siteName: 
 --- !u!4 &607320676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490018, guid: dc06161b6d97feb419f45f03b62e14b9,
@@ -5622,12 +5616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 3
   projectionSite: {fileID: 1390212261371472794, guid: 29a1e1336eb65dd41a37a14edb2dc963,
     type: 3}
+  siteName: S3
 --- !u!65 &792257057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6888,11 +6879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 0
   projectionSite: {fileID: 0}
+  siteName: 
 --- !u!65 &909045457
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8011,11 +7999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 0
   projectionSite: {fileID: 0}
+  siteName: 
 --- !u!65 &1106738307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10428,12 +10413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 1
   projectionSite: {fileID: 1390212261371472794, guid: 29a1e1336eb65dd41a37a14edb2dc963,
     type: 3}
+  siteName: S1
 --- !u!65 &1423264300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12626,12 +12608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 2
   projectionSite: {fileID: 1390212261371472794, guid: 29a1e1336eb65dd41a37a14edb2dc963,
     type: 3}
+  siteName: S2
 --- !u!65 &1680398253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12975,11 +12954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 0
   projectionSite: {fileID: 0}
+  siteName: 
 --- !u!1 &1701013659
 GameObject:
   m_ObjectHideFlags: 0
@@ -16248,7 +16224,7 @@ GameObject:
   - component: {fileID: 2018521836}
   - component: {fileID: 2018521835}
   m_Layer: 0
-  m_Name: S1_Text
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16616,11 +16592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f6f80ccb7585e4eba8655fe9faa82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGroup: {fileID: 8779554397118178284, guid: aa2fae808effe1947ae627d15c8c3fae,
-    type: 3}
-  ts: {fileID: 7958407630074218290, guid: 6f71acacf2e548542a1c9a82c5697f8c, type: 3}
-  siteNumber: 0
   projectionSite: {fileID: 0}
+  siteName: 
 --- !u!65 &2076145664
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SiteManager : MonoBehaviour
 {
-    public GameObject taskGroup;
-    public GameObject ts;
+    //public GameObject taskGroup;
+    //public GameObject ts;
 
-    public int siteNumber;
+    //public int siteNumber;
+
+    //private List<GameObject> tasks = new List<GameObject>();
+
+    //private GameObject firstTask;
+    //private GameObject mainPlane;
+
     public GameObject projectionSite;
-
-    private List<GameObject> tasks = new List<GameObject>();
-    
-    private GameObject firstTask;
-    private GameObject mainPlane;
-
+    public string siteName;
 
     private Transform projectionComponents;
     private GameObject projectedComponents;
@@ -22,8 +24,10 @@ public class SiteManager : MonoBehaviour
     private void Start()
     {
         projectionComponents = this.transform.parent.parent.parent.parent.Find("ProjectionGameObject");
+        this.transform.Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
     }
 
+    // Unused code
     // Start is called before the first frame update
     //void Awake()
     //{
@@ -93,6 +97,9 @@ public class SiteManager : MonoBehaviour
     public void ProjectSelectedSite()
     {
         projectedComponents = Instantiate(projectionSite, projectionComponents);
+        Debug.Log(projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().GetParsedText());
+        projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
+        projectedComponents.GetComponent<ProjectedSiteManager>().SetMenuSite(this.gameObject);
     }
 
     public void DeleteProjectedSite()

@@ -65,6 +65,8 @@
     <Compile Include="Assets\Scripts\AddingWorld.cs" />
     <Compile Include="Assets\Scripts\DeletingWorld.cs" />
     <Compile Include="Assets\Scripts\PointerHandler.cs" />
+    <Compile Include="Assets\Scripts\ProjectedSiteDeleteButton.cs" />
+    <Compile Include="Assets\Scripts\ProjectedSiteManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\AllSitesManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\AttachedPlane.cs" />
     <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\FadeTest.cs" />
