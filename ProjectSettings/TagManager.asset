@@ -18,6 +18,8 @@ TagManager:
   - site
   - siteTask
   - helpNeeded
+  - deactivated
+  - activated
   layers:
   - Default
   - TransparentFX

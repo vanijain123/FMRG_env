@@ -97,7 +97,7 @@ public class SiteManager : MonoBehaviour
     public void ProjectSelectedSite()
     {
         projectedComponents = Instantiate(projectionSite, projectionComponents);
-        Debug.Log(projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().GetParsedText());
+        //Debug.Log(projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().GetParsedText());
         projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
         projectedComponents.GetComponent<ProjectedSiteManager>().SetMenuSite(this.gameObject);
     }

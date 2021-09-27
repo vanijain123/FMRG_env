@@ -9,9 +9,10 @@ using Valve.VR.InteractionSystem;
 
 public class PointerHandler : MonoBehaviour
 {
-    public Hand hand;
+    public Hand rightHand;
+    public Hand leftHand;
     public SteamVR_Input_Sources rightController;
-    public GameObject rightHand;
+    //public GameObject rightHand;
 
     public SteamVR_Fade fade;
     public FadeTest ft;
@@ -23,7 +24,10 @@ public class PointerHandler : MonoBehaviour
 
     private int insideMenuGrab;
     private Transform grabbingObject;
-    
+    private Transform activatedObject;
+    private Vector3 leftHandPosition;
+    private float handPosition;
+    private float diff;
 
     private void Awake()
     {
@@ -32,18 +36,35 @@ public class PointerHandler : MonoBehaviour
         laserPointer.PointerClick += PointerClick;
 
         insideMenuGrab = 0;
+        activatedObject = null;
+        leftHandPosition = leftHand.transform.position;
     }
 
     private void Update()
     {
         if (insideMenuGrab > 0)
         {
-            if (SteamVR_Actions.default_GrabGrip[hand.handType].state)
+            if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
             {
                 grabbingObject.transform.position = attachmentPoint.position;
                 grabbingObject.transform.rotation = attachmentPoint.rotation;
             }
         }
+
+        if (activatedObject)
+        {
+            if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
+            {
+                activatedObject.transform.position = attachmentPoint.position;
+                activatedObject.transform.rotation = attachmentPoint.rotation;
+            }
+            if (SteamVR_Actions.default_GrabGrip[leftHand.handType].state)
+            {
+                float x = leftHandPosition.x - leftHand.transform.position.x;
+                activatedObject.transform.localScale += new Vector3(x, x, x);
+            }
+        }
+        leftHandPosition = leftHand.transform.position;
     }
 
     private void PointerClick(object sender, PointerEventArgs e)
@@ -70,6 +91,17 @@ public class PointerHandler : MonoBehaviour
             e.target.GetComponent<ProjectedSiteDeleteButton>().DeleteProjectedSite();
         }
 
+        else if(e.target.name == "ActivateTask" && e.target.tag == "deactivated")
+        {
+            e.target.GetComponent<ActivateTaskButton>().ActivateTask();
+            activatedObject = e.target.transform.parent;
+        }
+
+        else if (e.target.name == "ActivateTask" && e.target.tag == "activated")
+        {
+            e.target.GetComponent<ActivateTaskButton>().DeactivateTask();
+            activatedObject = null;
+        }
         //if (e.target.tag == "siteTask")
         //{
         //    if (e.target.transform.childCount > 1)
@@ -87,7 +119,7 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerInside(object sender, PointerEventArgs e)
     {
-        if (e.target.name == "MenuBackPlane")
+        if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
         {
             insideMenuGrab += 1;
             grabbingObject = e.target.transform.parent;
@@ -96,7 +128,7 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerOutside(object sender, PointerEventArgs e)
     {
-        if (e.target.name == "MenuBackPlane")
+        if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
         {
             insideMenuGrab -= 1;
         }
