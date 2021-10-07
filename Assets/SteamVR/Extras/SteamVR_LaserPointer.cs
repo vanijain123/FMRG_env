@@ -24,13 +24,6 @@ namespace Valve.VR.Extras
         public event PointerEventHandler PointerOut;
         public event PointerEventHandler PointerClick;
 
-
-        // Changes by Vani
-
-        public RaycastHit hit;
-
-        // End of Changes by Vani
-
         Transform previousContact = null;
 
 
@@ -107,18 +100,8 @@ namespace Valve.VR.Extras
             float dist = 100f;
 
             Ray raycast = new Ray(transform.position, transform.forward);
-            // Changes by Vani
-            //RaycastHit hit;
-            // End of Changes by Vani
+            RaycastHit hit;
             bool bHit = Physics.Raycast(raycast, out hit);
-
-
-            // Changes made by Vani to avoid certain objects 
-            //if (hit.transform.gameObject.layer == 10)
-            //{
-            //    bHit = false;
-            //}
-            // End of changes made by Vani
 
             if (previousContact && previousContact != hit.transform)
             {

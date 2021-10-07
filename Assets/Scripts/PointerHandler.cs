@@ -17,6 +17,8 @@ public class PointerHandler : MonoBehaviour
     public SteamVR_Fade fade;
     public FadeTest ft;
     public SteamVR_LaserPointer laserPointer;
+    public Color laserColor;
+    public Color originalLaserColor;
 
     public Transform attachmentPoint;
 
@@ -38,6 +40,8 @@ public class PointerHandler : MonoBehaviour
         insideMenuGrab = 0;
         activatedObject = null;
         leftHandPosition = leftHand.transform.position;
+
+        originalLaserColor = laserPointer.color;
     }
 
     private void Update()
@@ -65,6 +69,11 @@ public class PointerHandler : MonoBehaviour
             }
         }
         leftHandPosition = leftHand.transform.position;
+    }
+
+    private void FixedUpdate()
+    {
+        //laserPointer.color = testColor;
     }
 
     private void PointerClick(object sender, PointerEventArgs e)
@@ -124,6 +133,34 @@ public class PointerHandler : MonoBehaviour
             insideMenuGrab += 1;
             grabbingObject = e.target.transform.parent;
         }
+
+        if (e.target.name == "AddButtonOuter")
+        {
+            //Debug.Log("Inside outer add button");
+
+            //Vector3 targetDir = e.target.parent.Find("AddButton").position - e.target.position;
+            //float angle = Vector3.Angle(targetDir, laserPointer.transform.forward);
+            //Debug.Log(angle);
+            //Debug.Log(laserPointer.transform.localRotation);
+            ////laserPointer.transform.eulerAngles += new Vector3(angle, angle, angle);
+            //Vector3 testVector = new Vector3(90, 0f, 0f);
+            //laserPointer.transform.eulerAngles += testVector;
+
+            ////laserPointer.transform.localRotation = Quaternion.Euler(laserPointer.transform.eulerAngles);
+            //Debug.Log(laserPointer.transform.localRotation);
+
+            //laserPointer.color = laserColor;
+
+            //Vector3 side1 = e.target.parent.Find("AddButton").position - laserPointer.transform.position;
+            //Vector3 side2 = e.target.position - laserPointer.transform.position;
+            //Debug.Log(Vector3.Angle(side1, side2));
+
+            //float a = Vector3.Angle(side1, side2);
+            //laserPointer.pointer.transform.Rotate(45f, -45f, 0, Space.World);
+            Color n = new Color(0, 0, 0, 255);
+            laserPointer.color = Color.clear;
+            laserPointer.thickness = 0;
+        }
     }
 
     private void PointerOutside(object sender, PointerEventArgs e)
@@ -131,6 +168,13 @@ public class PointerHandler : MonoBehaviour
         if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
         {
             insideMenuGrab -= 1;
+        }
+        if (e.target.name == "AddButtonOuter")
+        {
+            laserPointer.color = originalLaserColor;
+            laserPointer.thickness = 0.002f;
+            //laserPointer.pointer.transform.Rotate(-45f, 45f, 0, Space.World);
+            //laserPointer.color.a = 255;
         }
     }
     
