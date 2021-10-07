@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Valve.VR.InteractionSystem;
 
 public class SiteManager : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class SiteManager : MonoBehaviour
 
     private Transform projectionComponents;
     private GameObject projectedComponents;
+
+    private GameObject cylinder;
+    private GameObject cube;
+    private GameObject sphere;
+
+    private Material red;
+    private Material blue;
+    private Material green;
 
     private void Start()
     {
@@ -94,16 +103,60 @@ public class SiteManager : MonoBehaviour
     //    }
     //}
 
-    public void ProjectSelectedSite()
+    public void ProjectSelectedSite(GameObject cube, GameObject cylinder, GameObject sphere)
     {
         projectedComponents = Instantiate(projectionSite, projectionComponents);
         //Debug.Log(projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().GetParsedText());
         projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
         projectedComponents.GetComponent<ProjectedSiteManager>().SetMenuSite(this.gameObject);
+        createMiniWorldObjects(projectedComponents, cube, cylinder, sphere);
     }
 
     public void DeleteProjectedSite()
     {
         Destroy(projectedComponents);
+    }
+
+    private void createMiniWorldObjects(GameObject projectedComponents, GameObject cube, GameObject cylinder, GameObject sphere)
+    {
+        //cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        //sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        
+        // Create a list of the primitives to choose from
+        List<GameObject> primitives = new List<GameObject>();
+        primitives.Add(cube);
+        primitives.Add(cylinder);
+        primitives.Add(sphere);
+
+        // Create a shader
+        Material shader = new Material(Shader.Find("Unlit/Color"));
+
+        // Create possible colors
+        Color red = new Color(255, 0, 0, 255);
+        Color green = new Color(0, 255, 0, 255);
+        Color blue = new Color(0, 0, 255, 255);
+
+        // Create a list of colors to choose from
+        List<Color> colors = new List<Color>();
+        colors.Add(red);
+        colors.Add(green);
+        colors.Add(blue);
+
+        // Number of objects in the world
+        int n = Random.Range(1, 5);
+
+        for(int i = 0; i<n; i++)
+        {
+            GameObject g = Instantiate(primitives[Random.Range(0, 2)], projectedComponents.transform.Find("ProjectedObjects").transform);
+            g.GetComponent<MeshRenderer>().material.SetColor("_Color", colors[Random.Range(0, 2)]);
+            g.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            g.transform.localPosition = new Vector3(Random.Range(-0.4f, 0.4f), Random.Range(0.1f, 0.4f), Random.Range(-0.4f, 0.4f));
+            g.layer = 8;
+
+            g.AddComponent<Interactable>();
+            g.AddComponent<InteractableHoverEvents>();
+            g.AddComponent<SimpleAttach>();
+        }
     }
 }

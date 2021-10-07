@@ -20,6 +20,7 @@ TagManager:
   - helpNeeded
   - deactivated
   - activated
+  - scaling
   layers:
   - Default
   - TransparentFX

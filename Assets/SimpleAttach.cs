@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+using TMPro;
+
 
 public class SimpleAttach : MonoBehaviour
 {
@@ -12,9 +14,12 @@ public class SimpleAttach : MonoBehaviour
     private Quaternion startRotation;
     private Vector3 startScale;
 
+    private string originalTag;
+
     private void Start()
     {
         interactable = GetComponent<Interactable>();
+       originalTag = "";
     }
 
     private void OnHandHoverBegin(Hand hand)
@@ -34,6 +39,11 @@ public class SimpleAttach : MonoBehaviour
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
+            if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
+            {
+                originalTag = gameObject.transform.parent.parent.tag;
+                gameObject.transform.parent.parent.tag = "scaling";
+            }
             startPosition = gameObject.transform.position;
             startRotation = gameObject.transform.rotation;
             startScale = gameObject.transform.localScale;
@@ -47,9 +57,16 @@ public class SimpleAttach : MonoBehaviour
             hand.DetachObject(gameObject);
             hand.HoverUnlock(interactable);
 
-            gameObject.transform.localScale = startScale;
-            gameObject.transform.position = startPosition;
-            gameObject.transform.rotation = startRotation;
+            if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
+            {
+                gameObject.transform.localScale = startScale;
+                gameObject.transform.position = startPosition;
+                gameObject.transform.rotation = startRotation;
+            }
+            else
+            {
+                gameObject.transform.parent.parent.tag = originalTag;
+            }
         }
     }
 }

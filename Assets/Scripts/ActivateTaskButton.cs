@@ -17,17 +17,24 @@ public class ActivateTaskButton : MonoBehaviour
         
     }
 
-    public void ActivateTask()
+    public void ActivateTask(ref Transform activatedWorld)
     {
+        if (activatedWorld) 
+        {
+            DeactivateTask(ref activatedWorld);
+        }
         this.transform.Find("Text").GetComponent<TextMeshPro>().SetText("Deactivate");
         this.transform.tag = "activated";
         this.transform.parent.Find("MenuBackPlane").tag = "activated";
+        activatedWorld = this.transform.parent;
     }
 
-    public void DeactivateTask()
+    public void DeactivateTask(ref Transform activatedWorld)
     {
-        this.transform.Find("Text").GetComponent<TextMeshPro>().SetText("Activate");
-        this.transform.tag = "deactivated";
-        this.transform.parent.Find("MenuBackPlane").tag = "deactivated";
+        Transform button = activatedWorld.Find("ActivateTask").transform;
+        button.transform.Find("Text").GetComponent<TextMeshPro>().SetText("Activate");
+        button.transform.tag = "deactivated";
+        button.transform.parent.Find("MenuBackPlane").tag = "deactivated";
+        activatedWorld = null;
     }
 }

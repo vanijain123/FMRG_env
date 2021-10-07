@@ -12,7 +12,7 @@ public class PointerHandler : MonoBehaviour
     public Hand rightHand;
     public Hand leftHand;
     public SteamVR_Input_Sources rightController;
-    //public GameObject rightHand;
+    public GameObject rightHandGameobject;
 
     public SteamVR_Fade fade;
     public FadeTest ft;
@@ -26,10 +26,16 @@ public class PointerHandler : MonoBehaviour
 
     private int insideMenuGrab;
     private Transform grabbingObject;
-    private Transform activatedObject;
+    public Transform activatedWorld;
     private Vector3 leftHandPosition;
     private float handPosition;
     private float diff;
+
+    private LineRenderer l;
+
+    public GameObject cube;
+    public GameObject cylinder;
+    public GameObject sphere;
 
     private void Awake()
     {
@@ -38,10 +44,19 @@ public class PointerHandler : MonoBehaviour
         laserPointer.PointerClick += PointerClick;
 
         insideMenuGrab = 0;
-        activatedObject = null;
+        activatedWorld = null;
         leftHandPosition = leftHand.transform.position;
 
         originalLaserColor = laserPointer.color;
+        Material lineRenderedMaterial = new Material(Shader.Find("Unlit/Color"));
+        lineRenderedMaterial.SetColor("_Color", originalLaserColor);
+
+        l = gameObject.AddComponent<LineRenderer>();
+        l.material = lineRenderedMaterial;
+        l.startColor = Color.clear;
+        l.endColor = Color.clear;
+        l.startWidth = 0;
+        l.endWidth = 0;
     }
 
     private void Update()
@@ -55,17 +70,17 @@ public class PointerHandler : MonoBehaviour
             }
         }
 
-        if (activatedObject)
+        if (activatedWorld && activatedWorld.tag!="scaling")
         {
             if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
             {
-                activatedObject.transform.position = attachmentPoint.position;
-                activatedObject.transform.rotation = attachmentPoint.rotation;
+                activatedWorld.transform.position = attachmentPoint.position;
+                activatedWorld.transform.rotation = attachmentPoint.rotation;
             }
             if (SteamVR_Actions.default_GrabGrip[leftHand.handType].state)
             {
                 float x = leftHandPosition.x - leftHand.transform.position.x;
-                activatedObject.transform.localScale += new Vector3(x, x, x);
+                activatedWorld.transform.localScale += new Vector3(x, x, x);
             }
         }
         leftHandPosition = leftHand.transform.position;
@@ -80,14 +95,9 @@ public class PointerHandler : MonoBehaviour
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
 
-        //if (e.target.tag == "site")
-        //{
-        //    e.target.Find("AddButton").GetComponent<AddingWorld>().AddWorld();
-        //}
-
         if (e.target.name == "AddButton")
         {
-            e.target.GetComponent<AddingWorld>().AddWorld();
+            e.target.GetComponent<AddingWorld>().AddWorld(cube, cylinder, sphere);
         }
 
         else if (e.target.name == "DeleteButton")
@@ -102,14 +112,14 @@ public class PointerHandler : MonoBehaviour
 
         else if(e.target.name == "ActivateTask" && e.target.tag == "deactivated")
         {
-            e.target.GetComponent<ActivateTaskButton>().ActivateTask();
-            activatedObject = e.target.transform.parent;
+            e.target.GetComponent<ActivateTaskButton>().ActivateTask(ref activatedWorld);
+            //activatedObject = e.target.transform.parent;
         }
 
         else if (e.target.name == "ActivateTask" && e.target.tag == "activated")
         {
-            e.target.GetComponent<ActivateTaskButton>().DeactivateTask();
-            activatedObject = null;
+            e.target.GetComponent<ActivateTaskButton>().DeactivateTask(ref activatedWorld);
+            //activatedObject = null;
         }
         //if (e.target.tag == "siteTask")
         //{
@@ -134,32 +144,19 @@ public class PointerHandler : MonoBehaviour
             grabbingObject = e.target.transform.parent;
         }
 
-        if (e.target.name == "AddButtonOuter")
+        if (e.target.name == "AddButton")
         {
-            //Debug.Log("Inside outer add button");
+            SnapPointerToButton(e.target.gameObject);
+        }
 
-            //Vector3 targetDir = e.target.parent.Find("AddButton").position - e.target.position;
-            //float angle = Vector3.Angle(targetDir, laserPointer.transform.forward);
-            //Debug.Log(angle);
-            //Debug.Log(laserPointer.transform.localRotation);
-            ////laserPointer.transform.eulerAngles += new Vector3(angle, angle, angle);
-            //Vector3 testVector = new Vector3(90, 0f, 0f);
-            //laserPointer.transform.eulerAngles += testVector;
+        if (e.target.name == "DeleteButton")
+        {
+            SnapPointerToButton(e.target.gameObject);
+        }
 
-            ////laserPointer.transform.localRotation = Quaternion.Euler(laserPointer.transform.eulerAngles);
-            //Debug.Log(laserPointer.transform.localRotation);
-
-            //laserPointer.color = laserColor;
-
-            //Vector3 side1 = e.target.parent.Find("AddButton").position - laserPointer.transform.position;
-            //Vector3 side2 = e.target.position - laserPointer.transform.position;
-            //Debug.Log(Vector3.Angle(side1, side2));
-
-            //float a = Vector3.Angle(side1, side2);
-            //laserPointer.pointer.transform.Rotate(45f, -45f, 0, Space.World);
-            Color n = new Color(0, 0, 0, 255);
-            laserPointer.color = Color.clear;
-            laserPointer.thickness = 0;
+        if (e.target.name == "ButtonOuter")
+        {
+            SnapPointerToButton(e.target.gameObject);
         }
     }
 
@@ -169,19 +166,51 @@ public class PointerHandler : MonoBehaviour
         {
             insideMenuGrab -= 1;
         }
-        if (e.target.name == "AddButtonOuter")
+        if (e.target.name == "AddButton")
         {
-            laserPointer.color = originalLaserColor;
-            laserPointer.thickness = 0.002f;
-            //laserPointer.pointer.transform.Rotate(-45f, 45f, 0, Space.World);
-            //laserPointer.color.a = 255;
+            UnsnapPointerToButton();
+        }
+        if (e.target.name == "DeleteButton")
+        {
+            UnsnapPointerToButton();
+        }
+        if (e.target.name == "ButtonOuter")
+        {
+            UnsnapPointerToButton();
         }
     }
     
+
+    private void SnapPointerToButton(GameObject g)
+    {
+        laserPointer.color = Color.clear;
+        laserPointer.thickness = 0;
+
+        List<Vector3> pos = new List<Vector3>();
+        pos.Add(rightHandGameobject.transform.position);
+        pos.Add(g.transform.position);
+        l.startWidth = 0.004f;
+        l.endWidth = 0.004f;
+        l.startColor = originalLaserColor;
+        l.endColor = originalLaserColor;
+        l.SetPositions(pos.ToArray());
+    }
+
+    private void UnsnapPointerToButton()
+    {
+        laserPointer.color = originalLaserColor;
+        laserPointer.thickness = 0.002f;
+
+        l.startColor = Color.clear;
+        l.endColor = Color.clear;
+        l.startWidth = 0;
+        l.endWidth = 0;
+    }
+
     // Not being used
     //private void CreateMiniWorld(GameObject surface, GameObject button)
     //{
-        
+
     //    Vector3 scale = new Vector3 (1,1,1);
     //    Vector3 newLocalScale = new Vector3(0.1f, 0.1f, 0.1f);
 
@@ -194,7 +223,7 @@ public class PointerHandler : MonoBehaviour
     //            replicas.Add(Instantiate(tr.gameObject, surface.transform) as GameObject);
     //        }
     //    }
-        
+
     //    foreach (GameObject x in replicas)
     //    {
     //        Debug.Log(x.name);
