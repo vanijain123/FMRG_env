@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\Teleporter.cs" />
     <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\Timestamps.cs" />
     <Compile Include="Assets\Scripts\ScriptsNoLongerBeingUsed\VRUIInput.cs" />
+    <Compile Include="Assets\Scripts\SiteControls.cs" />
     <Compile Include="Assets\Scripts\SiteManager.cs" />
     <Compile Include="Assets\SimpleAttach.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

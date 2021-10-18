@@ -39,8 +39,9 @@ public class SimpleAttach : MonoBehaviour
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
-            if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
-            {
+            //if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
+            if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag == "activated")
+                {
                 originalTag = gameObject.transform.parent.parent.tag;
                 gameObject.transform.parent.parent.tag = "scaling";
             }
@@ -57,7 +58,8 @@ public class SimpleAttach : MonoBehaviour
             hand.DetachObject(gameObject);
             hand.HoverUnlock(interactable);
 
-            if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
+            //if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
+            if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag != "activated")
             {
                 gameObject.transform.localScale = startScale;
                 gameObject.transform.position = startPosition;

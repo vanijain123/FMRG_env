@@ -26,7 +26,7 @@ public class PointerHandler : MonoBehaviour
 
     private int insideMenuGrab;
     private Transform grabbingObject;
-    public Transform activatedWorld;
+    public GameObject activatedWorld;
     private Vector3 leftHandPosition;
     private float handPosition;
     private float diff;
@@ -118,9 +118,11 @@ public class PointerHandler : MonoBehaviour
 
         else if (e.target.name == "ActivateTask" && e.target.tag == "activated")
         {
-            e.target.GetComponent<ActivateTaskButton>().DeactivateTask(ref activatedWorld);
+            //e.target.GetComponent<ActivateTaskButton>().DeactivateTask(ref activatedWorld);
+            e.target.parent.GetComponent<SiteControls>().DeactivateControls(ref activatedWorld);
             //activatedObject = null;
         }
+        
         //if (e.target.tag == "siteTask")
         //{
         //    if (e.target.transform.childCount > 1)
