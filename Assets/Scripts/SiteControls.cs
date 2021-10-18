@@ -11,6 +11,11 @@ public class SiteControls : MonoBehaviour
         referenceWIM = wim;
     }
 
+    public GameObject getReferenceWIM()
+    {
+        return referenceWIM;
+    }
+
     public void ActivateChildren()
     {
         foreach (Transform child in transform)
