@@ -130,7 +130,8 @@ public class SiteManager : MonoBehaviour
         primitives.Add(sphere);
 
         // Create a shader
-        Material shader = new Material(Shader.Find("Unlit/Color"));
+        //Material shader = new Material(Shader.Find("Unlit/Color"));
+        Material shader = new Material(Shader.Find("Standard"));
 
         // Create possible colors
         Color red = new Color(255, 0, 0, 255);
