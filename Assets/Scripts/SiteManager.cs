@@ -151,6 +151,7 @@ public class SiteManager : MonoBehaviour
         {
             GameObject g = Instantiate(primitives[Random.Range(0, 2)], projectedComponents.transform.Find("ProjectedObjects").transform);
             g.GetComponent<MeshRenderer>().material.SetColor("_Color", colors[Random.Range(0, 2)]);
+            //g.GetComponent<MeshRenderer>().material.
             g.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             g.transform.localPosition = new Vector3(Random.Range(-0.4f, 0.4f), Random.Range(0.1f, 0.4f), Random.Range(-0.4f, 0.4f));
             g.layer = 8;

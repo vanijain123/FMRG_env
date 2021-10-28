@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SiteControls : MonoBehaviour
 {
@@ -16,12 +17,16 @@ public class SiteControls : MonoBehaviour
         return referenceWIM;
     }
 
-    public void ActivateChildren()
+    public void ActivateChildren(string siteName)
     {
         foreach (Transform child in transform)
         {
             Debug.Log("Activating: ", child);
             child.gameObject.SetActive(true);
+            if (child.gameObject.name == "Site")
+            {
+                child.transform.Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
+            }
         }
     }
 
