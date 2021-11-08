@@ -65,6 +65,9 @@
     <Compile Include="Assets\Scripts\ActivateTaskButton.cs" />
     <Compile Include="Assets\Scripts\AddingWorld.cs" />
     <Compile Include="Assets\Scripts\DeletingWorld.cs" />
+    <Compile Include="Assets\Scripts\JsonReader.cs" />
+    <Compile Include="Assets\Scripts\Object_old.cs" />
+    <Compile Include="Assets\Scripts\Objects_old.cs" />
     <Compile Include="Assets\Scripts\PointerHandler.cs" />
     <Compile Include="Assets\Scripts\ProjectedSiteDeleteButton.cs" />
     <Compile Include="Assets\Scripts\ProjectedSiteManager.cs" />

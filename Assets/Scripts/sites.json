@@ -1,0 +1,65 @@
+{
+	"sites":
+	[
+		{
+			"site_name": "S1",
+			"time":
+			[
+				{
+					"timestamp_id": "t1",
+					"objects" : 
+					[
+						{
+							"object_type": "cube",
+							"position": "0,0,0"
+						},
+						{
+							"object_type": "sphere",
+							"position": "0,0,1"
+						}
+					]
+				},
+				{
+					"timestamp_id": "t2",
+					"objects" : 
+					[
+						{
+							"object_type": "cylinder",
+							"position": "0,0,0"
+						}
+					]
+				}
+			]
+		},
+		{
+			"site_name": "S2",
+			"time":
+			[
+				{
+					"timestamp_id": "t1",
+					"objects" : 
+					[
+						{
+							"object_type": "cylinder",
+							"position": "2,0,0"
+						},
+						{
+							"object_type": "sphere",
+							"position": "0,0,1"
+						}
+					]
+				},
+				{
+					"timestamp_id": "t2",
+					"objects" : 
+					[
+						{
+							"object_type": "cylinder",
+							"position": "0,0,0"
+						}
+					]
+				}
+			]
+		}
+	]
+}
