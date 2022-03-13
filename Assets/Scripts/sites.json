@@ -59,6 +59,17 @@
 						}
 					]
 				}
+				,
+				{
+					"timestamp_id": "t3",
+					"objects" : 
+					[
+						{
+							"object_type": "cylinder",
+							"position": "0,0,0"
+						}
+					]
+				}
 			]
 		}
 	]
