@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &180578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 457160}
+  - component: {fileID: 11433710}
+  - component: {fileID: 11427024}
+  m_Layer: 0
+  m_Name: ColorChange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &457160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11433710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eab7cc3f6f5b47ea9014cdcb6fd92ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mmTag: -1
+  tagCheckEnabled: 1
+  FlipNetworkFlagOnSend: 0
+  AllowNetworkPropagationLocally: 0
+  ReparentClonedRespondersToSelf: 1
+  Initialized: 0
+  AutoGrabAttachedResponders: 1
+  RoutingTable:
+    _list: []
+--- !u!114 &11427024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe8622892c3e474288fbdac2cea4fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mmTag: -1
+  tagCheckEnabled: 1
+  transformationTypeMode: 3
+  From: {fileID: 0}
+  To: {fileID: 0}
+  CompleteColor: {r: 0.4, g: 0.6666667, b: 0.33333334, a: 1}
+  TargetObject: {fileID: 0}
