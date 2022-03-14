@@ -19,102 +19,63 @@ public class SiteManager : MonoBehaviour
     public GameObject projectionSite;
     public string siteName;
 
-    private Transform projectionComponents;
-    private GameObject projectedComponents;
+    //OLD
+    //private Transform projectionComponents;
+    //private GameObject projectedComponents;
 
-    private GameObject cylinder;
-    private GameObject cube;
-    private GameObject sphere;
+    //private GameObject cylinder;
+    //private GameObject cube;
+    //private GameObject sphere;
 
-    private Material red;
-    private Material blue;
-    private Material green;
+    //private Material red;
+    //private Material blue;
+    //private Material green;
 
     private void Start()
     {
-        projectionComponents = this.transform.parent.parent.parent.parent.Find("ProjectionGameObject");
+        //projectionComponents = this.transform.parent.parent.parent.parent.Find("ProjectionGameObject");
         this.transform.Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
     }
 
-    // Unused code
-    // Start is called before the first frame update
-    //void Awake()
-    //{
-    //    Transform t = transform.parent.transform.Find("Tasks");
-    //    foreach (Transform tr in t)
-    //    {
-    //        tasks.Add(tr.gameObject);
-    //        //Debug.Log(tasks);
-    //    }
+    public void ProjectSelectedSite()
+    {
+        bool placed = false;
+        List<Transform> wimPositions = transform.parent.parent.GetComponent<WIMPositions>().positions;
+        List<bool> available = transform.parent.parent.GetComponent<WIMPositions>().available;
+        for (int i=0; i<wimPositions.Count; i++)
+        {
+            if (available[i])
+            {
+                projectionSite.SetActive(true);
+                projectionSite.transform.localPosition = wimPositions[i].localPosition;
+                placed = true;
+                available[i] = false;
+                Debug.Log(transform.parent.parent.GetComponent<WIMPositions>().available[i]);
+                break;
+            }
+        }
 
-    //    firstTask = tasks[0].gameObject;
-
-
-    //    projectionComponents = transform.parent.transform.parent.transform.parent.Find("ProjectionComponents").gameObject;
-    //    //SelectSite();
-
-    //    mainPlane = transform.parent.transform.parent.GetComponent<AllSitesManager>().mainPlane;
-    //}
-
-    //public void SelectSite(int index = 0)
-    //{
-    //    transform.parent.transform.parent.GetComponent<AllSitesManager>().UpdateActiveSite(this.gameObject);
-    //    Debug.Log(index);
-    //    //projectionComponents.GetComponent<TaskProjectionPlane>().FindTask(index);
-    //    ProjectSite();
-    //}
-
-    //public void UnselectSite()
-    //{
-    //    transform.Find("SelectedTaskHighlight").GetComponent<MeshRenderer>().enabled = false;
-    //    Transform t = projectionComponents.transform.Find("Tasks");
-    //    foreach (Transform tr in t)
-    //    {
-    //        Destroy(tr.gameObject);
-    //    }
-    //}
-
-    //public void ProjectSite()
-    //{
-    //    float x = -0.2f, y = 0, z = 0;
-    //    foreach (GameObject task in tasks)
-    //    {
-    //        Transform parent = this.transform.parent.transform.parent.transform.parent.Find("ProjectionComponents").Find("Tasks");
-    //        GameObject t = Instantiate(taskGroup, parent);
-    //        t.transform.Find("Task").GetComponent<MeshRenderer>().material = task.GetComponent<MeshRenderer>().material;
-    //        t.transform.localPosition = new Vector3(x, y, z);
-
-    //        int steps = task.GetComponent<Task>().steps;
-
-    //        GameObject timestampParent = t.transform.Find("Timeline").Find("Cylinder").Find("Timestamps").gameObject;
-    //        //Debug.Log(timestampParent.GetComponent<MeshRenderer>().bounds);
-
-    //        float a = 0, b = 1.0f, c = 0;
-
-    //        for (int i=0; i<steps; i++)
-    //        {
-    //            GameObject temp = Instantiate(ts, timestampParent.transform);
-    //            temp.transform.localPosition = new Vector3(a, b, c);
-    //            b -= 0.3f;
-    //        }
-
-    //        y -= 0.1f;
-    //        z -= 0.1f;
-    //    }
-    //}
+    }
 
     public void ProjectSelectedSite(GameObject cube, GameObject cylinder, GameObject sphere)
     {
-        projectedComponents = Instantiate(projectionSite, projectionComponents);
-        //Debug.Log(projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().GetParsedText());
-        projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
-        projectedComponents.GetComponent<ProjectedSiteManager>().SetMenuSite(this.gameObject);
-        createMiniWorldObjects(projectedComponents, cube, cylinder, sphere);
+        //NEW ENABLING THE ATTACHED SITE
+        projectionSite.SetActive(true);
+        
+        //OLD CREATING A NEW SITE
+        //projectedComponents = Instantiate(projectionSite, projectionComponents);
+        //projectedComponents.transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
+        //projectedComponents.GetComponent<ProjectedSiteManager>().SetMenuSite(this.gameObject);
+        //createMiniWorldObjects(projectedComponents, cube, cylinder, sphere);
     }
 
     public void DeleteProjectedSite()
     {
-        Destroy(projectedComponents);
+        //NEW DEACTIVATE SITE
+        projectionSite.SetActive(false);
+
+        //OLD DELETE SITE
+        //Destroy(projectedComponents);
     }
 
     private void createMiniWorldObjects(GameObject projectedComponents, GameObject cube, GameObject cylinder, GameObject sphere)

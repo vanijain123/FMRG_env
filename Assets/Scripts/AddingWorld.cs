@@ -14,6 +14,13 @@ public class AddingWorld : MonoBehaviour
         deleteButton.SetActive(false);
     }
 
+    public void AddWorld()
+    {
+        parent.GetComponent<SiteManager>().ProjectSelectedSite();
+        deleteButton.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
+
     public void AddWorld(GameObject cube, GameObject cylinder, GameObject sphere)
     {
         parent.GetComponent<SiteManager>().ProjectSelectedSite(cube, cylinder, sphere);

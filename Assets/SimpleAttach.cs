@@ -36,14 +36,16 @@ public class SimpleAttach : MonoBehaviour
     {
         GrabTypes grabType = hand.GetGrabStarting();
         bool isGrabEnding = hand.IsGrabEnding(gameObject);
+        GameObject menuBackPlane = gameObject.transform.parent.parent.parent.Find("MenuBackPlane").gameObject;
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
             //if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
-            if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag == "activated")
-                {
-                originalTag = gameObject.transform.parent.parent.tag;
-                gameObject.transform.parent.parent.tag = "scaling";
+            //if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag == "activated")
+            if (menuBackPlane != null && menuBackPlane.tag == "activated")
+            {
+                originalTag = menuBackPlane.tag;
+                menuBackPlane.tag = "scaling";
             }
             startPosition = gameObject.transform.position;
             startRotation = gameObject.transform.rotation;
@@ -59,7 +61,7 @@ public class SimpleAttach : MonoBehaviour
             hand.HoverUnlock(interactable);
 
             //if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
-            if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag != "activated")
+            if (menuBackPlane != null && menuBackPlane.tag != "activated")
             {
                 gameObject.transform.localScale = startScale;
                 gameObject.transform.position = startPosition;
@@ -67,7 +69,7 @@ public class SimpleAttach : MonoBehaviour
             }
             else
             {
-                gameObject.transform.parent.parent.tag = originalTag;
+                menuBackPlane.tag = originalTag;
             }
         }
     }

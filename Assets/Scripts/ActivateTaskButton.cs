@@ -20,24 +20,12 @@ public class ActivateTaskButton : MonoBehaviour
         referenceButton = GameObject.Find("SiteControls");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ActivateTask(ref GameObject activatedWorld)
     {
         if (activatedWorld) 
         {
             DeactivateTask(ref activatedWorld);
         }
-
-        //this.transform.Find("Text").GetComponent<TextMeshPro>().SetText("Deactivate");
-        //this.transform.tag = "activated";
-        //this.transform.parent.Find("MenuBackPlane").tag = "activated";
-
-        
 
         activatedWorld = this.transform.parent.gameObject;
 
