@@ -24,6 +24,11 @@ public class PointerHandler : MonoBehaviour
 
     public GameObject VRCamera;
 
+
+    [Header("ObjectReferences")]
+    
+
+
     private int insideMenuGrab;
     private Transform grabbingObject;
     public GameObject activatedWorld;
@@ -94,34 +99,40 @@ public class PointerHandler : MonoBehaviour
     private void PointerClick(object sender, PointerEventArgs e)
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
-
-        if (e.target.name == "AddButton")
-        {
-            e.target.GetComponent<AddingWorld>().AddWorld(cube, cylinder, sphere);
+        if (e.target.GetComponent<Button>() != null)
+        { 
+            e.target.GetComponent<Button>().onClick.Invoke(); 
         }
 
-        else if (e.target.name == "DeleteButton")
-        {
-            e.target.GetComponent<DeletingWorld>().DeleteWorld();
-        }
 
-        else if(e.target.name == "ProjectedSiteDeleteButton")
-        {
-            e.target.GetComponent<ProjectedSiteDeleteButton>().DeleteProjectedSite();
-        }
+        //if (e.target.name == "AddButton")
+        //{
+        //    //e.target.GetComponent<AddingWorld>().AddWorld(cube, cylinder, sphere);
+        //    e.target.GetComponent<AddingWorld>().AddWorld();
+        //}
 
-        else if(e.target.name == "ActivateTask" && e.target.tag == "deactivated")
-        {
-            e.target.GetComponent<ActivateTaskButton>().ActivateTask(ref activatedWorld);
-            //activatedObject = e.target.transform.parent;
-        }
+        //if (e.target.name == "DeleteButton")
+        //{
+        //    e.target.GetComponent<DeletingWorld>().DeleteWorld();
+        //}
 
-        else if (e.target.name == "ActivateTask" && e.target.tag == "activated")
-        {
-            //e.target.GetComponent<ActivateTaskButton>().DeactivateTask(ref activatedWorld);
-            e.target.parent.GetComponent<SiteControls>().DeactivateControls(ref activatedWorld);
-            //activatedObject = null;
-        }
+        //else if(e.target.name == "ProjectedSiteDeleteButton")
+        //{
+        //    e.target.GetComponent<ProjectedSiteDeleteButton>().DeleteProjectedSite();
+        //}
+
+        //else if(e.target.name == "ActivateTask" && e.target.tag == "deactivated")
+        //{
+        //    e.target.GetComponent<ActivateTaskButton>().ActivateTask(ref activatedWorld);
+        //    //activatedObject = e.target.transform.parent;
+        //}
+
+        //else if (e.target.name == "ActivateTask" && e.target.tag == "activated")
+        //{
+        //    //e.target.GetComponent<ActivateTaskButton>().DeactivateTask(ref activatedWorld);
+        //    e.target.parent.GetComponent<SiteControls>().DeactivateControls(ref activatedWorld);
+        //    //activatedObject = null;
+        //}
         
         //if (e.target.tag == "siteTask")
         //{

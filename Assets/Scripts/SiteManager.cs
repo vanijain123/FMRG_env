@@ -18,6 +18,9 @@ public class SiteManager : MonoBehaviour
 
     public GameObject projectionSite;
     public string siteName;
+    public GameObject deleteButton;
+
+    private int siteID;
 
     //OLD
     //private Transform projectionComponents;
@@ -35,26 +38,34 @@ public class SiteManager : MonoBehaviour
     {
         //projectionComponents = this.transform.parent.parent.parent.parent.Find("ProjectionGameObject");
         this.transform.Find("Text").GetComponent<TextMeshPro>().SetText(siteName);
+        siteID = 0;
+
+        projectionSite.GetComponent<ProjectedSiteManager>().menuSite = this.gameObject;
     }
 
     public void ProjectSelectedSite()
     {
         bool placed = false;
-        List<Transform> wimPositions = transform.parent.parent.GetComponent<WIMPositions>().positions;
-        List<bool> available = transform.parent.parent.GetComponent<WIMPositions>().available;
+        List<Transform> wimPositions = transform.parent.parent.GetComponent<SitesManager>().positions.positions;
+        List<bool> available= transform.parent.parent.GetComponent<SitesManager>().positions.available;
         for (int i=0; i<wimPositions.Count; i++)
         {
             if (available[i])
             {
                 projectionSite.SetActive(true);
-                projectionSite.transform.localPosition = wimPositions[i].localPosition;
+                projectionSite.transform.position = wimPositions[i].position;
                 placed = true;
+                siteID = i;
                 available[i] = false;
-                Debug.Log(transform.parent.parent.GetComponent<WIMPositions>().available[i]);
+                //Debug.Log(transform.parent.parent.GetComponent<WIMPositions>().available[i]);
                 break;
             }
         }
+    }
 
+    public int getSiteID()
+    {
+        return siteID;
     }
 
     public void ProjectSelectedSite(GameObject cube, GameObject cylinder, GameObject sphere)

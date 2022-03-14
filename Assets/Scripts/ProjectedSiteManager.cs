@@ -6,22 +6,22 @@ using TMPro;
 
 public class ProjectedSiteManager : MonoBehaviour
 {
-    private GameObject menuSite;
+    public GameObject menuSite;
 
-    private void Start()
-    {
-        string site_name = transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().text;
-        int num_timestamps = transform.Find("ProjectedObjects").GetComponent<JsonReader>().getNumberOfTimestamps(site_name);
-        Debug.Log("Number of timestamps: " + num_timestamps);
-    }
+    //private void Start()
+    //{
+    //    string site_name = transform.Find("Site").Find("Text").GetComponent<TextMeshPro>().text;
+    //    int num_timestamps = transform.Find("ProjectedObjects").GetComponent<JsonReader>().getNumberOfTimestamps(site_name);
+    //    Debug.Log("Number of timestamps: " + num_timestamps);
+    //}
 
-    public void SetMenuSite(GameObject ms)
-    {
-        menuSite = ms;
-    }
+    //public void SetMenuSite(GameObject ms)
+    //{
+    //    menuSite = ms;
+    //}
 
-    public GameObject GetMenuSite()
-    {
-        return menuSite;
-    }
+    //public GameObject GetMenuSite()
+    //{
+    //    return menuSite;
+    //}
 }

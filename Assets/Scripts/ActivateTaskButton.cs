@@ -11,6 +11,8 @@ public class ActivateTaskButton : MonoBehaviour
     private Vector3 activateButtonOriginalScale;
     private Vector3 siteOriginalScale;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,31 @@ public class ActivateTaskButton : MonoBehaviour
         activateButtonOriginalScale = new Vector3(0.05f, 1, 0.01f);
         siteOriginalScale = new Vector3(0.099f, 0.099f, 0.01f);
         referenceButton = GameObject.Find("SiteControls");
+    }
+
+    public void ActivateTask()
+    {
+        //if (activatedWorld)
+        //{
+        //    DeactivateTask(ref activatedWorld);
+        //}
+
+        //activatedWorld = this.transform.parent.gameObject;
+
+        //referenceButton = GameObject.Find("SiteControls");
+         //referenceButton.GetComponent<SiteControls>().ActivateChildren(siteName);
+        //referenceButton.GetComponent<SiteControls>().SetReferenceWIM(activatedWorld.gameObject);
+
+        //activatedWorld.transform.Find("MenuBackPlane").tag = "activated";
+
+        ////timelineOriginalScale = activatedWorld.transform.Find("Timeline").localScale;
+        //activatedWorld.transform.Find("Timeline").gameObject.SetActive(false);
+
+        ////activateButtonOriginalScale = activatedWorld.transform.Find("ActivateTask").localScale;
+        //activatedWorld.transform.Find("ActivateTask").gameObject.SetActive(false);
+
+        ////siteOriginalScale = activatedWorld.transform.Find("Site").localScale;
+        //activatedWorld.transform.Find("Site").gameObject.SetActive(false);
     }
 
     public void ActivateTask(ref GameObject activatedWorld)

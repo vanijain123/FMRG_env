@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class DeletingWorld : MonoBehaviour
 {
-    private GameObject addButton;
-    private Transform parent;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        parent = this.transform.parent;
-        addButton = parent.Find("AddButton").gameObject;
-    }
+    public GameObject site;
+    public GameObject addButton;
 
     public void DeleteWorld()
     {
-        parent.GetComponent<SiteManager>().DeleteProjectedSite();
+        //site.GetComponent<SiteManager>().DeleteProjectedSite();
+        SiteManager sm = site.GetComponent<SiteManager>();
+        int siteID = sm.getSiteID();
+        site.transform.parent.parent.GetComponent<SitesManager>().positions.available[siteID] = true; 
+        sm.projectionSite.SetActive(false);
         addButton.SetActive(true);
         this.gameObject.SetActive(false);
     }
