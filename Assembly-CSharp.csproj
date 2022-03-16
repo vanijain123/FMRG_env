@@ -240,6 +240,7 @@
     <Compile Include="Assets\Scripts\SitesManager.cs" />
     <Compile Include="Assets\Scripts\WIMPositions.cs" />
     <Compile Include="Assets\SimpleAttach.cs" />
+    <Compile Include="Assets\SpawnRandomly.cs" />
     <Compile Include="Assets\_UserStudy\FMRGDataContainer.cs" />
     <Compile Include="Assets\_UserStudy\FMRGMmAppStateSwitchResponder.cs" />
     <Compile Include="Assets\_UserStudy\FMRGMmTaskInfoCollectionFileLoader.cs" />

@@ -24,11 +24,6 @@ public class PointerHandler : MonoBehaviour
 
     public GameObject VRCamera;
 
-
-    [Header("ObjectReferences")]
-    
-
-
     private int insideMenuGrab;
     private Transform grabbingObject;
     public GameObject activatedWorld;
@@ -75,20 +70,21 @@ public class PointerHandler : MonoBehaviour
             }
         }
 
-        if (activatedWorld && activatedWorld.tag!="scaling")
-        {
-            if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
-            {
-                activatedWorld.transform.position = attachmentPoint.position;
-                activatedWorld.transform.rotation = attachmentPoint.rotation;
-            }
-            if (SteamVR_Actions.default_GrabGrip[leftHand.handType].state)
-            {
-                float x = leftHandPosition.x - leftHand.transform.position.x;
-                activatedWorld.transform.localScale += new Vector3(x, x, x);
-            }
-        }
-        leftHandPosition = leftHand.transform.position;
+        //DISABLED SCALING:
+        //if (activatedWorld && activatedWorld.tag!="scaling")
+        //{
+        //    if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
+        //    {
+        //        activatedWorld.transform.position = attachmentPoint.position;
+        //        activatedWorld.transform.rotation = attachmentPoint.rotation;
+        //    }
+        //    if (SteamVR_Actions.default_GrabGrip[leftHand.handType].state)
+        //    {
+        //        float x = leftHandPosition.x - leftHand.transform.position.x;
+        //        activatedWorld.transform.localScale += new Vector3(x, x, x);
+        //    }
+        //}
+        //leftHandPosition = leftHand.transform.position;
     }
 
     private void FixedUpdate()

@@ -32,45 +32,71 @@ public class SimpleAttach : MonoBehaviour
         //hand.HideGrabHint();
     }
 
+    //private void HandHoverUpdate(Hand hand)
+    //{
+    //    GrabTypes grabType = hand.GetGrabStarting();
+    //    bool isGrabEnding = hand.IsGrabEnding(gameObject);
+    //    GameObject menuBackPlane = gameObject.transform.parent.parent.parent.Find("MenuBackPlane").gameObject;
+
+    //    if (interactable.attachedToHand == null && grabType != GrabTypes.None)
+    //    {
+    //        //if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
+    //        //if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag == "activated")
+    //        if (menuBackPlane != null && menuBackPlane.tag == "activated")
+    //        {
+    //            originalTag = menuBackPlane.tag;
+    //            menuBackPlane.tag = "scaling";
+    //        }
+    //        startPosition = gameObject.transform.position;
+    //        startRotation = gameObject.transform.rotation;
+    //        startScale = gameObject.transform.localScale;
+
+    //        hand.AttachObject(gameObject, grabType);
+    //        hand.HoverLock(interactable);
+    //        //hand.HideGrabHint();
+    //    }
+    //    else if (isGrabEnding)
+    //    {
+    //        hand.DetachObject(gameObject);
+    //        hand.HoverUnlock(interactable);
+
+    //        //if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
+    //        if (menuBackPlane != null && menuBackPlane.tag != "activated")
+    //        {
+    //            gameObject.transform.localScale = startScale;
+    //            gameObject.transform.position = startPosition;
+    //            gameObject.transform.rotation = startRotation;
+    //        }
+    //        else
+    //        {
+    //            menuBackPlane.tag = originalTag;
+    //        }
+    //    }
+    //}
+
     private void HandHoverUpdate(Hand hand)
     {
         GrabTypes grabType = hand.GetGrabStarting();
         bool isGrabEnding = hand.IsGrabEnding(gameObject);
-        GameObject menuBackPlane = gameObject.transform.parent.parent.parent.Find("MenuBackPlane").gameObject;
+        Debug.Log("HandHoverUpdate");
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
-            //if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
-            //if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag == "activated")
-            if (menuBackPlane != null && menuBackPlane.tag == "activated")
-            {
-                originalTag = menuBackPlane.tag;
-                menuBackPlane.tag = "scaling";
-            }
             startPosition = gameObject.transform.position;
             startRotation = gameObject.transform.rotation;
-            startScale = gameObject.transform.localScale;
 
             hand.AttachObject(gameObject, grabType);
             hand.HoverLock(interactable);
-            //hand.HideGrabHint();
+            Debug.Log("Grabbing");
         }
         else if (isGrabEnding)
         {
             hand.DetachObject(gameObject);
             hand.HoverUnlock(interactable);
+            Debug.Log("End Grabbing");
 
-            //if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
-            if (menuBackPlane != null && menuBackPlane.tag != "activated")
-            {
-                gameObject.transform.localScale = startScale;
-                gameObject.transform.position = startPosition;
-                gameObject.transform.rotation = startRotation;
-            }
-            else
-            {
-                menuBackPlane.tag = originalTag;
-            }
+            gameObject.transform.position = startPosition; 
+            gameObject.transform.rotation = startRotation;
         }
     }
 }
