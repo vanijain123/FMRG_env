@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ActivateTask.cs" />
     <Compile Include="Assets\CGUI_Utilities\Audio\SoundEffectManager.cs" />
     <Compile Include="Assets\CGUI_Utilities\Audio\StateWithSound.cs" />
     <Compile Include="Assets\CGUI_Utilities\Geometry\Arrow\ArrowGenerator.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\Sphere1Controller.cs" />
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\Sphere2Controller.cs" />
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\TestScript.cs" />
+    <Compile Include="Assets\ResetTask.cs" />
     <Compile Include="Assets\Scripts\ActivateTaskButton.cs" />
     <Compile Include="Assets\Scripts\AddingWorld.cs" />
     <Compile Include="Assets\Scripts\DeletingWorld.cs" />
@@ -240,6 +242,7 @@
     <Compile Include="Assets\Scripts\SitesManager.cs" />
     <Compile Include="Assets\Scripts\WIMPositions.cs" />
     <Compile Include="Assets\SimpleAttach.cs" />
+    <Compile Include="Assets\SitesManagerReference.cs" />
     <Compile Include="Assets\SpawnRandomly.cs" />
     <Compile Include="Assets\_UserStudy\FMRGDataContainer.cs" />
     <Compile Include="Assets\_UserStudy\FMRGMmAppStateSwitchResponder.cs" />

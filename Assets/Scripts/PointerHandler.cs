@@ -61,14 +61,15 @@ public class PointerHandler : MonoBehaviour
 
     private void Update()
     {
-        if (insideMenuGrab > 0)
-        {
-            if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
-            {
-                grabbingObject.transform.position = attachmentPoint.position;
-                grabbingObject.transform.rotation = attachmentPoint.rotation;
-            }
-        }
+        //Grabbing WIMs
+        //if (insideMenuGrab > 0)
+        //{
+        //    if (SteamVR_Actions.default_GrabGrip[rightHand.handType].state)
+        //    {
+        //        grabbingObject.transform.position = attachmentPoint.position;
+        //        grabbingObject.transform.rotation = attachmentPoint.rotation;
+        //    }
+        //}
 
         //DISABLED SCALING:
         //if (activatedWorld && activatedWorld.tag!="scaling")

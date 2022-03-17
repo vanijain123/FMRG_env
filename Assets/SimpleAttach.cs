@@ -8,6 +8,8 @@ using TMPro;
 
 public class SimpleAttach : MonoBehaviour
 {
+    public bool activated;
+
     private Interactable interactable;
     //private Transform parent;
     private Vector3 startPosition;
@@ -95,8 +97,11 @@ public class SimpleAttach : MonoBehaviour
             hand.HoverUnlock(interactable);
             Debug.Log("End Grabbing");
 
-            gameObject.transform.position = startPosition; 
-            gameObject.transform.rotation = startRotation;
+            if (!activated)
+            {
+                gameObject.transform.position = startPosition;
+                gameObject.transform.rotation = startRotation;
+            }
         }
     }
 }
