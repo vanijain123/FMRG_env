@@ -248,6 +248,8 @@ namespace Valve.VR.InteractionSystem
         /// </summary>
         protected virtual void OnHandHoverBegin(Hand hand)
         {
+            //Vani
+            Debug.Log("OnHandHoverBegin");
             wasHovering = isHovering;
             isHovering = true;
 
@@ -266,6 +268,8 @@ namespace Valve.VR.InteractionSystem
         /// </summary>
         protected virtual void OnHandHoverEnd(Hand hand)
         {
+            //Vani
+            Debug.Log("OnHandHoverEnd");
             wasHovering = isHovering;
 
             hoveringHands.Remove(hand);

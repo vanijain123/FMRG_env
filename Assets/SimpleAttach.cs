@@ -9,19 +9,22 @@ using TMPro;
 public class SimpleAttach : MonoBehaviour
 {
     public bool activated;
+    public Material originalPositionMaterial;
+    public GameObject siteParent;
+    public GameObject movedObject = null;
+    public GameObject originalGO = null;
+    public GameObject[] instructions;
 
     private Interactable interactable;
-    //private Transform parent;
     private Vector3 startPosition;
     private Quaternion startRotation;
-    private Vector3 startScale;
-
     private string originalTag;
+    
 
     private void Start()
     {
         interactable = GetComponent<Interactable>();
-       originalTag = "";
+        instructions = new GameObject[] { originalGO, movedObject };
     }
 
     private void OnHandHoverBegin(Hand hand)
@@ -84,8 +87,26 @@ public class SimpleAttach : MonoBehaviour
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None)
         {
+            if (movedObject!=null && gameObject!=movedObject && originalGO!=null)
+            {
+                Debug.Log("You cannot move this object");
+            }
+
             startPosition = gameObject.transform.position;
             startRotation = gameObject.transform.rotation;
+
+            if (activated && gameObject!=movedObject)
+            {
+                originalGO = GameObject.Instantiate(gameObject, transform.parent);
+                originalGO.transform.localPosition = gameObject.transform.localPosition;
+                originalGO.transform.localScale = gameObject.transform.localScale;
+                originalGO.transform.localRotation = gameObject.transform.localRotation;
+                Destroy(originalGO.GetComponent<SimpleAttach>());
+                SetMaterial(originalGO, originalPositionMaterial);
+                instructions[0] = originalGO;
+
+                movedObject = gameObject;
+            }
 
             hand.AttachObject(gameObject, grabType);
             hand.HoverLock(interactable);
@@ -101,7 +122,22 @@ public class SimpleAttach : MonoBehaviour
             {
                 gameObject.transform.position = startPosition;
                 gameObject.transform.rotation = startRotation;
+
+                movedObject = null;
             }
+            else
+            {
+                movedObject = gameObject;
+                instructions[1] = movedObject;
+            }
+        }
+    }
+
+    private void SetMaterial(GameObject go, Material m)
+    {
+        for (int i=0; i<go.transform.childCount; i++)
+        {
+            go.transform.GetChild(i).GetComponent<MeshRenderer>().material = m;
         }
     }
 }

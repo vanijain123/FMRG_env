@@ -104,6 +104,7 @@
     <Compile Include="Assets\CGUI_Utilities\Widgets\TranslationWidgetBase.cs" />
     <Compile Include="Assets\ChildModels.cs" />
     <Compile Include="Assets\CreateSites.cs" />
+    <Compile Include="Assets\ManageInstructions.cs" />
     <Compile Include="Assets\MercuryMessaging\AppState\MmAppStateResponder.cs" />
     <Compile Include="Assets\MercuryMessaging\AppState\MmAppStateSwitchResponder.cs" />
     <Compile Include="Assets\MercuryMessaging\AppState\MmRelayAppStateNode.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\Sphere1Controller.cs" />
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\Sphere2Controller.cs" />
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\TestScript.cs" />
+    <Compile Include="Assets\NavigationButton.cs" />
     <Compile Include="Assets\ResetTask.cs" />
     <Compile Include="Assets\Scripts\ActivateTaskButton.cs" />
     <Compile Include="Assets\Scripts\AddingWorld.cs" />
@@ -241,6 +243,7 @@
     <Compile Include="Assets\Scripts\SiteManager.cs" />
     <Compile Include="Assets\Scripts\SitesManager.cs" />
     <Compile Include="Assets\Scripts\WIMPositions.cs" />
+    <Compile Include="Assets\SetChildMaterial.cs" />
     <Compile Include="Assets\SimpleAttach.cs" />
     <Compile Include="Assets\SitesManagerReference.cs" />
     <Compile Include="Assets\SpawnRandomly.cs" />
