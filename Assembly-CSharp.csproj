@@ -212,6 +212,9 @@
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\Sphere2Controller.cs" />
     <Compile Include="Assets\MercuryMessaging\Tutorials\SimpleTutorial_Alternative\TestScript.cs" />
     <Compile Include="Assets\NavigationButton.cs" />
+    <Compile Include="Assets\ProgressBar\Scene\Demo.cs" />
+    <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
+    <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
     <Compile Include="Assets\ResetTask.cs" />
     <Compile Include="Assets\Scripts\ActivateTaskButton.cs" />
     <Compile Include="Assets\Scripts\AddingWorld.cs" />
@@ -247,6 +250,7 @@
     <Compile Include="Assets\SimpleAttach.cs" />
     <Compile Include="Assets\SitesManagerReference.cs" />
     <Compile Include="Assets\SpawnRandomly.cs" />
+    <Compile Include="Assets\Timeline.cs" />
     <Compile Include="Assets\_UserStudy\FMRGDataContainer.cs" />
     <Compile Include="Assets\_UserStudy\FMRGMmAppStateSwitchResponder.cs" />
     <Compile Include="Assets\_UserStudy\FMRGMmTaskInfoCollectionFileLoader.cs" />

@@ -8,6 +8,7 @@ public class ManageInstructions : MonoBehaviour
     public ChildModels childModels;
     public TextMeshPro text;
     public Material instructionsSentMaterial;
+    public GameObject timeline;
 
     private List<GameObject> children;
     private bool instructionSent;
@@ -25,7 +26,7 @@ public class ManageInstructions : MonoBehaviour
         if (instructionSent == true)
         {
             Debug.Log("buttonInteraction already pressed");
-            text.text = "Task In Progress";
+            //text.text = "Task In Progress";
         }
         else
         {
@@ -43,7 +44,8 @@ public class ManageInstructions : MonoBehaviour
                     }
                 }
             }
-            text.text = "Task In Progress";
+            StartCoroutine("StartTask");
+            //text.text = "Task In Progress";
         }
     }
 
@@ -55,4 +57,12 @@ public class ManageInstructions : MonoBehaviour
         }
     }
 
+    IEnumerator StartTask()
+    {
+        while (timeline.transform.localScale.y < 0.19f)
+        {
+            yield return null;
+            timeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
+        }
+    }
 }
