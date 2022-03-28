@@ -140,7 +140,7 @@ public class SimpleAttach : MonoBehaviour
         }
     }
 
-    private void SetMaterial(GameObject go, Material m)
+    public void SetMaterial(GameObject go, Material m)
     {
         for (int i=0; i<go.transform.childCount; i++)
         {

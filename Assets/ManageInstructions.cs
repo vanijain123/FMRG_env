@@ -10,6 +10,9 @@ public class ManageInstructions : MonoBehaviour
     public Material instructionsSentMaterial;
     public GameObject timeline;
 
+    public GameObject resetButton;
+    public GameObject unlockButton;
+
     private List<GameObject> children;
     private bool instructionSent;
 
@@ -41,10 +44,17 @@ public class ManageInstructions : MonoBehaviour
                         SetMaterial(children[i], instructionsSentMaterial);
                         instructions[0] = null;
                         instructions[1] = null;
+                        instructionSent = true;
                     }
                 }
             }
-            StartCoroutine("StartTask");
+            if (instructionSent == true)
+            {
+                resetButton.SetActive(false);
+                unlockButton.SetActive(false);
+                this.GetComponent<MeshRenderer>().enabled = false;
+                StartCoroutine("StartTask");
+            }
             //text.text = "Task In Progress";
         }
     }
@@ -59,10 +69,18 @@ public class ManageInstructions : MonoBehaviour
 
     IEnumerator StartTask()
     {
-        while (timeline.transform.localScale.y < 0.19f)
-        {
-            yield return null;
-            timeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
-        }
+        timeline.transform.localPosition = new Vector3(-0.1412f, 0, 0);
+        timeline.transform.localScale = new Vector3(0.007f, 0, 0.007f);
+        //while (timeline.transform.localScale.y < 0.19f)
+        //{
+        //    yield return null;
+        //    timeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
+        //}
+        yield return StartCoroutine(timeline.GetComponent<Timeline>().WaitCoroutine());
+        resetButton.SetActive(true);
+        unlockButton.SetActive(true);
+        this.GetComponent<MeshRenderer>().enabled = true;
+        instructionSent = false;
+        resetButton.GetComponent<ResetTask>().ReevaluateTask();
     }
 }

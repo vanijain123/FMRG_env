@@ -148,46 +148,57 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerInside(object sender, PointerEventArgs e)
     {
-        if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
+        if (e.target.tag == "site")
         {
             insideMenuGrab += 1;
             grabbingObject = e.target.transform.parent;
         }
 
-        if (e.target.name == "AddButton")
-        {
-            SnapPointerToButton(e.target.gameObject);
-        }
+        //if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
+        //{
+        //    insideMenuGrab += 1;
+        //    grabbingObject = e.target.transform.parent;
+        //}
 
-        if (e.target.name == "DeleteButton")
-        {
-            SnapPointerToButton(e.target.gameObject);
-        }
+        //if (e.target.name == "AddButton")
+        //{
+        //    SnapPointerToButton(e.target.gameObject);
+        //}
 
-        if (e.target.name == "ButtonOuter")
-        {
-            SnapPointerToButton(e.target.gameObject);
-        }
+        //if (e.target.name == "DeleteButton")
+        //{
+        //    SnapPointerToButton(e.target.gameObject);
+        //}
+
+        //if (e.target.name == "ButtonOuter")
+        //{
+        //    SnapPointerToButton(e.target.gameObject);
+        //}
     }
 
     private void PointerOutside(object sender, PointerEventArgs e)
     {
-        if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
+        if (e.target.tag == "site")
         {
             insideMenuGrab -= 1;
         }
-        if (e.target.name == "AddButton")
-        {
-            UnsnapPointerToButton();
-        }
-        if (e.target.name == "DeleteButton")
-        {
-            UnsnapPointerToButton();
-        }
-        if (e.target.name == "ButtonOuter")
-        {
-            UnsnapPointerToButton();
-        }
+
+        //if (e.target.name == "MenuBackPlane" && e.target.tag == "deactivated")
+        //{
+        //    insideMenuGrab -= 1;
+        //}
+        //if (e.target.name == "AddButton")
+        //{
+        //    UnsnapPointerToButton();
+        //}
+        //if (e.target.name == "DeleteButton")
+        //{
+        //    UnsnapPointerToButton();
+        //}
+        //if (e.target.name == "ButtonOuter")
+        //{
+        //    UnsnapPointerToButton();
+        //}
     }
     
 

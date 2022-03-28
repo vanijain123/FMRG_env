@@ -7,6 +7,8 @@ public class ResetTask : MonoBehaviour
 {
     public ProjectedSiteManager pm;
     public ChildModels ChildModels;
+    public Material objectMaterial;
+
     private List<GameObject> modelParts;
 
     public void ResetModelPositions()
@@ -32,10 +34,8 @@ public class ResetTask : MonoBehaviour
     {
         Tuple<GameObject, Vector3, Vector3, Quaternion> t = pm.popInstruction();
         GameObject actionObject = t.Item1;
-        Debug.Log($"Vani {actionObject}");
         if (actionObject != null)
         {
-            Debug.Log($"Vani insice if");
             Debug.Log($"{actionObject.transform.localPosition}");
             actionObject.transform.localPosition = t.Item2;
             actionObject.transform.localScale = t.Item3;
@@ -58,6 +58,23 @@ public class ResetTask : MonoBehaviour
         else
         {
             ResetModelPositions();
+        }
+    }
+
+    public void ReevaluateTask()
+    {
+        pm.instructionCache.Clear();
+        for (int i = 0; i < modelParts.Count; i++)
+        {
+            //GameObject movedObject = modelParts[i].GetComponent<SimpleAttach>().movedObject;
+            GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
+            modelParts[i].GetComponent<SimpleAttach>().SetMaterial(modelParts[i], objectMaterial);
+
+            // Add conditions to check if robot has performed the task
+
+            modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
+            modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
+            Destroy(originalGO);
         }
     }
     

@@ -10,7 +10,12 @@ public class Timeline : MonoBehaviour
             transform.localScale += scaleDirection * scaleAmount; // Scale object in the specified direction
     }
 
-    private void Update()
+    public IEnumerator WaitCoroutine()
     {
+        while (transform.localScale.y < 0.19f)
+        {
+            yield return null;
+            Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
+        }
     }
 }

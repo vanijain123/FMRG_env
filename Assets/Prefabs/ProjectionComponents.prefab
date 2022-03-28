@@ -1998,7 +1998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2783248094427137214
 Transform:
   m_ObjectHideFlags: 0
@@ -2753,6 +2753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pm: {fileID: 7677670154381316464}
   ChildModels: {fileID: 9114585063616055801}
+  objectMaterial: {fileID: 2100000, guid: 07bcd4e0597eb0648b7a45624f2e0594, type: 2}
 --- !u!1 &7102240179318815707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +2922,8 @@ MonoBehaviour:
   instructionsSentMaterial: {fileID: 2100000, guid: ade4a936cfc389a4aae0516ca3bac219,
     type: 2}
   timeline: {fileID: 970538073084021597}
+  resetButton: {fileID: 6911233308699512507}
+  unlockButton: {fileID: 1390212260946239253}
 --- !u!1 &7139150658740461352
 GameObject:
   m_ObjectHideFlags: 0
