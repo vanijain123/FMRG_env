@@ -9,6 +9,10 @@ public class ActivateTask : MonoBehaviour
     public TextMeshPro text;
     public GameObject siteDeleteButton;
     public ChildModels childModels;
+    public Material locked;
+    public Material unlocked;
+    public GameObject undoButton;
+    public GameObject sendInstructionsButton;
 
     private SitesManager sitesManager;
 
@@ -16,7 +20,7 @@ public class ActivateTask : MonoBehaviour
     void Start()
     {
         activated = false;
-        text.text = "Activate";
+        //text.text = "Activate";
         sitesManager = SitesManager.instance;
     }
 
@@ -26,8 +30,11 @@ public class ActivateTask : MonoBehaviour
         if (activated)
         {
             activated = false;
-            text.text = "Activate";
+            //text.text = "Activate";
+            this.GetComponent<MeshRenderer>().material = locked;
             sitesManager.activatedTask = null;
+            undoButton.SetActive(false);
+            sendInstructionsButton.SetActive(false);
         }
         else
         {
@@ -43,7 +50,10 @@ public class ActivateTask : MonoBehaviour
                 //}
             }
             activated = true;
-            text.text = "Deactivate";
+            undoButton.SetActive(true);
+            sendInstructionsButton.SetActive(true);
+            //text.text = "Deactivate";
+            this.GetComponent<MeshRenderer>().material = unlocked;
             sitesManager.activatedTask = gameObject;
         }
         ToggleModelPartsActivation(activated);

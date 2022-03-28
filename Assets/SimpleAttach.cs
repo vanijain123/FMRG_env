@@ -19,12 +19,13 @@ public class SimpleAttach : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
     private string originalTag;
-    
+    private GameObject emptyGO;
 
     private void Start()
     {
         interactable = GetComponent<Interactable>();
         instructions = new GameObject[] { originalGO, movedObject };
+        emptyGO = new GameObject();
     }
 
     private void OnHandHoverBegin(Hand hand)
@@ -95,17 +96,23 @@ public class SimpleAttach : MonoBehaviour
             startPosition = gameObject.transform.position;
             startRotation = gameObject.transform.rotation;
 
-            if (activated && gameObject!=movedObject)
+            if (activated)
             {
-                originalGO = GameObject.Instantiate(gameObject, transform.parent);
-                originalGO.transform.localPosition = gameObject.transform.localPosition;
-                originalGO.transform.localScale = gameObject.transform.localScale;
-                originalGO.transform.localRotation = gameObject.transform.localRotation;
-                Destroy(originalGO.GetComponent<SimpleAttach>());
-                SetMaterial(originalGO, originalPositionMaterial);
-                instructions[0] = originalGO;
+                Debug.Log("Calling AddInstructions");
+                siteParent.GetComponent<ProjectedSiteManager>().addInstruction(gameObject, gameObject.transform.localPosition, gameObject.transform.localScale, gameObject.transform.localRotation);
 
-                movedObject = gameObject;
+                if (gameObject != movedObject)
+                {
+                    originalGO = GameObject.Instantiate(gameObject, transform.parent);
+                    originalGO.transform.localPosition = gameObject.transform.localPosition;
+                    originalGO.transform.localScale = gameObject.transform.localScale;
+                    originalGO.transform.localRotation = gameObject.transform.localRotation;
+                    Destroy(originalGO.GetComponent<SimpleAttach>());
+                    SetMaterial(originalGO, originalPositionMaterial);
+                    instructions[0] = originalGO;
+
+                    movedObject = gameObject;
+                }
             }
 
             hand.AttachObject(gameObject, grabType);
