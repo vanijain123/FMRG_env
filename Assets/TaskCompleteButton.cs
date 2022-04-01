@@ -32,6 +32,7 @@ public class TaskCompleteButton : MonoBehaviour
 
         manageInstructions.ResetTimeline(manageInstructions.timeline);
         manageInstructions.ResetTimeline(manageInstructions.siteIconTimeline);
+        manageInstructions.siteIcon.siteIcon.GetComponent<MeshRenderer>().material = manageInstructions.siteIcon.white;
 
         this.gameObject.SetActive(false);
     }

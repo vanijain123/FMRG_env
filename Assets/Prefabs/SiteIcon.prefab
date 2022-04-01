@@ -1001,6 +1001,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   siteIconTimeline: {fileID: 6500874111422841131}
+  siteIcon: {fileID: 4066505923375614855}
+  green: {fileID: 2100000, guid: 0fbce793bbf2bbc458899b6296d370b4, type: 2}
+  white: {fileID: 0}
 --- !u!1 &4066505924604111770
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,12 @@ using UnityEngine;
 public class Timeline : MonoBehaviour
 {
     public GameObject siteIconTimeline;
+    public float amount;
+
+    private void Start()
+    {
+        amount = 0.001f;
+    }
 
     public void Resize(float amount, Vector3 direction, float scaleAmount, Vector3 scaleDirection)
     {
@@ -19,7 +25,7 @@ public class Timeline : MonoBehaviour
             yield return null;
             //Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
             //siteIconTimeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
-            float amount = 0.0005f;
+            //float amount = 0.0005f;
             Resize(amount, new Vector3(1, 0, 0), amount/2, new Vector3(0, 1, 0));
             siteIconTimeline.GetComponent<Timeline>().Resize(amount, new Vector3(1, 0, 0), amount/2, new Vector3(0, 1, 0));
         }

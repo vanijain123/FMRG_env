@@ -5,15 +5,12 @@ using UnityEngine;
 public class SiteIconManager : MonoBehaviour
 {
     public GameObject siteIconTimeline;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject siteIcon;
+    public Material green;
+    public Material white;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        white = siteIcon.GetComponent<MeshRenderer>().material;
     }
 }

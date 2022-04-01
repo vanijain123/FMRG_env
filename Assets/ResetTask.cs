@@ -68,7 +68,7 @@ public class ResetTask : MonoBehaviour
         {
             //GameObject movedObject = modelParts[i].GetComponent<SimpleAttach>().movedObject;
             GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
-            modelParts[i].GetComponent<SimpleAttach>().SetMaterial(modelParts[i], objectMaterial);
+            modelParts[i].GetComponent<SimpleAttach>().SetMaterial(modelParts[i], modelParts[i].GetComponent<SimpleAttach>().originalMaterial, true);
 
             // Add conditions to check if robot has performed the task
 

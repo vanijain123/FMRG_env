@@ -15,6 +15,10 @@ public class SimpleAttach : MonoBehaviour
     public GameObject originalGO = null;
     public GameObject[] instructions;
 
+    public Material originalMaterial;
+    public Material objectMovedMaterial;
+    public Material instructionSentMaterial;
+
     private Interactable interactable;
     private Vector3 startPosition;
     private Quaternion startRotation;
@@ -107,8 +111,8 @@ public class SimpleAttach : MonoBehaviour
                     originalGO.transform.localPosition = gameObject.transform.localPosition;
                     originalGO.transform.localScale = gameObject.transform.localScale;
                     originalGO.transform.localRotation = gameObject.transform.localRotation;
+                    SetMaterial(originalGO, originalGO.GetComponent<SimpleAttach>().objectMovedMaterial);
                     Destroy(originalGO.GetComponent<SimpleAttach>());
-                    SetMaterial(originalGO, originalPositionMaterial);
                     instructions[0] = originalGO;
 
                     movedObject = gameObject;
@@ -140,10 +144,21 @@ public class SimpleAttach : MonoBehaviour
         }
     }
 
-    public void SetMaterial(GameObject go, Material m)
+    public void SetMaterial(GameObject go, Material m, bool originalMaterial = true)
     {
         for (int i=0; i<go.transform.childCount; i++)
         {
+            //Color og = go.transform.GetChild(i).GetComponent<MeshRenderer>().material.color;
+            //Color newColor = new Color();
+            //if (originalMaterial)
+            //{
+            //    newColor = new Color(og.r, og.g, og.b, og.a*2);
+            //}
+            //else
+            //{
+            //    newColor = new Color(og.r, og.g, og.b, og.a / 2);
+            //}
+            //go.transform.GetChild(i).GetComponent<MeshRenderer>().material.color = newColor;
             go.transform.GetChild(i).GetComponent<MeshRenderer>().material = m;
         }
     }

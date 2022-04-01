@@ -19,7 +19,9 @@ public class ManageInstructions : MonoBehaviour
 
     private List<GameObject> children;
     
-    private SiteIconManager siteIcon;
+    public SiteIconManager siteIcon;
+
+    private int numberOfInstructions;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,7 @@ public class ManageInstructions : MonoBehaviour
         else
         {
             Debug.Log("buttonInteraction");
+            numberOfInstructions = 0;
             for (int i = 0; i < children.Count; i++)
             {
                 GameObject[] instructions = children[i].GetComponent<SimpleAttach>().instructions;
@@ -49,9 +52,11 @@ public class ManageInstructions : MonoBehaviour
                 {
                     if (instructions[0].transform != instructions[1].transform)
                     {
-                        SetMaterial(children[i], instructionsSentMaterial);
+                        SetMaterial(children[i], children[i].GetComponent<SimpleAttach>().instructionSentMaterial);
                         instructions[0] = null;
                         instructions[1] = null;
+                        numberOfInstructions += 1;
+                        Debug.Log($"Number of instructions: {numberOfInstructions}");
                         instructionSent = true;
                     }
                 }
@@ -84,7 +89,9 @@ public class ManageInstructions : MonoBehaviour
         //    yield return null;
         //    timeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
         //}
+        timeline.GetComponent<Timeline>().amount /= numberOfInstructions;
         yield return StartCoroutine(timeline.GetComponent<Timeline>().WaitCoroutine());
+        siteIcon.siteIcon.GetComponent<MeshRenderer>().material = siteIcon.green;
         taskCompleteButton.gameObject.SetActive(true);
     }
 
