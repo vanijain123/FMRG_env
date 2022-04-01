@@ -8,6 +8,7 @@ using TMPro;
 public class ProjectedSiteManager : MonoBehaviour
 {
     public GameObject menuSite;
+    public SiteIconManager siteIconManager;
 
     public class Instruction
     {
@@ -16,7 +17,6 @@ public class ProjectedSiteManager : MonoBehaviour
         public Vector3 localScale;
         public Quaternion localRotation;
     }
-
 
     public List<Instruction> instructionCache = new List<Instruction>();
 

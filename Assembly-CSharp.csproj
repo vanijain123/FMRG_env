@@ -248,8 +248,10 @@
     <Compile Include="Assets\Scripts\WIMPositions.cs" />
     <Compile Include="Assets\SetChildMaterial.cs" />
     <Compile Include="Assets\SimpleAttach.cs" />
+    <Compile Include="Assets\SiteIconManager.cs" />
     <Compile Include="Assets\SitesManagerReference.cs" />
     <Compile Include="Assets\SpawnRandomly.cs" />
+    <Compile Include="Assets\TaskCompleteButton.cs" />
     <Compile Include="Assets\Timeline.cs" />
     <Compile Include="Assets\_UserStudy\FMRGDataContainer.cs" />
     <Compile Include="Assets\_UserStudy\FMRGMmAppStateSwitchResponder.cs" />

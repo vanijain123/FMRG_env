@@ -34,7 +34,8 @@ public class ActivateTask : MonoBehaviour
             this.GetComponent<MeshRenderer>().material = locked;
             sitesManager.activatedTask = null;
             undoButton.SetActive(false);
-            sendInstructionsButton.SetActive(false);
+            //sendInstructionsButton.SetActive(false);
+            sendInstructionsButton.GetComponent<MeshRenderer>().enabled = false;
         }
         else
         {
@@ -51,7 +52,8 @@ public class ActivateTask : MonoBehaviour
             }
             activated = true;
             undoButton.SetActive(true);
-            sendInstructionsButton.SetActive(true);
+            //sendInstructionsButton.SetActive(true);
+            sendInstructionsButton.GetComponent<MeshRenderer>().enabled = true;
             //text.text = "Deactivate";
             this.GetComponent<MeshRenderer>().material = unlocked;
             sitesManager.activatedTask = gameObject;
