@@ -103,6 +103,7 @@
     <Compile Include="Assets\CGUI_Utilities\Widgets\TransformationWidgetBase.cs" />
     <Compile Include="Assets\CGUI_Utilities\Widgets\TranslationWidgetBase.cs" />
     <Compile Include="Assets\ChildModels.cs" />
+    <Compile Include="Assets\CreateLineRenderer.cs" />
     <Compile Include="Assets\CreateSites.cs" />
     <Compile Include="Assets\ManageInstructions.cs" />
     <Compile Include="Assets\MercuryMessaging\AppState\MmAppStateResponder.cs" />

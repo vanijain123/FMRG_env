@@ -9,7 +9,7 @@ public class Timeline : MonoBehaviour
 
     private void Start()
     {
-        amount = 0.001f;
+        amount = 0.005f;
     }
 
     public void Resize(float amount, Vector3 direction, float scaleAmount, Vector3 scaleDirection)

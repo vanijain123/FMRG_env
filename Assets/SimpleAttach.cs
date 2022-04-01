@@ -111,11 +111,22 @@ public class SimpleAttach : MonoBehaviour
                     originalGO.transform.localPosition = gameObject.transform.localPosition;
                     originalGO.transform.localScale = gameObject.transform.localScale;
                     originalGO.transform.localRotation = gameObject.transform.localRotation;
+
                     SetMaterial(originalGO, originalGO.GetComponent<SimpleAttach>().objectMovedMaterial);
                     Destroy(originalGO.GetComponent<SimpleAttach>());
                     instructions[0] = originalGO;
 
                     movedObject = gameObject;
+
+                    //originalGO.GetComponent<CreateLineRenderer>().enabled = true;
+                    originalGO.GetComponent<CreateLineRenderer>().StartLR(originalGO, movedObject, originalPositionMaterial);
+
+                    //LineRenderer lr = originalGO.AddComponent<LineRenderer>();
+                    //lr.SetPosition(0, this.transform.localPosition);
+                    //lr.SetPosition(1, movedObject.transform.localPosition);
+                    //lr.material = objectMovedMaterial;
+                    //lr.startWidth = 1;
+                    //lr.endWidth = 1;
                 }
             }
 
