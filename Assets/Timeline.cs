@@ -23,11 +23,9 @@ public class Timeline : MonoBehaviour
         while (transform.localScale.y < 0.19f)
         {
             yield return null;
-            //Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
-            //siteIconTimeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
-            //float amount = 0.0005f;
             Resize(amount, new Vector3(1, 0, 0), amount/2, new Vector3(0, 1, 0));
             siteIconTimeline.GetComponent<Timeline>().Resize(amount, new Vector3(1, 0, 0), amount/2, new Vector3(0, 1, 0));
         }
+        amount = 0.005f;
     }
 }

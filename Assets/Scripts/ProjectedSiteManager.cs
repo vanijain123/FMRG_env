@@ -9,6 +9,7 @@ public class ProjectedSiteManager : MonoBehaviour
 {
     public GameObject menuSite;
     public SiteIconManager siteIconManager;
+    public ManageInstructions manageInstructions;
 
     public class Instruction
     {

@@ -10,23 +10,54 @@ public class ResetTask : MonoBehaviour
     public Material objectMaterial;
 
     private List<GameObject> modelParts;
+    private string grabbableTag = "Grabbable";
 
-    public void ResetModelPositions()
+    public void ResetModelPositions_Old()
     {
         for (int i=0; i<modelParts.Count; i++)
         {
             GameObject movedObject = modelParts[i].GetComponent<SimpleAttach>().movedObject;
             GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
 
-            if (movedObject!=null && originalGO != null)
+            if (movedObject!=null && originalGO != null && pm.manageInstructions.instructionsSentList.Contains(originalGO))
             {
                 movedObject.transform.localPosition = originalGO.transform.localPosition;
                 movedObject.transform.localScale = originalGO.transform.localScale;
                 movedObject.transform.localRotation = originalGO.transform.localRotation;
+
+                modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
+                modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
+                Destroy(originalGO);
             }
-            modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
-            modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
-            Destroy(originalGO);
+        }
+        pm.manageInstructions.instructionsSentList.Clear();
+    }
+
+    public void ResetModelPositions()
+    {
+        //Check if an instruction set has been sent
+        if (pm.manageInstructions.instructionsQueue.Count > 0)
+        {
+            Queue<GameObject[]> instructionSet = pm.manageInstructions.instructionsQueue.Dequeue();
+            while (instructionSet.Count > 0)
+            {
+                GameObject[] instructions = instructionSet.Dequeue();
+                GameObject movedObject = instructions[0].GetComponent<SimpleAttach>().movedObject;
+                GameObject originalGO = instructions[1].GetComponent<SimpleAttach>().originalGO;
+
+                if (movedObject != null && originalGO != null)
+                {
+                    movedObject.transform.localPosition = originalGO.transform.localPosition;
+                    movedObject.transform.localScale = originalGO.transform.localScale;
+                    movedObject.transform.localRotation = originalGO.transform.localRotation;
+                    movedObject.tag = grabbableTag;
+                    //Destroy(movedObject.GetComponent<SimpleAttach>().lr);
+
+                    instructions[0].GetComponent<SimpleAttach>().movedObject = null;
+                    instructions[1].GetComponent<SimpleAttach>().originalGO = null;
+                    Destroy(originalGO);
+                }
+            }
         }
     }
 
@@ -67,14 +98,22 @@ public class ResetTask : MonoBehaviour
         for (int i = 0; i < modelParts.Count; i++)
         {
             //GameObject movedObject = modelParts[i].GetComponent<SimpleAttach>().movedObject;
-            GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
-            modelParts[i].GetComponent<SimpleAttach>().SetMaterial(modelParts[i], modelParts[i].GetComponent<SimpleAttach>().originalMaterial, true);
 
-            // Add conditions to check if robot has performed the task
+            if (modelParts[i].GetComponent<SimpleAttach>().instructions[0] == null)
+            {
+                GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
+                modelParts[i].GetComponent<SimpleAttach>().SetMaterial(modelParts[i], modelParts[i].GetComponent<SimpleAttach>().originalMaterial, true);
 
-            modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
-            modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
-            Destroy(originalGO);
+                // Add conditions to check if robot has performed the task
+                Debug.Log($"modelParts[i].GetComponent<SimpleAttach>().movedObject {modelParts[i].GetComponent<SimpleAttach>().movedObject}");
+                if (modelParts[i].GetComponent<SimpleAttach>().movedObject != null)
+                {
+                    modelParts[i].GetComponent<SimpleAttach>().movedObject.tag = grabbableTag;
+                }
+                modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
+                modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
+                Destroy(originalGO);
+            }
         }
     }
     

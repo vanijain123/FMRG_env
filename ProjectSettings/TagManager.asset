@@ -21,6 +21,8 @@ TagManager:
   - deactivated
   - activated
   - scaling
+  - Grabbable
+  - Ungrabbable
   layers:
   - Default
   - TransparentFX

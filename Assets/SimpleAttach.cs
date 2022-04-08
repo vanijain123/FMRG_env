@@ -18,18 +18,27 @@ public class SimpleAttach : MonoBehaviour
     public Material originalMaterial;
     public Material objectMovedMaterial;
     public Material instructionSentMaterial;
+    public LineRenderer lr;
 
     private Interactable interactable;
     private Vector3 startPosition;
     private Quaternion startRotation;
     private string originalTag;
-    private GameObject emptyGO;
+    private string grabbableTag;
 
     private void Start()
     {
         interactable = GetComponent<Interactable>();
         instructions = new GameObject[] { originalGO, movedObject };
-        emptyGO = new GameObject();
+        grabbableTag = this.gameObject.tag;
+    }
+
+    private void Update()
+    {
+        //if (instructions[0] != null)
+        //{
+        //    lr.SetPosition(0, this.transform.position);
+        //}
     }
 
     private void OnHandHoverBegin(Hand hand)
@@ -42,55 +51,13 @@ public class SimpleAttach : MonoBehaviour
         //hand.HideGrabHint();
     }
 
-    //private void HandHoverUpdate(Hand hand)
-    //{
-    //    GrabTypes grabType = hand.GetGrabStarting();
-    //    bool isGrabEnding = hand.IsGrabEnding(gameObject);
-    //    GameObject menuBackPlane = gameObject.transform.parent.parent.parent.Find("MenuBackPlane").gameObject;
-
-    //    if (interactable.attachedToHand == null && grabType != GrabTypes.None)
-    //    {
-    //        //if (gameObject.transform.parent.parent.Find("ActivateTask").tag == "activated")
-    //        //if (gameObject.transform.parent.parent.Find("MenuBackPlane").tag == "activated")
-    //        if (menuBackPlane != null && menuBackPlane.tag == "activated")
-    //        {
-    //            originalTag = menuBackPlane.tag;
-    //            menuBackPlane.tag = "scaling";
-    //        }
-    //        startPosition = gameObject.transform.position;
-    //        startRotation = gameObject.transform.rotation;
-    //        startScale = gameObject.transform.localScale;
-
-    //        hand.AttachObject(gameObject, grabType);
-    //        hand.HoverLock(interactable);
-    //        //hand.HideGrabHint();
-    //    }
-    //    else if (isGrabEnding)
-    //    {
-    //        hand.DetachObject(gameObject);
-    //        hand.HoverUnlock(interactable);
-
-    //        //if (gameObject.transform.parent.parent.Find("ActivateTask").tag != "activated")
-    //        if (menuBackPlane != null && menuBackPlane.tag != "activated")
-    //        {
-    //            gameObject.transform.localScale = startScale;
-    //            gameObject.transform.position = startPosition;
-    //            gameObject.transform.rotation = startRotation;
-    //        }
-    //        else
-    //        {
-    //            menuBackPlane.tag = originalTag;
-    //        }
-    //    }
-    //}
-
     private void HandHoverUpdate(Hand hand)
     {
         GrabTypes grabType = hand.GetGrabStarting();
         bool isGrabEnding = hand.IsGrabEnding(gameObject);
         Debug.Log("HandHoverUpdate");
 
-        if (interactable.attachedToHand == null && grabType != GrabTypes.None)
+        if (interactable.attachedToHand == null && grabType != GrabTypes.None && this.tag == grabbableTag)
         {
             if (movedObject!=null && gameObject!=movedObject && originalGO!=null)
             {
@@ -118,15 +85,15 @@ public class SimpleAttach : MonoBehaviour
 
                     movedObject = gameObject;
 
-                    //originalGO.GetComponent<CreateLineRenderer>().enabled = true;
-                    originalGO.GetComponent<CreateLineRenderer>().StartLR(originalGO, movedObject, originalPositionMaterial);
+                    //movedObject.GetComponent<CreateLineRenderer>().enabled = true;
+                    //originalGO.GetComponent<CreateLineRenderer>().StartLR(originalGO, movedObject, originalPositionMaterial);
 
-                    //LineRenderer lr = originalGO.AddComponent<LineRenderer>();
-                    //lr.SetPosition(0, this.transform.localPosition);
-                    //lr.SetPosition(1, movedObject.transform.localPosition);
+                    //lr = movedObject.AddComponent<LineRenderer>();
+                    //lr.SetPosition(0, this.transform.position);
+                    //lr.SetPosition(1, originalGO.transform.position);
                     //lr.material = objectMovedMaterial;
-                    //lr.startWidth = 1;
-                    //lr.endWidth = 1;
+                    //lr.startWidth = 0.01f;
+                    //lr.endWidth = 0.01f;
                 }
             }
 
@@ -159,17 +126,6 @@ public class SimpleAttach : MonoBehaviour
     {
         for (int i=0; i<go.transform.childCount; i++)
         {
-            //Color og = go.transform.GetChild(i).GetComponent<MeshRenderer>().material.color;
-            //Color newColor = new Color();
-            //if (originalMaterial)
-            //{
-            //    newColor = new Color(og.r, og.g, og.b, og.a*2);
-            //}
-            //else
-            //{
-            //    newColor = new Color(og.r, og.g, og.b, og.a / 2);
-            //}
-            //go.transform.GetChild(i).GetComponent<MeshRenderer>().material.color = newColor;
             go.transform.GetChild(i).GetComponent<MeshRenderer>().material = m;
         }
     }

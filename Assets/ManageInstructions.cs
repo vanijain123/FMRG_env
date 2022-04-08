@@ -16,12 +16,17 @@ public class ManageInstructions : MonoBehaviour
     public GameObject resetButton;
     public GameObject unlockButton;
     public bool instructionSent;
+    public List<GameObject> instructionsSentList = new List<GameObject>();
+
+    public Queue<Queue<GameObject[]>> instructionsQueue = new Queue<Queue<GameObject[]>>();
 
     private List<GameObject> children;
     
     public SiteIconManager siteIcon;
 
     private int numberOfInstructions;
+    private Vector3 timelineOriginalScale;
+    private string ungrabbableTag = "Ungrabbable";
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +37,9 @@ public class ManageInstructions : MonoBehaviour
         timeline.GetComponent<Timeline>().siteIconTimeline = siteIcon.GetComponent<SiteIconManager>().siteIconTimeline;
         siteIconTimeline = timeline.GetComponent<Timeline>().siteIconTimeline;
         taskCompleteButton.SetVariables(resetButton, unlockButton, gameObject);
+        timelineOriginalScale = timeline.transform.localScale;
+
+        pm.manageInstructions = this.GetComponent<ManageInstructions>();
     }
 
     public void buttonInteraction()
@@ -39,12 +47,14 @@ public class ManageInstructions : MonoBehaviour
         if (instructionSent == true)
         {
             Debug.Log("buttonInteraction already pressed");
-            //text.text = "Task In Progress";
         }
         else
         {
             Debug.Log("buttonInteraction");
             numberOfInstructions = 0;
+
+            Queue<GameObject[]> instructionSet = new Queue<GameObject[]>();
+
             for (int i = 0; i < children.Count; i++)
             {
                 GameObject[] instructions = children[i].GetComponent<SimpleAttach>().instructions;
@@ -53,8 +63,16 @@ public class ManageInstructions : MonoBehaviour
                     if (instructions[0].transform != instructions[1].transform)
                     {
                         SetMaterial(children[i], children[i].GetComponent<SimpleAttach>().instructionSentMaterial);
+                        
+                        //Add to the instruction set
+                        instructionSet.Enqueue(instructions);
+
+                        instructionsSentList.Add(instructions[0]);
+                        children[i].GetComponent<SimpleAttach>().movedObject.tag = ungrabbableTag;
+
                         instructions[0] = null;
                         instructions[1] = null;
+
                         numberOfInstructions += 1;
                         Debug.Log($"Number of instructions: {numberOfInstructions}");
                         instructionSent = true;
@@ -63,12 +81,12 @@ public class ManageInstructions : MonoBehaviour
             }
             if (instructionSent == true)
             {
+                instructionsQueue.Enqueue(instructionSet);
                 resetButton.SetActive(false);
                 unlockButton.SetActive(false);
                 this.GetComponent<MeshRenderer>().enabled = false;
                 StartCoroutine("StartTask");
             }
-            //text.text = "Task In Progress";
         }
     }
 
@@ -84,12 +102,8 @@ public class ManageInstructions : MonoBehaviour
     {
         ResetTimeline(timeline);
         ResetTimeline(siteIconTimeline);
-        //while (timeline.transform.localScale.y < 0.19f)
-        //{
-        //    yield return null;
-        //    timeline.GetComponent<Timeline>().Resize(0.001f, new Vector3(1, 0, 0), 0.0005f, new Vector3(0, 1, 0));
-        //}
-        timeline.GetComponent<Timeline>().amount /= numberOfInstructions;
+        //timeline.GetComponent<Timeline>().amount /= numberOfInstructions;
+        timeline.GetComponent<Timeline>().amount /= instructionsQueue.Peek().Count;
         yield return StartCoroutine(timeline.GetComponent<Timeline>().WaitCoroutine());
         siteIcon.siteIcon.GetComponent<MeshRenderer>().material = siteIcon.green;
         taskCompleteButton.gameObject.SetActive(true);
@@ -98,6 +112,7 @@ public class ManageInstructions : MonoBehaviour
     public void ResetTimeline(GameObject timeline)
     {
         timeline.transform.localPosition = new Vector3(-0.1412f, 0, 0);
-        timeline.transform.localScale = new Vector3(0.007f, 0, 0.007f);
+        //timeline.transform.localScale = new Vector3(0.007f, 0, 0.007f);
+        timeline.transform.localScale = timelineOriginalScale;
     }
 }
