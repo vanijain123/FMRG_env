@@ -12,6 +12,11 @@ public class ResetTask : MonoBehaviour
     private List<GameObject> modelParts;
     private string grabbableTag = "Grabbable";
 
+    void Start()
+    {
+        modelParts = ChildModels.modelParts;
+    }
+
     public void ResetModelPositions_Old()
     {
         for (int i=0; i<modelParts.Count; i++)
@@ -51,6 +56,7 @@ public class ResetTask : MonoBehaviour
                     movedObject.transform.localScale = originalGO.transform.localScale;
                     movedObject.transform.localRotation = originalGO.transform.localRotation;
                     movedObject.tag = grabbableTag;
+                    DestroyLR(movedObject);
                     //Destroy(movedObject.GetComponent<SimpleAttach>().lr);
 
                     instructions[0].GetComponent<SimpleAttach>().movedObject = null;
@@ -110,6 +116,7 @@ public class ResetTask : MonoBehaviour
                 {
                     modelParts[i].GetComponent<SimpleAttach>().movedObject.tag = grabbableTag;
                 }
+                DestroyLR(modelParts[i]);
                 modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
                 modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
                 Destroy(originalGO);
@@ -117,15 +124,11 @@ public class ResetTask : MonoBehaviour
         }
     }
     
-    // Start is called before the first frame update
-    void Start()
+    private void DestroyLR(GameObject go)
     {
-        modelParts = ChildModels.modelParts;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //if (go.GetComponent<SimpleAttach>().lr != null)
+        //{
+        //    Destroy(go.GetComponent<SimpleAttach>().lr);
+        //}
     }
 }

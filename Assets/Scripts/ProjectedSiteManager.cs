@@ -10,6 +10,10 @@ public class ProjectedSiteManager : MonoBehaviour
     public GameObject menuSite;
     public SiteIconManager siteIconManager;
     public ManageInstructions manageInstructions;
+    
+    public GameObject plane;
+    public Material lockedPlaneMaterial;
+    public Material unlockedPlaneMaterial;
 
     public class Instruction
     {

@@ -13,6 +13,7 @@ public class ActivateTask : MonoBehaviour
     public Material unlocked;
     public GameObject undoButton;
     public GameObject sendInstructionsButton;
+    public ProjectedSiteManager pm;
 
     private SitesManager sitesManager;
 
@@ -32,6 +33,7 @@ public class ActivateTask : MonoBehaviour
             activated = false;
             //text.text = "Activate";
             this.GetComponent<MeshRenderer>().material = locked;
+            pm.plane.GetComponent<MeshRenderer>().material = pm.lockedPlaneMaterial;
             sitesManager.activatedTask = null;
             undoButton.SetActive(false);
             //sendInstructionsButton.SetActive(false);
@@ -56,6 +58,7 @@ public class ActivateTask : MonoBehaviour
             sendInstructionsButton.GetComponent<MeshRenderer>().enabled = true;
             //text.text = "Deactivate";
             this.GetComponent<MeshRenderer>().material = unlocked;
+            pm.plane.GetComponent<MeshRenderer>().material = pm.unlockedPlaneMaterial;
             sitesManager.activatedTask = gameObject;
         }
         ToggleModelPartsActivation(activated);

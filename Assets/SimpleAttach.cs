@@ -35,9 +35,16 @@ public class SimpleAttach : MonoBehaviour
 
     private void Update()
     {
-        //if (instructions[0] != null)
+        //if (originalGO != null)
         //{
         //    lr.SetPosition(0, this.transform.position);
+        //}
+        //else
+        //{
+        //    if (lr != null)
+        //    {
+        //        Destroy(lr);
+        //    }
         //}
     }
 
