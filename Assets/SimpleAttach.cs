@@ -18,6 +18,7 @@ public class SimpleAttach : MonoBehaviour
     public Material originalMaterial;
     public Material objectMovedMaterial;
     public Material instructionSentMaterial;
+    public Material lineRendererMaterial;
     public LineRenderer lr;
 
     private Interactable interactable;
@@ -35,17 +36,17 @@ public class SimpleAttach : MonoBehaviour
 
     private void Update()
     {
-        //if (originalGO != null)
-        //{
-        //    lr.SetPosition(0, this.transform.position);
-        //}
-        //else
-        //{
-        //    if (lr != null)
-        //    {
-        //        Destroy(lr);
-        //    }
-        //}
+        if (originalGO != null)
+        {
+            lr.SetPosition(0, this.transform.GetChild(0).GetChild(0).position);
+        }
+        else
+        {
+            if (lr != null)
+            {
+                Destroy(lr);
+            }
+        }
     }
 
     private void OnHandHoverBegin(Hand hand)
@@ -95,12 +96,12 @@ public class SimpleAttach : MonoBehaviour
                     //movedObject.GetComponent<CreateLineRenderer>().enabled = true;
                     //originalGO.GetComponent<CreateLineRenderer>().StartLR(originalGO, movedObject, originalPositionMaterial);
 
-                    //lr = movedObject.AddComponent<LineRenderer>();
-                    //lr.SetPosition(0, this.transform.position);
-                    //lr.SetPosition(1, originalGO.transform.position);
-                    //lr.material = objectMovedMaterial;
-                    //lr.startWidth = 0.01f;
-                    //lr.endWidth = 0.01f;
+                    lr = movedObject.AddComponent<LineRenderer>();
+                    lr.SetPosition(0, this.transform.GetChild(0).GetChild(0).position);
+                    lr.SetPosition(1, originalGO.transform.GetChild(0).GetChild(0).position);
+                    lr.material = lineRendererMaterial;
+                    lr.startWidth = 0.01f;
+                    lr.endWidth = 0.01f;
                 }
             }
 

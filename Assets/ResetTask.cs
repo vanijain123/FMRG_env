@@ -126,9 +126,9 @@ public class ResetTask : MonoBehaviour
     
     private void DestroyLR(GameObject go)
     {
-        //if (go.GetComponent<SimpleAttach>().lr != null)
-        //{
-        //    Destroy(go.GetComponent<SimpleAttach>().lr);
-        //}
+        if (go.GetComponent<SimpleAttach>().lr != null)
+        {
+            Destroy(go.GetComponent<SimpleAttach>().lr);
+        }
     }
 }
