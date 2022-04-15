@@ -217,6 +217,7 @@
     <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
+    <Compile Include="Assets\Recall.cs" />
     <Compile Include="Assets\ResetTask.cs" />
     <Compile Include="Assets\Scripts\ActivateTaskButton.cs" />
     <Compile Include="Assets\Scripts\AddingWorld.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ManageInstructions : MonoBehaviour
 {
@@ -27,6 +28,14 @@ public class ManageInstructions : MonoBehaviour
     private int numberOfInstructions;
     private Vector3 timelineOriginalScale;
     private string ungrabbableTag = "Ungrabbable";
+
+    public Material greyManageInstructionsMaterial;
+    public Material greyResetButtonMaterial;
+    public Material greyUnlockButtonMaterial;
+    public Material greyLockButtonMaterial;
+
+    private Material originalManageInstructionsMaterial;
+    private Material originalResetButtonMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -82,9 +91,8 @@ public class ManageInstructions : MonoBehaviour
             if (instructionSent == true)
             {
                 instructionsQueue.Enqueue(instructionSet);
-                resetButton.SetActive(false);
-                unlockButton.SetActive(false);
-                this.GetComponent<MeshRenderer>().enabled = false;
+
+                ChangeButtonInteractability(false);
                 StartCoroutine("StartTask");
             }
         }
@@ -102,7 +110,6 @@ public class ManageInstructions : MonoBehaviour
     {
         ResetTimeline(timeline);
         ResetTimeline(siteIconTimeline);
-        //timeline.GetComponent<Timeline>().amount /= numberOfInstructions;
         timeline.GetComponent<Timeline>().amount /= instructionsQueue.Peek().Count;
         yield return StartCoroutine(timeline.GetComponent<Timeline>().WaitCoroutine());
         siteIcon.siteIcon.GetComponent<MeshRenderer>().material = siteIcon.green;
@@ -114,5 +121,41 @@ public class ManageInstructions : MonoBehaviour
         timeline.transform.localPosition = new Vector3(-0.1412f, 0, 0);
         //timeline.transform.localScale = new Vector3(0.007f, 0, 0.007f);
         timeline.transform.localScale = timelineOriginalScale;
+    }
+
+    public void ChangeButtonInteractability(bool isInteractable)
+    {
+        resetButton.GetComponent<Button>().interactable = isInteractable;
+        //unlockButton.GetComponent<Button>().interactable = isInteractable;
+        this.GetComponent<Button>().interactable = isInteractable;
+        GreyOutButtons(isInteractable);
+    }
+
+    private void GreyOutButtons(bool isInteractable)
+    {
+        if (!isInteractable)
+        {
+            originalResetButtonMaterial = resetButton.GetComponent<MeshRenderer>().material;
+            resetButton.GetComponent<MeshRenderer>().material = greyResetButtonMaterial;
+
+            //unlockButton.GetComponent<MeshRenderer>().material = greyUnlockButtonMaterial;
+
+            originalManageInstructionsMaterial = this.GetComponent<MeshRenderer>().material;
+            this.GetComponent<MeshRenderer>().material = greyManageInstructionsMaterial;
+        }
+        else
+        {
+            resetButton.GetComponent<MeshRenderer>().material = originalResetButtonMaterial;
+            this.GetComponent<MeshRenderer>().material = originalManageInstructionsMaterial;
+
+            //if (unlockButton.GetComponent<ActivateTask>().activated == true)
+            //{
+            //    unlockButton.GetComponent<MeshRenderer>().material = unlockButton.GetComponent<ActivateTask>().unlocked;
+            //}
+            //else
+            //{
+            //    unlockButton.GetComponent<MeshRenderer>().material = unlockButton.GetComponent<ActivateTask>().locked;
+            //}
+        }
     }
 }

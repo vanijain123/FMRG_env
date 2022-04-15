@@ -54,6 +54,10 @@
       "type": "vector2"
     },
     {
+      "name": "/actions/default/in/ShowRecall",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -110,6 +114,10 @@
     },
     {
       "name": "/actions/MenuManipulation",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/NewSet",
       "usage": "single"
     }
   ],

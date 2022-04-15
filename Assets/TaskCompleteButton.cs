@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TaskCompleteButton : MonoBehaviour
 {
@@ -21,12 +22,19 @@ public class TaskCompleteButton : MonoBehaviour
 
     public void TaskCompleteAcknowledge()
     {
-        if (unlockButton.GetComponent<ActivateTask>().activated)
-        {
-            resetButton.SetActive(true);
-            manageInstructionsButton.GetComponent<MeshRenderer>().enabled = true;
-        }
-        unlockButton.SetActive(true);
+        //if (unlockButton.GetComponent<ActivateTask>().activated)
+        //{
+        //    //resetButton.SetActive(true);
+        //    //manageInstructionsButton.GetComponent<MeshRenderer>().enabled = true;
+        //    manageInstructions.ChangeButtonInteractability(true);
+        //}
+        //else
+        //{
+        //    unlockButton.GetComponent<Button>().interactable = true;
+        //}
+        manageInstructions.ChangeButtonInteractability(true);
+        //unlockButton.SetActive(true);
+
         manageInstructions.instructionSent = false;
         resetButton.GetComponent<ResetTask>().ReevaluateTask();
 

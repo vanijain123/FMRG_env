@@ -18,8 +18,8 @@ public class SimpleAttach : MonoBehaviour
     public Material originalMaterial;
     public Material objectMovedMaterial;
     public Material instructionSentMaterial;
-    public Material lineRendererMaterial;
     public LineRenderer lr;
+    public Material lineRendererMaterial;
 
     private Interactable interactable;
     private Vector3 startPosition;
@@ -32,6 +32,12 @@ public class SimpleAttach : MonoBehaviour
         interactable = GetComponent<Interactable>();
         instructions = new GameObject[] { originalGO, movedObject };
         grabbableTag = this.gameObject.tag;
+
+        //lineRendererMaterial = new Material(Shader.Find("Standard"));
+        //lineRendererMaterial. SetOverrideTag("RenderType", "Transparent");
+        //Color lrColor = originalMaterial.color;
+        //lrColor.a = 200;
+        //lineRendererMaterial.color = lrColor;
     }
 
     private void Update()
@@ -87,30 +93,29 @@ public class SimpleAttach : MonoBehaviour
                     originalGO.transform.localScale = gameObject.transform.localScale;
                     originalGO.transform.localRotation = gameObject.transform.localRotation;
 
-                    SetMaterial(originalGO, originalGO.GetComponent<SimpleAttach>().objectMovedMaterial);
+                    SetMaterial(originalGO, originalGO.GetComponent<SimpleAttach>().lineRendererMaterial);
                     Destroy(originalGO.GetComponent<SimpleAttach>());
                     instructions[0] = originalGO;
 
                     movedObject = gameObject;
 
-                    //movedObject.GetComponent<CreateLineRenderer>().enabled = true;
-                    //originalGO.GetComponent<CreateLineRenderer>().StartLR(originalGO, movedObject, originalPositionMaterial);
-
                     lr = movedObject.AddComponent<LineRenderer>();
                     lr.SetPosition(0, this.transform.GetChild(0).GetChild(0).position);
                     lr.SetPosition(1, originalGO.transform.GetChild(0).GetChild(0).position);
                     lr.material = lineRendererMaterial;
-                    lr.startWidth = 0.01f;
-                    lr.endWidth = 0.01f;
+                    lr.startWidth = 0.005f;
+                    lr.endWidth = 0.005f;
                 }
             }
 
+            //this.GetComponent<ComplexThrowable>().PhysicsAttach(hand, grabType);
             hand.AttachObject(gameObject, grabType);
             hand.HoverLock(interactable);
             Debug.Log("Grabbing");
         }
         else if (isGrabEnding)
         {
+            //this.GetComponent<ComplexThrowable>().PhysicsDetach(hand);
             hand.DetachObject(gameObject);
             hand.HoverUnlock(interactable);
             Debug.Log("End Grabbing");

@@ -47,10 +47,7 @@ public class ActivateTask : MonoBehaviour
             }
             else if(sitesManager.activatedTask != gameObject)
             {
-                //if (sitesManager.activatedTask.GetComponent<ActivateTask>() != null)
-                //{
-                    sitesManager.activatedTask.GetComponent<ActivateTask>().ToggleTaskActivation();
-                //}
+                sitesManager.activatedTask.GetComponent<ActivateTask>().ToggleTaskActivation();
             }
             activated = true;
             undoButton.SetActive(true);

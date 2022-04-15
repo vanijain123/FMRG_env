@@ -15,6 +15,8 @@ public class ProjectedSiteManager : MonoBehaviour
     public Material lockedPlaneMaterial;
     public Material unlockedPlaneMaterial;
 
+    public Recall recall;
+
     public class Instruction
     {
         public GameObject actionObject;
