@@ -40,6 +40,7 @@ public class ResetTask : MonoBehaviour
 
     public void ResetModelPositions()
     {
+        Debug.Log("ResetModelPositions");
         //Check if an instruction set has been sent
         if (pm.manageInstructions.instructionsQueue.Count > 0)
         {
@@ -65,6 +66,10 @@ public class ResetTask : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            Debug.Log("Nothing to be undone");
+        }
     }
 
     public void undo()
@@ -81,6 +86,8 @@ public class ResetTask : MonoBehaviour
             for (int i = 0; i < modelParts.Count; i++)
             {
                 GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
+
+                // Check if we have reset the object from its original position
                 if (actionObject == modelParts[i] 
                     && t.Item2 == originalGO.transform.localPosition
                     && t.Item3 == originalGO.transform.localScale
@@ -88,6 +95,7 @@ public class ResetTask : MonoBehaviour
                 {
                     modelParts[i].GetComponent<SimpleAttach>().movedObject = null;
                     modelParts[i].GetComponent<SimpleAttach>().originalGO = null;
+                    actionObject.GetComponent<Outline>().enabled = false;
                     Destroy(originalGO);
                 }
             } 
@@ -109,6 +117,10 @@ public class ResetTask : MonoBehaviour
             {
                 GameObject originalGO = modelParts[i].GetComponent<SimpleAttach>().originalGO;
                 modelParts[i].GetComponent<SimpleAttach>().SetMaterial(modelParts[i], modelParts[i].GetComponent<SimpleAttach>().originalMaterial, true);
+                if (modelParts[i].GetComponent<Outline>() != null)
+                {
+                    modelParts[i].GetComponent<Outline>().enabled = false;
+                }
 
                 // Add conditions to check if robot has performed the task
                 Debug.Log($"modelParts[i].GetComponent<SimpleAttach>().movedObject {modelParts[i].GetComponent<SimpleAttach>().movedObject}");

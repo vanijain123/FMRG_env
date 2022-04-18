@@ -849,6 +849,7 @@ MonoBehaviour:
   lockedPlaneMaterial: {fileID: 2100000, guid: f0dd6beb2af2a924e85e316ad3bf7151, type: 2}
   unlockedPlaneMaterial: {fileID: 2100000, guid: f0dd6beb2af2a924e85e316ad3bf7151,
     type: 2}
+  recall: {fileID: 0}
 --- !u!114 &9114585063616055801
 MonoBehaviour:
   m_ObjectHideFlags: 0

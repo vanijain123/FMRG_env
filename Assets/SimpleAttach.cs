@@ -5,7 +5,6 @@ using Valve.VR;
 using Valve.VR.InteractionSystem;
 using TMPro;
 
-
 public class SimpleAttach : MonoBehaviour
 {
     public bool activated;
@@ -21,6 +20,9 @@ public class SimpleAttach : MonoBehaviour
     public LineRenderer lr;
     public Material lineRendererMaterial;
 
+    public bool useUniqueOutlineColor;
+    public Color UniqueOutlineColor;
+
     private Interactable interactable;
     private Vector3 startPosition;
     private Quaternion startRotation;
@@ -32,6 +34,7 @@ public class SimpleAttach : MonoBehaviour
         interactable = GetComponent<Interactable>();
         instructions = new GameObject[] { originalGO, movedObject };
         grabbableTag = this.gameObject.tag;
+
 
         //lineRendererMaterial = new Material(Shader.Find("Standard"));
         //lineRendererMaterial. SetOverrideTag("RenderType", "Transparent");
@@ -69,7 +72,6 @@ public class SimpleAttach : MonoBehaviour
     {
         GrabTypes grabType = hand.GetGrabStarting();
         bool isGrabEnding = hand.IsGrabEnding(gameObject);
-        Debug.Log("HandHoverUpdate");
 
         if (interactable.attachedToHand == null && grabType != GrabTypes.None && this.tag == grabbableTag)
         {
@@ -105,6 +107,45 @@ public class SimpleAttach : MonoBehaviour
                     lr.material = lineRendererMaterial;
                     lr.startWidth = 0.005f;
                     lr.endWidth = 0.005f;
+
+                    if (originalGO.GetComponent<Outline>() != null)
+                    {
+                        originalGO.GetComponent<Outline>().enabled = true;
+                        if (useUniqueOutlineColor)
+                        {
+                            Color c = new Color(UniqueOutlineColor.r, UniqueOutlineColor.g, UniqueOutlineColor.b);
+                            originalGO.GetComponent<Outline>().OutlineColor = c;
+                        }
+                        else
+                        {
+                            originalGO.GetComponent<Outline>().OutlineColor = Color.red;
+                        }
+                    }
+
+                    if (movedObject.GetComponent<Outline>() != null)
+                    {
+                        movedObject.GetComponent<Outline>().enabled = true;
+                        if (useUniqueOutlineColor)
+                        {
+                            Color c = new Color(UniqueOutlineColor.r, UniqueOutlineColor.g, UniqueOutlineColor.b);
+                            movedObject.GetComponent<Outline>().OutlineColor = c;
+                            lr.material.color = c;
+                        }
+                        else
+                        {
+                            movedObject.GetComponent<Outline>().OutlineColor = Color.yellow;
+                        }
+                    }
+
+                    //Outline originalOutline = originalGO.AddComponent<Outline>();
+                    //originalOutline.OutlineMode = Outline.Mode.OutlineAll;
+                    //originalOutline.OutlineColor = Color.red;
+                    //originalOutline.OutlineWidth = 5f;
+
+                    //Outline movedOutline = movedObject.AddComponent<Outline>();
+                    //movedOutline.OutlineMode = Outline.Mode.OutlineAll;
+                    //movedOutline.OutlineColor = Color.yellow;
+                    //movedOutline.OutlineWidth = 5f;
                 }
             }
 

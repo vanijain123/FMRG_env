@@ -68,6 +68,8 @@
     <Compile Include="Assets\Editor\MercuryMessaging\MmBehaviorEditor.cs" />
     <Compile Include="Assets\Editor\MercuryMessaging\MmBehaviorListDrawer.cs" />
     <Compile Include="Assets\Editor\MercuryMessaging\MmBehaviorListItemDrawer.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Editor\SplineEditor.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Editor\SplineExtrusionEditor.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

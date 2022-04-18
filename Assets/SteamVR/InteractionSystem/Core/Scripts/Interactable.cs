@@ -269,7 +269,7 @@ namespace Valve.VR.InteractionSystem
         protected virtual void OnHandHoverEnd(Hand hand)
         {
             //Vani
-            Debug.Log("OnHandHoverEnd");
+//            Debug.Log("OnHandHoverEnd");
             wasHovering = isHovering;
 
             hoveringHands.Remove(hand);
