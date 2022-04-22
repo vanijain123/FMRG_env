@@ -285,7 +285,9 @@ MonoBehaviour:
   positions: {fileID: 1361765312}
   sites: {fileID: 972766378}
   activatedTask: {fileID: 0}
+  menuParent: {fileID: 0}
   visibleTask: {fileID: 0}
+  visibleTaskIconBackground: {fileID: 0}
   invisibleSitesParent: {fileID: 0}
   visibleSitesParent: {fileID: 0}
 --- !u!1 &12047426
@@ -22634,6 +22636,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &2017236027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2424380691145913991, guid: 691839356138eeb4190098408dcd4237,
+    type: 3}
+  m_PrefabInstance: {fileID: 6199530593215970198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2034805290
 GameObject:
   m_ObjectHideFlags: 0
@@ -25272,6 +25280,16 @@ PrefabInstance:
       propertyPath: visibleTask
       value: 
       objectReference: {fileID: 1784937514}
+    - target: {fileID: 6199530592260682366, guid: 691839356138eeb4190098408dcd4237,
+        type: 3}
+      propertyPath: visibleTaskIcon
+      value: 
+      objectReference: {fileID: 2017236027}
+    - target: {fileID: 6199530592260682366, guid: 691839356138eeb4190098408dcd4237,
+        type: 3}
+      propertyPath: visibleTaskIconBackground
+      value: 
+      objectReference: {fileID: 2017236027}
     - target: {fileID: 6199530592477794408, guid: 691839356138eeb4190098408dcd4237,
         type: 3}
       propertyPath: m_LocalPosition.x

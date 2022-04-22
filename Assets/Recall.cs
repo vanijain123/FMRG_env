@@ -14,13 +14,13 @@ public class Recall : MonoBehaviour
     private void Start()
     {
         showRecall.AddOnStateDownListener(TriggerDown, handType);
-        showRecall.AddOnStateUpListener(TriggerUp, handType);
+        //showRecall.AddOnStateUpListener(TriggerUp, handType);
     }
 
     public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         Debug.Log("X Down");
-        recallGameobject.SetActive(true);
+        recallGameobject.SetActive(!recallGameobject.activeSelf);
         //EnableRecallGameobject(10);
     }
 

@@ -2189,6 +2189,7 @@ MonoBehaviour:
   activatedTask: {fileID: 0}
   menuParent: {fileID: 6199530592477794411}
   visibleTask: {fileID: 0}
+  visibleTaskIcon: {fileID: 0}
   invisibleSitesParent: {fileID: 0}
   visibleSitesParent: {fileID: 0}
 --- !u!1 &6199530592273287551
@@ -7559,6 +7560,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Site1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308679240863026057, guid: ee1b1fb529711904fb7d5f7c95cb9188,
+        type: 3}
+      propertyPath: outlineWidth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7710889610064385088, guid: ee1b1fb529711904fb7d5f7c95cb9188,
         type: 3}

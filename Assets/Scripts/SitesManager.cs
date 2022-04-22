@@ -12,13 +12,11 @@ public class SitesManager : MonoBehaviour
     public GameObject menuParent;
 
     public GameObject visibleTask;
-    private Vector3 visibleTaskScale;
-
+    public GameObject visibleTaskIconBackground;
     public GameObject invisibleSitesParent;
     public GameObject visibleSitesParent;
 
     private Transform playerCamera;
-    private Transform player;
 
     private void Awake()
     {
@@ -35,13 +33,6 @@ public class SitesManager : MonoBehaviour
     private void Start()
     {
         playerCamera = GameObject.Find("VRCamera").transform;
-        player = GameObject.Find("Player").transform;
-        StartCoroutine("MoveSiteToVisibleParentCoroutine");
-    }
-
-    IEnumerable MoveSiteToVisibleParentCoroutine()
-    {
-        yield return null;
         if (visibleTask != null)
         {
             MoveSiteToVisibleParent();
@@ -55,6 +46,10 @@ public class SitesManager : MonoBehaviour
         {
             visibleTask.transform.parent = invisibleSitesParent.transform;
         }
+        if (visibleTaskIconBackground != null)
+        {
+            visibleTaskIconBackground.SetActive(false);
+        }
     }
 
     public void MoveSiteToVisibleParent()
@@ -62,7 +57,7 @@ public class SitesManager : MonoBehaviour
         Vector3 playerPos = playerCamera.transform.position;
         Vector3 playerDirection = playerCamera.transform.forward;
         Quaternion playerRotation = playerCamera.transform.rotation;
-        float spawnDistance = 1;
+        float spawnDistance = 0.8f;
 
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
@@ -70,5 +65,7 @@ public class SitesManager : MonoBehaviour
         visibleTask.transform.position = spawnPos - new Vector3(0, spawnPos.y/3, 0);
         visibleTask.transform.eulerAngles = new Vector3(0, playerRotation.eulerAngles.y, 0);
         visibleTask.transform.localScale = new Vector3(1, 1, 1);
+
+        visibleTaskIconBackground.SetActive(true);
     }
 }
