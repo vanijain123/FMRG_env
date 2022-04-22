@@ -9,6 +9,7 @@ public class SitesManager : MonoBehaviour
     public WIMPositions positions;
     public GameObject sites;
     public GameObject activatedTask = null;
+    public GameObject menuParent;
 
     public GameObject visibleTask;
     private Vector3 visibleTaskScale;
@@ -35,10 +36,17 @@ public class SitesManager : MonoBehaviour
     {
         playerCamera = GameObject.Find("VRCamera").transform;
         player = GameObject.Find("Player").transform;
+        StartCoroutine("MoveSiteToVisibleParentCoroutine");
+    }
+
+    IEnumerable MoveSiteToVisibleParentCoroutine()
+    {
+        yield return null;
         if (visibleTask != null)
         {
             MoveSiteToVisibleParent();
         }
+        menuParent.SetActive(false);
     }
 
     public void MoveSiteToInvisibleParent()
@@ -51,19 +59,16 @@ public class SitesManager : MonoBehaviour
 
     public void MoveSiteToVisibleParent()
     {
-        Vector3 playerPos = player.transform.position;
+        Vector3 playerPos = playerCamera.transform.position;
         Vector3 playerDirection = playerCamera.transform.forward;
-        Debug.Log($"playerDirection {playerDirection}");
         Quaternion playerRotation = playerCamera.transform.rotation;
         float spawnDistance = 1;
 
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
         visibleTask.transform.parent = visibleSitesParent.transform;
-        //visibleTask.transform.position = playerCamera.position + new Vector3(0, -playerCamera.position.y/2, 0.8f);
-        visibleTask.transform.position = spawnPos + new Vector3(0, -playerCamera.position.y / 2, 0.8f);
-        visibleTask.transform.rotation = playerRotation;
-        //visibleTask.transform.rotation = Quaternion.Euler(new Vector3(0, playerRotation.y, 0));
+        visibleTask.transform.position = spawnPos - new Vector3(0, spawnPos.y/3, 0);
+        visibleTask.transform.eulerAngles = new Vector3(0, playerRotation.eulerAngles.y, 0);
         visibleTask.transform.localScale = new Vector3(1, 1, 1);
     }
 }

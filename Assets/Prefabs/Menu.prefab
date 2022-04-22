@@ -2187,6 +2187,10 @@ MonoBehaviour:
   positions: {fileID: 0}
   sites: {fileID: 0}
   activatedTask: {fileID: 0}
+  menuParent: {fileID: 6199530592477794411}
+  visibleTask: {fileID: 0}
+  invisibleSitesParent: {fileID: 0}
+  visibleSitesParent: {fileID: 0}
 --- !u!1 &6199530592273287551
 GameObject:
   m_ObjectHideFlags: 0
