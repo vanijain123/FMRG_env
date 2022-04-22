@@ -585,6 +585,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1390212260946239253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,12 +1683,14 @@ MonoBehaviour:
   originalGO: {fileID: 0}
   instructions: []
   originalMaterial: {fileID: 2100000, guid: 8b0551f1df7484e4cb8fe568440d934c, type: 2}
-  objectMovedMaterial: {fileID: 2100000, guid: 4b887044d9ac4c54eae5a886c9fce304, type: 2}
-  instructionSentMaterial: {fileID: 2100000, guid: 536827ab1abf96042ae45a44fcfc3d4d,
+  objectMovedMaterial: {fileID: 2100000, guid: 55c88b639c343034aaaa1d2a2977d1e9, type: 2}
+  instructionSentMaterial: {fileID: 2100000, guid: 8b0551f1df7484e4cb8fe568440d934c,
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 2100000, guid: 55c88b639c343034aaaa1d2a2977d1e9,
     type: 2}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6389227440781862900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2626,6 +2630,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2911076274987491851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2826,6 +2832,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3957008249068706233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,12 +2991,14 @@ MonoBehaviour:
   originalGO: {fileID: 0}
   instructions: []
   originalMaterial: {fileID: 2100000, guid: 2bcd58ccf627fd54b99fd0eb9745e0ed, type: 2}
-  objectMovedMaterial: {fileID: 2100000, guid: 4b887044d9ac4c54eae5a886c9fce304, type: 2}
-  instructionSentMaterial: {fileID: 2100000, guid: 536827ab1abf96042ae45a44fcfc3d4d,
+  objectMovedMaterial: {fileID: 2100000, guid: d6e621311e1515f4882ed4356799de91, type: 2}
+  instructionSentMaterial: {fileID: 2100000, guid: 2bcd58ccf627fd54b99fd0eb9745e0ed,
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 2100000, guid: d6e621311e1515f4882ed4356799de91,
     type: 2}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &4589138087569272224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3415,6 +3425,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8688908234049720390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3650,6 +3662,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6978892893352390959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4479,6 +4493,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3235145833026047747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,12 +5232,14 @@ MonoBehaviour:
   originalGO: {fileID: 0}
   instructions: []
   originalMaterial: {fileID: 2100000, guid: 9705777dafb293c44b6bd2612f690080, type: 2}
-  objectMovedMaterial: {fileID: 2100000, guid: 4b887044d9ac4c54eae5a886c9fce304, type: 2}
-  instructionSentMaterial: {fileID: 2100000, guid: 536827ab1abf96042ae45a44fcfc3d4d,
+  objectMovedMaterial: {fileID: 2100000, guid: db90c12c10b36a04daf33c7b23d873e1, type: 2}
+  instructionSentMaterial: {fileID: 2100000, guid: 9705777dafb293c44b6bd2612f690080,
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 2100000, guid: db90c12c10b36a04daf33c7b23d873e1,
     type: 2}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &8095973582548440528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5307,12 +5325,14 @@ MonoBehaviour:
   originalGO: {fileID: 0}
   instructions: []
   originalMaterial: {fileID: 2100000, guid: 4849eb5e066886d49a2e4a8414cea9be, type: 2}
-  objectMovedMaterial: {fileID: 2100000, guid: 4b887044d9ac4c54eae5a886c9fce304, type: 2}
-  instructionSentMaterial: {fileID: 2100000, guid: 536827ab1abf96042ae45a44fcfc3d4d,
+  objectMovedMaterial: {fileID: 2100000, guid: b11bbdaf08a8760459aeb1fb9e893a6b, type: 2}
+  instructionSentMaterial: {fileID: 2100000, guid: 4849eb5e066886d49a2e4a8414cea9be,
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 2100000, guid: b11bbdaf08a8760459aeb1fb9e893a6b,
     type: 2}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8539704518258766003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,6 +5637,8 @@ MonoBehaviour:
     type: 2}
   lr: {fileID: 0}
   lineRendererMaterial: {fileID: 0}
+  useUniqueOutlineColor: 0
+  UniqueOutlineColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &9139834375960434506
 GameObject:
   m_ObjectHideFlags: 0

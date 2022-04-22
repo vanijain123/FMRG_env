@@ -74,16 +74,17 @@ public class ManageInstructions : MonoBehaviour
                         SetMaterial(children[i], children[i].GetComponent<SimpleAttach>().instructionSentMaterial);
                         if (children[i].GetComponent<Outline>() != null)
                         {
-                            if (children[i].GetComponent<SimpleAttach>().useUniqueOutlineColor)
-                            {
-                                Color UniqueOutlineColor = children[i].GetComponent<SimpleAttach>().UniqueOutlineColor;
-                                Color c = new Color(UniqueOutlineColor.r, UniqueOutlineColor.g, UniqueOutlineColor.b);
-                                children[i].GetComponent<Outline>().OutlineColor = c;
-                            }
-                            else
-                            {
-                                children[i].GetComponent<Outline>().OutlineColor = Color.green;
-                            }
+                            //if (children[i].GetComponent<SimpleAttach>().useUniqueOutlineColor)
+                            //{
+                            //    Color UniqueOutlineColor = children[i].GetComponent<SimpleAttach>().UniqueOutlineColor;
+                            //    Color c = new Color(UniqueOutlineColor.r, UniqueOutlineColor.g, UniqueOutlineColor.b);
+                            //    children[i].GetComponent<Outline>().OutlineColor = c;
+                            //}
+                            //else
+                            //{
+                            children[i].GetComponent<Outline>().enabled = true;
+                            children[i].GetComponent<Outline>().OutlineColor = Color.yellow;
+                            //}
                         }
 
                         //Add to the instruction set

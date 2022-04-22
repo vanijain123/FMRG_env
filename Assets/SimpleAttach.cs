@@ -108,7 +108,9 @@ public class SimpleAttach : MonoBehaviour
                     lr.startWidth = 0.005f;
                     lr.endWidth = 0.005f;
 
-                    if (originalGO.GetComponent<Outline>() != null)
+                    // OUTLINE ON OBJECTS BEFORE INSTRUCTIONS ARE SENT
+                    /*
+                     if (originalGO.GetComponent<Outline>() != null)
                     {
                         originalGO.GetComponent<Outline>().enabled = true;
                         if (useUniqueOutlineColor)
@@ -136,16 +138,7 @@ public class SimpleAttach : MonoBehaviour
                             movedObject.GetComponent<Outline>().OutlineColor = Color.yellow;
                         }
                     }
-
-                    //Outline originalOutline = originalGO.AddComponent<Outline>();
-                    //originalOutline.OutlineMode = Outline.Mode.OutlineAll;
-                    //originalOutline.OutlineColor = Color.red;
-                    //originalOutline.OutlineWidth = 5f;
-
-                    //Outline movedOutline = movedObject.AddComponent<Outline>();
-                    //movedOutline.OutlineMode = Outline.Mode.OutlineAll;
-                    //movedOutline.OutlineColor = Color.yellow;
-                    //movedOutline.OutlineWidth = 5f;
+                    */
                 }
             }
 
