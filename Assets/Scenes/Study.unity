@@ -2656,6 +2656,11 @@ PrefabInstance:
       propertyPath: menuSite
       value: 
       objectReference: {fileID: 1214085493}
+    - target: {fileID: 7818997165072339458, guid: 29a1e1336eb65dd41a37a14edb2dc963,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 338079aa0eef54b46aba8dfb736136c1, type: 2}
     - target: {fileID: 7952979052732875804, guid: 29a1e1336eb65dd41a37a14edb2dc963,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -12316,6 +12321,11 @@ PrefabInstance:
       propertyPath: siteIconManager
       value: 
       objectReference: {fileID: 9059296495234109763}
+    - target: {fileID: 7818997165072339458, guid: 29a1e1336eb65dd41a37a14edb2dc963,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: bf37882b536d75d43a4d4edeff8dab93, type: 2}
     - target: {fileID: 7952979052732875804, guid: 29a1e1336eb65dd41a37a14edb2dc963,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -17108,6 +17118,11 @@ PrefabInstance:
       propertyPath: unlockedPlaneMaterial
       value: 
       objectReference: {fileID: 2100000, guid: f0dd6beb2af2a924e85e316ad3bf7151, type: 2}
+    - target: {fileID: 7818997165072339458, guid: 29a1e1336eb65dd41a37a14edb2dc963,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 81f1415ae81d24f459ceda462a6ec430, type: 2}
     - target: {fileID: 7952979052732875804, guid: 29a1e1336eb65dd41a37a14edb2dc963,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -18579,6 +18594,11 @@ PrefabInstance:
       propertyPath: siteIconManager
       value: 
       objectReference: {fileID: 2068838411}
+    - target: {fileID: 7818997165072339458, guid: 29a1e1336eb65dd41a37a14edb2dc963,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: ef525131a98e35d42a8d540f02730e7c, type: 2}
     - target: {fileID: 7952979052732875804, guid: 29a1e1336eb65dd41a37a14edb2dc963,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -25105,6 +25125,11 @@ PrefabInstance:
       propertyPath: projectionSite
       value: 
       objectReference: {fileID: 1248844303}
+    - target: {fileID: 6199530592882594282, guid: 691839356138eeb4190098408dcd4237,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6199530593537300918, guid: 691839356138eeb4190098408dcd4237,
         type: 3}
       propertyPath: projectionSite
