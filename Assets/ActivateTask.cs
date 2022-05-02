@@ -7,7 +7,6 @@ public class ActivateTask : MonoBehaviour
 {
     public bool activated;
     public TextMeshPro text;
-    public GameObject siteDeleteButton;
     public ChildModels childModels;
     public Material locked;
     public Material unlocked;
@@ -27,7 +26,6 @@ public class ActivateTask : MonoBehaviour
 
     public void ToggleTaskActivation()
     {
-        siteDeleteButton.SetActive(activated);
         if (activated)
         {
             activated = false;
