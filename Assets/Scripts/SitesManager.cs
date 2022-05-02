@@ -16,6 +16,8 @@ public class SitesManager : MonoBehaviour
     public GameObject invisibleSitesParent;
     public GameObject visibleSitesParent;
 
+    public bool singleWIM;
+
     private Transform playerCamera;
 
     private void Awake()
@@ -35,9 +37,14 @@ public class SitesManager : MonoBehaviour
         playerCamera = GameObject.Find("VRCamera").transform;
         if (visibleTask != null)
         {
-            MoveSiteToVisibleParent();
+            //MoveSiteToVisibleParent();
         }
-        menuParent.SetActive(false);
+        //menuParent.SetActive(false);
+
+        if (singleWIM)
+        {
+
+        }
     }
 
     public void MoveSiteToInvisibleParent()

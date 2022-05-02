@@ -10,9 +10,12 @@ public class MakeAttachedSiteVisible : MonoBehaviour
 
     public void SwitchSite()
     {
-        SitesManager.instance.MoveSiteToInvisibleParent();
-        SitesManager.instance.visibleTask = attachedSite;
-        SitesManager.instance.visibleTaskIconBackground = siteSelectedBackground;
-        SitesManager.instance.MoveSiteToVisibleParent();
+        if (SitesManager.instance.singleWIM)
+        {
+            SitesManager.instance.MoveSiteToInvisibleParent();
+            SitesManager.instance.visibleTask = attachedSite;
+            SitesManager.instance.visibleTaskIconBackground = siteSelectedBackground;
+            SitesManager.instance.MoveSiteToVisibleParent();
+        }
     }
 }
