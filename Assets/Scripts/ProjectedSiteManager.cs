@@ -27,6 +27,14 @@ public class ProjectedSiteManager : MonoBehaviour
 
     public List<Instruction> instructionCache = new List<Instruction>();
 
+    private void Start()
+    {
+        if (SitesManager.instance.singleWIM)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, -5, gameObject.transform.position.z);
+        }
+    }
+
     public void addInstruction(GameObject g, Vector3 localPosition, Vector3 localScale, Quaternion localRotation)
     {
         Debug.Log("Adding instruction");

@@ -16,6 +16,8 @@ public class SitesManager : MonoBehaviour
     public GameObject invisibleSitesParent;
     public GameObject visibleSitesParent;
 
+    public GameObject player;
+
     public bool singleWIM;
 
     private Transform playerCamera;
@@ -51,7 +53,8 @@ public class SitesManager : MonoBehaviour
     {
         if (visibleTask != null)
         {
-            visibleTask.transform.parent = invisibleSitesParent.transform;
+            visibleTask.transform.position = new Vector3(visibleTask.transform.position.x, -5, visibleTask.transform.position.z);
+            ShowHelpers(false);
         }
         if (visibleTaskIconBackground != null)
         {
@@ -68,11 +71,37 @@ public class SitesManager : MonoBehaviour
 
         Vector3 spawnPos = playerPos + playerDirection * spawnDistance;
 
-        visibleTask.transform.parent = visibleSitesParent.transform;
+        //visibleTask.transform.parent = visibleSitesParent.transform;
         visibleTask.transform.position = spawnPos - new Vector3(0, spawnPos.y/3, 0);
         visibleTask.transform.eulerAngles = new Vector3(0, playerRotation.eulerAngles.y, 0);
         visibleTask.transform.localScale = new Vector3(1, 1, 1);
 
-        visibleTaskIconBackground.SetActive(true);
+        ShowHelpers(true);
+    }
+
+    private void ShowHelpers(bool show)
+    {
+        List<GameObject> modelParts = visibleTask.GetComponent<ChildModels>().modelParts;
+        for (int i = 0; i < modelParts.Count; i++)
+        {
+            if (modelParts[i].GetComponent<SimpleAttach>() != null)
+            {
+                if (show && modelParts[i].GetComponent<SimpleAttach>().isOutlined == true)
+                {
+                    modelParts[i].GetComponent<SimpleAttach>().isOutlined = false;
+                    modelParts[i].GetComponent<Outline>().enabled = true;
+                    modelParts[i].GetComponent<LineRenderer>().enabled = true;
+                }
+                else
+                {
+                    if (modelParts[i].GetComponent<Outline>().enabled == true)
+                    {
+                        modelParts[i].GetComponent<SimpleAttach>().isOutlined = true;
+                        modelParts[i].GetComponent<Outline>().enabled = false;
+                        modelParts[i].GetComponent<LineRenderer>().enabled = false;
+                    }
+                }
+            }
+        }
     }
 }

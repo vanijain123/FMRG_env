@@ -23,6 +23,8 @@ public class SimpleAttach : MonoBehaviour
     public bool useUniqueOutlineColor;
     public Color UniqueOutlineColor;
 
+    public bool isOutlined;
+
     private Interactable interactable;
     private Vector3 startPosition;
     private Quaternion startRotation;
@@ -48,6 +50,7 @@ public class SimpleAttach : MonoBehaviour
         if (originalGO != null)
         {
             lr.SetPosition(0, this.transform.GetChild(0).GetChild(0).position);
+            lr.SetPosition(1, originalGO.transform.GetChild(0).GetChild(0).position);
         }
         else
         {
