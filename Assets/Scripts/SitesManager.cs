@@ -6,7 +6,6 @@ using Valve;
 public class SitesManager : MonoBehaviour
 {
     public static SitesManager instance = null;
-    public WIMPositions positions;
     public GameObject sites;
     public GameObject activatedTask = null;
     public GameObject menuParent;
@@ -20,6 +19,7 @@ public class SitesManager : MonoBehaviour
     public bool singleWIM;
 
     private Transform playerCamera;
+    private Transform[] originalSitePositions;
 
     private void Awake()
     {
@@ -36,6 +36,7 @@ public class SitesManager : MonoBehaviour
     private void Start()
     {
         playerCamera = GameObject.Find("VRCamera").transform;
+
     }
 
     public void MakeSiteInvisible()

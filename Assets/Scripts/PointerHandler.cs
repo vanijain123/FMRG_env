@@ -9,33 +9,12 @@ using Valve.VR.InteractionSystem;
 
 public class PointerHandler : MonoBehaviour
 {
-    public Hand rightHand;
-    public Hand leftHand;
-    public SteamVR_Input_Sources rightController;
     public GameObject rightHandGameobject;
-
-    public SteamVR_Fade fade;
-    public FadeTest ft;
     public SteamVR_LaserPointer laserPointer;
-    public Color laserColor;
     public Color originalLaserColor;
-
-    public Transform attachmentPoint;
-
-    public GameObject VRCamera;
-
-    private int insideMenuGrab;
-    private Transform grabbingObject;
     public GameObject activatedWorld;
-    private Vector3 leftHandPosition;
-    private float handPosition;
-    private float diff;
 
     private LineRenderer l;
-
-    public GameObject cube;
-    public GameObject cylinder;
-    public GameObject sphere;
 
     private void Awake()
     {
@@ -43,9 +22,7 @@ public class PointerHandler : MonoBehaviour
         laserPointer.PointerOut += PointerOutside;
         laserPointer.PointerClick += PointerClick;
 
-        insideMenuGrab = 0;
         activatedWorld = null;
-        leftHandPosition = leftHand.transform.position;
 
         originalLaserColor = laserPointer.color;
         Material lineRenderedMaterial = new Material(Shader.Find("Unlit/Color"));
@@ -83,12 +60,6 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerInside(object sender, PointerEventArgs e)
     {
-        if (e.target.tag == "site")
-        {
-            insideMenuGrab += 1;
-            grabbingObject = e.target.transform.parent;
-        }
-
         if (e.target.tag != "Plane")
         {
             laserPointer.color = originalLaserColor;
@@ -103,10 +74,6 @@ public class PointerHandler : MonoBehaviour
 
     private void PointerOutside(object sender, PointerEventArgs e)
     {
-        if (e.target.tag == "site")
-        {
-            insideMenuGrab -= 1;
-        }
 
         laserPointer.color = Color.clear;
         laserPointer.thickness = 0;
