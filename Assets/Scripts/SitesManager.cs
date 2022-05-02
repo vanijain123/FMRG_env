@@ -13,13 +13,15 @@ public class SitesManager : MonoBehaviour
     public GameObject visibleTask;
     public GameObject visibleTaskIconBackground;
     public GameObject visibleSitesParent;
+    public GameObject[] siteGameobjects;
 
     public GameObject player;
 
     public bool singleWIM;
+    private Transform[] originalHiddenSiteTransforms = new Transform[4];
+    private Transform[] originalVisibleSiteTransforms = new Transform[4];
 
     private Transform playerCamera;
-    private Transform[] originalSitePositions;
 
     private void Awake()
     {
@@ -36,7 +38,12 @@ public class SitesManager : MonoBehaviour
     private void Start()
     {
         playerCamera = GameObject.Find("VRCamera").transform;
-
+        for (int i = 0; i < siteGameobjects.Length; i++)
+        {
+            originalHiddenSiteTransforms[i].position = new Vector3(siteGameobjects[i].transform.position.x, -5, siteGameobjects[i].transform.position.z);
+            //originalHiddenSiteTransforms[i].position = new Vector3(originalHiddenSiteTransforms[i].position.x, -5, originalHiddenSiteTransforms[i].position.z);
+            originalVisibleSiteTransforms[i].position = new Vector3(siteGameobjects[i].transform.position.x, 0.5f, siteGameobjects[i].transform.position.z);
+        }
     }
 
     public void MakeSiteInvisible()
@@ -92,5 +99,26 @@ public class SitesManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ResetWIMPositions(Transform[] wimPositions)
+    {
+        for (int i = 0; i < siteGameobjects.Length; i++)
+        {
+            siteGameobjects[i].transform.position = wimPositions[i].position;
+            siteGameobjects[i].transform.rotation = wimPositions[i].rotation;
+        }
+    }
+
+    public void SwitchToMultipleWIM()
+    {
+        singleWIM = false;
+        ResetWIMPositions(originalVisibleSiteTransforms);
+    }
+
+    public void SwitchToSingleWIM()
+    {
+        singleWIM = true;
+        ResetWIMPositions(originalHiddenSiteTransforms);
     }
 }
