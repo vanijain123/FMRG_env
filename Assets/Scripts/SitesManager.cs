@@ -13,13 +13,14 @@ public class SitesManager : MonoBehaviour
     public GameObject visibleTask;
     public GameObject visibleTaskIconBackground;
     public GameObject visibleSitesParent;
-    public GameObject[] siteGameobjects;
+    public MakeAttachedSiteVisible[] makeAttachedSiteVisibleList;
 
     public GameObject player;
 
     public bool singleWIM;
-    private Transform[] originalHiddenSiteTransforms = new Transform[4];
-    private Transform[] originalVisibleSiteTransforms = new Transform[4];
+    private Vector3[] originalHiddenSiteVectors = new Vector3[4];
+    private Quaternion[] originalSiteQuaternions = new Quaternion[4];
+    private Vector3[] originalVisibleSiteVectors = new Vector3[4];
 
     private Transform playerCamera;
 
@@ -38,11 +39,11 @@ public class SitesManager : MonoBehaviour
     private void Start()
     {
         playerCamera = GameObject.Find("VRCamera").transform;
-        for (int i = 0; i < siteGameobjects.Length; i++)
+        for (int i = 0; i < makeAttachedSiteVisibleList.Length; i++)
         {
-            originalHiddenSiteTransforms[i].position = new Vector3(siteGameobjects[i].transform.position.x, -5, siteGameobjects[i].transform.position.z);
-            //originalHiddenSiteTransforms[i].position = new Vector3(originalHiddenSiteTransforms[i].position.x, -5, originalHiddenSiteTransforms[i].position.z);
-            originalVisibleSiteTransforms[i].position = new Vector3(siteGameobjects[i].transform.position.x, 0.5f, siteGameobjects[i].transform.position.z);
+            originalSiteQuaternions[i] = makeAttachedSiteVisibleList[i].attachedSite.transform.rotation;
+            originalHiddenSiteVectors[i] = new Vector3(makeAttachedSiteVisibleList[i].attachedSite.transform.position.x, -5, makeAttachedSiteVisibleList[i].attachedSite.transform.position.z);
+            originalVisibleSiteVectors[i] = new Vector3(makeAttachedSiteVisibleList[i].attachedSite.transform.position.x, 0.5f, makeAttachedSiteVisibleList[i].attachedSite.transform.position.z);
         }
     }
 
@@ -101,24 +102,26 @@ public class SitesManager : MonoBehaviour
         }
     }
 
-    private void ResetWIMPositions(Transform[] wimPositions)
+    private void ResetWIMPositions(Vector3[] wimPositionVectors)
     {
-        for (int i = 0; i < siteGameobjects.Length; i++)
+        for (int i = 0; i < makeAttachedSiteVisibleList.Length; i++)
         {
-            siteGameobjects[i].transform.position = wimPositions[i].position;
-            siteGameobjects[i].transform.rotation = wimPositions[i].rotation;
+            makeAttachedSiteVisibleList[i].attachedSite.transform.position = wimPositionVectors[i];
+            makeAttachedSiteVisibleList[i].attachedSite.transform.rotation = originalSiteQuaternions[i];
         }
     }
 
     public void SwitchToMultipleWIM()
     {
         singleWIM = false;
-        ResetWIMPositions(originalVisibleSiteTransforms);
+        ResetWIMPositions(originalVisibleSiteVectors);
+        player.transform.position = new Vector3(0, 0, 0);
+        player.transform.rotation = Quaternion.identity;
     }
 
     public void SwitchToSingleWIM()
     {
         singleWIM = true;
-        ResetWIMPositions(originalHiddenSiteTransforms);
+        ResetWIMPositions(originalHiddenSiteVectors);
     }
 }
