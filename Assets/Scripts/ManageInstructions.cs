@@ -17,7 +17,6 @@ public class ManageInstructions : MonoBehaviour
     public GameObject resetButton;
     public GameObject unlockButton;
     public bool instructionSent;
-    public List<GameObject> instructionsSentList = new List<GameObject>();
 
     public Queue<Queue<GameObject[]>> instructionsQueue = new Queue<Queue<GameObject[]>>();
 
@@ -62,28 +61,35 @@ public class ManageInstructions : MonoBehaviour
             Debug.Log("buttonInteraction");
             numberOfInstructions = 0;
 
+            // Create a queue of instruction sets
             Queue<GameObject[]> instructionSet = new Queue<GameObject[]>();
 
+            // For every model in the site, check if it has been moved. Add the instructions if it has been moved.
             for (int i = 0; i < children.Count; i++)
             {
                 GameObject[] instructions = children[i].GetComponent<SimpleAttach>().instructions;
                 if (instructions[0] != null && instructions[1] != null)
                 {
+                    // Check if object moved
                     if (instructions[0].transform != instructions[1].transform)
                     {
+                        // Set object material to indicate instructions have been sent
                         SetMaterial(children[i], children[i].GetComponent<SimpleAttach>().instructionSentMaterial);
+                        
+                        // Enable outline for instructions sent
                         if (children[i].GetComponent<Outline>() != null)
                         {
                             children[i].GetComponent<Outline>().enabled = true;
                             children[i].GetComponent<Outline>().OutlineColor = Color.yellow;
                         }
 
-                        //Add to the instruction set
+                        // Add instruction to the instruction set
                         instructionSet.Enqueue(instructions);
 
-                        instructionsSentList.Add(instructions[0]);
+                        // Make model ungrabbable
                         children[i].GetComponent<SimpleAttach>().movedObject.tag = ungrabbableTag;
 
+                        // Clear instruction
                         instructions[0] = null;
                         instructions[1] = null;
 
@@ -95,6 +101,7 @@ public class ManageInstructions : MonoBehaviour
             }
             if (instructionSent == true)
             {
+                // Add sent instructions to instructionsQueue
                 instructionsQueue.Enqueue(instructionSet);
 
                 ChangeButtonInteractability(false);

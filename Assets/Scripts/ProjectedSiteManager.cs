@@ -36,10 +36,7 @@ public class ProjectedSiteManager : MonoBehaviour
 
     public void addInstruction(GameObject g, Vector3 localPosition, Vector3 localScale, Quaternion localRotation)
     {
-        Debug.Log("Adding instruction");
-        Debug.Log($"{g.transform.localPosition}");
         instructionCache.Add(new Instruction { actionObject = g, localPosition = localPosition, localScale = localScale, localRotation = localRotation});
-        Debug.Log($"Instruction added: {instructionCache.Count}");
     }
 
     public Tuple<GameObject, Vector3, Vector3, Quaternion> popInstruction()

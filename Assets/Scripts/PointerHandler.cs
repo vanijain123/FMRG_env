@@ -39,16 +39,6 @@ public class PointerHandler : MonoBehaviour
         laserPointer.thickness = 0;
     }
 
-    private void Update()
-    {
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-        }
-    }
-
     private void PointerClick(object sender, PointerEventArgs e)
     {
         Animator a = e.target.gameObject.GetComponent<Animator>();
@@ -64,11 +54,17 @@ public class PointerHandler : MonoBehaviour
         {
             laserPointer.color = originalLaserColor;
             laserPointer.thickness = 0.002f;
+
+            if (e.target.GetComponent<Button>() != null)
+            {
+                SnapPointerToButton(e.target.gameObject);
+            }
         }
         else
         {
             laserPointer.color = Color.clear;
             laserPointer.thickness = 0;
+            UnsnapPointerToButton();
         }
     }
 
@@ -77,6 +73,7 @@ public class PointerHandler : MonoBehaviour
 
         laserPointer.color = Color.clear;
         laserPointer.thickness = 0;
+        UnsnapPointerToButton();
     }
 
 
