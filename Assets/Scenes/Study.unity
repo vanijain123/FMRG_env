@@ -3830,7 +3830,7 @@ PrefabInstance:
         type: 3}
       propertyPath: visibleTask
       value: 
-      objectReference: {fileID: 1784937514}
+      objectReference: {fileID: 1233696962}
     - target: {fileID: 6199530592260682366, guid: 691839356138eeb4190098408dcd4237,
         type: 3}
       propertyPath: visibleTaskIcon
@@ -3886,6 +3886,11 @@ PrefabInstance:
       propertyPath: singleWIM
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6199530592260682366, guid: 691839356138eeb4190098408dcd4237,
+        type: 3}
+      propertyPath: initialSingleWIMSite
+      value: 
+      objectReference: {fileID: 1233696962}
     - target: {fileID: 6199530592477794408, guid: 691839356138eeb4190098408dcd4237,
         type: 3}
       propertyPath: m_LocalPosition.x

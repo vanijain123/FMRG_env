@@ -9,6 +9,7 @@ public class SitesManager : MonoBehaviour
     public GameObject sites;
     public GameObject activatedTask = null;
     public GameObject menuParent;
+    public GameObject initialSingleWIMSite;
 
     public GameObject visibleTask;
     public GameObject visibleTaskIconBackground;
@@ -123,5 +124,7 @@ public class SitesManager : MonoBehaviour
     {
         singleWIM = true;
         ResetWIMPositions(originalHiddenSiteVectors);
+        visibleTask = initialSingleWIMSite;
+        MakeSiteVisible();
     }
 }
